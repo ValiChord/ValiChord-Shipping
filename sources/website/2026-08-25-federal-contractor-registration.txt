@@ -1,0 +1,39 @@
+SOURCE: https://www.govconinabox.com/explore/smb-federal-contractors/holo-sail-technologies-incorporated-Z2JFPRMDQ5E3
+RETRIEVED: 25 August 2026
+SUBJECT: HOLO-SAIL TECHNOLOGIES INCORPORATED -- US federal contractor registration
+
+Location:              West Caldwell, NJ 07006-7425
+UEI:                   Z2JFPRMDQ5E3
+CAGE Code:             8KN71
+Year established:      2019
+Legal structure:       Subchapter S Corporation
+Congressional district: NJ-11
+Status:                Active
+
+NAICS codes as registered:
+  813920  Professional Organizations           (primary)
+  813312  Environment, Conservation and Wildlife Organizations
+  813410  Civic and Social Organizations
+
+Self-description (as registered):
+  "BlueTech Startup" -- maritime and supply chain solutions; "patented use of
+  advancements in crypto technology, and AI"; automation "for the entire global
+  supply chain, using mobile devices like a cell phone or tablet"; offers
+  "Port Community System" capabilities.
+
+Contract awards / obligated amounts: NONE REPORTED.
+
+OBSERVATIONS (ours, not the source's):
+
+1. All three NAICS codes are in subsector 813 -- Religious, Grantmaking, Civic,
+   Professional and Similar Organizations. These are the codes for non-profit
+   membership associations. None of them describe software, logistics, or
+   freight services. The relevant codes would have been 541511/541512 (custom
+   programming / computer systems design) or 488510 (freight transportation
+   arrangement). As registered, the company would not surface in federal
+   opportunity searches for the work it actually described doing.
+
+2. "patented use of advancements in crypto technology" -- at the time of
+   registration the applications were pending, not granted, and both were later
+   abandoned. This matches the overstatement the Holochain community identified
+   in July 2021; see docs/03.

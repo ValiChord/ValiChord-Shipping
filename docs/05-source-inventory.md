@@ -50,18 +50,31 @@ by direct fetch. All originals below are from the Internet Archive.
 | HOLO SAIL HAVEN product page | 2022-05-24 | [`../sources/website/2022-05-24-holosail-haven.txt`](../sources/website/2022-05-24-holosail-haven.txt) |
 | HoloSail Technologies LLC (WordPress) | Live at time of collection | [`../sources/website/holosailtechnologiesllc-wordpress.txt`](../sources/website/holosailtechnologiesllc-wordpress.txt) |
 
-## Primary — trade press
+## Primary — trade press and registrations
 
 | Source | Status | Local copy |
 |---|---|---|
 | [Is Blockchain's Role in Supply Chain Logistics Overhyped? — gCaptain, 22 Jan 2021](https://gcaptain.com/is-blockchains-role-in-supply-chain-logistics-overhyped/) | **Live** | [`../sources/website/2021-01-22-gcaptain-is-blockchains-role-overhyped.txt`](../sources/website/2021-01-22-gcaptain-is-blockchains-role-overhyped.txt) |
+| [Holo Sail Holdings, Global Supply Chain Logistics, and SDG 8 — The American Reporter, 4 Feb 2021](https://www.theamericanreporter.com/holo-sail-holdings-inc-global-supply-chain-logistics-and-sdg-8/) | **Live** | [`../sources/website/2021-02-04-american-reporter-sdg8.txt`](../sources/website/2021-02-04-american-reporter-sdg8.txt) |
+| [Federal contractor registration — GovCon In A Box](https://www.govconinabox.com/explore/smb-federal-contractors/holo-sail-technologies-incorporated-Z2JFPRMDQ5E3) | **Live** | [`../sources/website/2026-08-25-federal-contractor-registration.txt`](../sources/website/2026-08-25-federal-contractor-registration.txt) |
 
-By the CEO, under the entity name "Holo Sail Holdings" — a third corporate variant alongside
-Holo Sail Technologies Inc. and Holo Sail Technologies LLC. **The single most valuable document
-in the corpus.** Found only because the archived blog post of 13 October 2021 is a stub that
-links out to it. It diagnoses TradeLens's eventual cause of death twenty-two months early, and
-names GSBN (Global Shipping Business Network) — the rival carrier consortium — which appears
-nowhere else in the material collected here and is worth following up.
+**The gCaptain editorial is the single most valuable document in the corpus.** By the CEO, under
+the entity name "Holo Sail Holdings" — a third corporate variant alongside Holo Sail
+Technologies Inc. and Holo Sail Technologies LLC. Found only because the archived blog post of
+13 October 2021 is a stub that links out to it. It diagnoses TradeLens's eventual cause of death
+twenty-two months early, and names GSBN (Global Shipping Business Network) — the rival carrier
+consortium — which appears nowhere else in the material collected here and is worth following
+up.
+
+**The American Reporter piece** is a co-authored think-piece on automation, employment and UN
+SDG 8 rather than a technical document. It matters for two things it does *not* contain: any
+mention of Holochain, and any mention of the Designate device — three and a half months after a
+patent built entirely on the former was filed. It also surfaces an advisor, Dr. Jasmin Cowin of
+Touro College, who appears nowhere else in the recovered material.
+
+**The federal contractor registration** shows an active registration with no contract awards,
+and three NAICS codes that all describe non-profit membership associations rather than software
+or logistics.
 
 A full Wayback URL inventory for the domain — which is what evidences the 2022 pivot to the
 "Haven" product line, and the 2026 lapse — is at
@@ -95,9 +108,26 @@ Also not recovered:
 - The promotional interview with Jonny Stang (YouTube), referenced throughout the July 2021
   forum thread and the source of the "16 verticals" claim. Only the quotations preserved in
   that thread are held here.
-- `holosailtechnology.medium.com` — a Medium account belonging to the CEO, returned 403 to
-  automated retrieval. Contents unknown; may hold further writing of the gCaptain kind, which
-  on the evidence is where this company's real thinking lives.
+- The "Interview with The Crypto Truth," and a podcast episode "Valor with Johnny Walker: A
+  9/11 Hero's Journey into Becoming a Tech CEO," both referenced but not retrieved.
+
+### Leads closed
+
+- **`holosailtechnology.medium.com`** — resolved. Initially 403 to automated retrieval; obtained
+  with browser headers. The CEO's Medium article of 12 February 2021, *"Holo Sail Technologies,
+  Inc Offers Disruptive Technology While Preserving Jobs,"* is a **republication of the American
+  Reporter piece of 4 February 2021** — same opening epigraph, same section headings, 78%
+  vocabulary overlap on the body. No new material. Not preserved separately; see
+  [`../sources/website/2021-02-04-american-reporter-sdg8.txt`](../sources/website/2021-02-04-american-reporter-sdg8.txt).
+  The one phrase not in the earlier version recasts the hardware as "combining an app and the
+  hardware of the neural network" — still no specification.
+- **Dr. Jasmin Cowin's blog** (`drcowinj-locationindependentteach.com`) — carries exactly one
+  Holo Sail post, dated 4 February 2021, which is a pointer to the American Reporter article.
+  No further collaboration between her and the company is discoverable.
+
+This matters as a negative result. Three separate outlets — The American Reporter, Medium, and
+an advisor's blog — carry the *same* article. The company's written output is smaller than it
+first appears, and outside the gCaptain editorial it contains no technical content at all.
 - The "Interview with The Crypto Truth" and the "Healing the Heroes of 9-11" documentary, both
   referenced on the archived blog.
 

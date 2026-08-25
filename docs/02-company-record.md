@@ -18,6 +18,13 @@ The team roster as archived on 3 August 2020:
 | Ace Rodriguez | Director of Government Affairs | Nursing degrees; works for DaVita Inc.; UN representative for 5+ years |
 | Archie Edward Williams III | Former Deputy Director of Operations (d. 2020) | International economics, game theory, psychology; graduate work in health sciences, international transportation, shipping management, logistics and supply chain, ship brokering and chartering; Merchant Mariner Credential; US Navy and Merchant Marines |
 
+One further name appears in the February 2021 American Reporter article rather than on the
+archived team page: **Dr. Jasmin Cowin**, described as Advisor to Executive Management,
+Assistant Professor and Practicum Coordinator at Touro College Graduate School of Education, and
+co-author of an SDG 4 corporate guidebook series at the SHERPA Institute. She is co-author of
+that article. The archived `/advisors` page (December 2021) exists but did not capture its
+contents, so the full advisory roster is unknown.
+
 **The shape this describes matters more than any individual.** The maritime operations side was
 deep and real — terminal operations, stevedoring, Military Sealift Command, merchant mariner
 credentials. The engineering side was one data engineer, one webmaster promoted to deputy
@@ -157,15 +164,66 @@ two applications abandoned without reply, the record does not support the pictur
 development effort that ran out of runway. It supports a small team that produced positioning
 material and never converted it into a product.
 
+## Holochain disappeared from their messaging almost immediately
+
+Tracking the word "Holochain" across their public output produces a sharper timeline than
+tracking the product:
+
+| Date | Document | How the technology is described |
+|---|---|---|
+| Mar 2020 | Holochain forum introduction | Holochain, named and central |
+| Oct 2020 | Patent application filed | Holochain, named throughout; it is the entire claimed differentiator |
+| **Jan 2021** | gCaptain editorial | "agent-centric strategy of distributed computing" — accurate, but **Holochain is not named** |
+| **Feb 2021** | American Reporter article | "nodal neural network," "P2P Digital Ledger technology" — **Holochain is not named** |
+| Feb 2025 | CEO interview | "HoloStacks," decentralised, "without using blockchain" — **Holochain is not named** |
+
+Within four months of filing a patent whose sole differentiator was Holochain, the company had
+stopped naming Holochain in public. The February 2021 replacement term, "nodal neural network,"
+does not describe Holochain or anything else — a distributed hash table is not a neural network.
+Whatever drove the substitution, it moved the public description away from a real technology
+with a real specification toward a phrase with no referent.
+
+*(Inference: this is consistent with either a deteriorating relationship with the Holochain
+ecosystem, or with marketing written by people who did not understand the architecture. Nothing
+in the recovered material distinguishes the two.)*
+
 ## Where they are now
 
 The company exists and trades. A February 2025 interview with CEO John Walker describes
 "HoloStacks," a "Zero-Trust, decentralized encrypted and scalable infrastructure solution," and
-a suite covering "video meetings, file sharing, live streaming, logistics, and more." The
-interview does not mention Holochain and does not mention maritime shipping.
+a suite covering "video meetings, file sharing, live streaming, logistics, and more."
 
-They kept the name and dropped everything under it. **The shipping design is not being worked
-on by anybody.**
+**A correction to an earlier draft of these notes.** They have not dropped logistics entirely —
+that overstated it. "Logistics" survives as one item in a product list, the company was still
+posting supply-chain commentary on LinkedIn as late as September 2023, and the federal
+contractor registration still describes "Port Community System" capabilities. What has gone is
+specific and narrower: **the Holochain-based container shipping platform**. No public artefact
+after 2021 describes it, both patents covering it are abandoned, and the framework it was built
+on is no longer named.
+
+**The design in the PDF is not being worked on by anybody.** That is the accurate claim.
+
+## The federal contractor registration
+
+Holo-Sail Technologies Incorporated is registered as a US federal contractor: UEI
+`Z2JFPRMDQ5E3`, CAGE `8KN71`, established 2019, Subchapter S, West Caldwell NJ, active. **No
+contract awards or obligated amounts are reported.**
+
+The registration is miscoded. All three NAICS codes sit in subsector 813 — *Religious,
+Grantmaking, Civic, Professional and Similar Organizations*:
+
+- 813920 Professional Organizations (primary)
+- 813312 Environment, Conservation and Wildlife Organizations
+- 813410 Civic and Social Organizations
+
+These are the codes for non-profit membership associations. The codes for what the company
+actually described doing would be 541511 or 541512 (custom programming, computer systems design)
+or 488510 (freight transportation arrangement). As registered, the company could not surface in
+a federal opportunity search for its own line of work.
+
+It is a small thing, and it is the same shape as everything else in this record: the analysis
+was sound, the follow-through was not. Full detail in
+[`../sources/website/2026-08-25-federal-contractor-registration.txt`](../sources/website/2026-08-25-federal-contractor-registration.txt).
 
 ---
 

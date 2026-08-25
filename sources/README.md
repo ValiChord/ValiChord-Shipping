@@ -37,6 +37,8 @@ unrelated content under new ownership.
 | `2020-08-03-collaborations.txt` | Port authority and shipping association engagement claims. **Redacted:** one mobile number, one email address |
 | `2020-09-29-post-path-to-a-more-secure-world.txt` | Blog post. Evidences the early drift to cyber-security framing, and carries the post view counts |
 | `2021-01-22-gcaptain-is-blockchains-role-overhyped.txt` | **Not from the archive — retrieved live from gCaptain.** Editorial by the CEO, 22 Jan 2021. The single most valuable document in the corpus. Carries its own provenance header |
+| `2021-02-04-american-reporter-sdg8.txt` | **Not from the archive — retrieved live.** Co-authored think-piece on automation, jobs and UN SDG 8. Matters mainly for what it omits: Holochain is never named, three months after the patent built on it was filed. Republished verbatim on the CEO's Medium account and on an advisor's blog |
+| `2026-08-25-federal-contractor-registration.txt` | US federal contractor record. Active, no contract awards, and three NAICS codes that all describe non-profit membership associations |
 | `2021-10-13-post-is-blockchain-overhyped-stub.txt` | Blog stub whose only content is a link out to the gCaptain article. How that article was found. Also carries post view counts |
 | `2022-05-24-holosail-haven.txt` | The "HOLO SAIL HAVEN" product page. Describes Haven as "Holo Sail's first live product" and carries the 22ZERO testimonial that explains the pivot. **Redacted:** one email address |
 | `2021-12-07-advisors.txt` | Recovered as an empty template — the Wix site rendered content via JavaScript and the archive did not capture it. Retained for completeness |
