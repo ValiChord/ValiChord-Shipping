@@ -64,11 +64,13 @@ those two documents, not the PDF.**
 | [`docs/10-phase0-findings.md`](docs/10-phase0-findings.md) | **Phase 0 ran and passed.** Maritime events can be timed to ~70 seconds from free public AIS, and self-reported status diverges from telemetry measurably |
 | [`docs/11-phase1-findings.md`](docs/11-phase1-findings.md) | **Phase 1 built and working.** Commit–reveal–verify against a real vessel's real track, with a negative control proving the binding actually holds |
 | [`docs/12-phase2-findings.md`](docs/12-phase2-findings.md) | **Phase 2 built.** The report rendered as one page, plus two layout bugs that were invisible in a screenshot and obvious in the numbers |
+| [`docs/13-phase3-findings.md`](docs/13-phase3-findings.md) | **Phase 3 built.** A witness with nobody to recruit — and the attack it does not stop |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
 | [`tools/phase0/`](tools/phase0/) | The Phase 0 code. Regenerates every number in `docs/10` from public data |
 | [`tools/phase1/`](tools/phase1/) | The Phase 1 demonstrator. `bash run.sh` reproduces `docs/11` end to end |
 | [`tools/phase2/`](tools/phase2/) | Renders the discrepancy record as a single page. Sample output committed under `example_output/` |
+| [`tools/phase3/`](tools/phase3/) | The witness layer — drand floor, OpenTimestamps ceiling, and a negative control that names what it cannot prove |
 
 **Known gap.** Four 2020 blog posts remain unrecovered — the Internet Archive returned 503
 throughout collection, and archive.today was checked by hand and holds nothing for this domain.
