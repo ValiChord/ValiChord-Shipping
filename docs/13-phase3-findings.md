@@ -170,12 +170,37 @@ turnkey one.*
 > A source chain proves ordering to an adversary only if somebody else witnessed the
 > earlier entries.
 >
-> Two further points from the same source sharpen this:
+> Holochain action **timestamps are self-reported**. The reference says so directly, in
+> the context of rate limiting: *"note timestamps are self-reported."* That alone means
+> Holochain cannot supply trustworthy time on its own, whoever runs the nodes.
 >
-> * Even when a fork *is* detected, "the network does **not** block them automatically —
->   on roadmap but not current behaviour." The application must gate on warrants itself.
-> * Holochain action **timestamps are self-reported**. The reference says so directly, in
->   the context of rate limiting: *"note timestamps are self-reported."*
+> #### Warrant status — corrected again, 25 Aug 2026
+>
+> An earlier version of this note said "the network does **not** block them automatically
+> — on roadmap but not current behaviour," quoting
+> `ValiChord/docs/Holochain_complete.md`. **That is out of date, and the ValiChord
+> reference should be updated too.**
+>
+> Checked against the Holochain 0.6 release announcement: transport-level blocking
+> already works. *"Validation is now correctly hooked into the network transport to ensure
+> that invalid actions are responded to with network-level blocking,"* and *"warrants are
+> delivered to anyone who queries a bad agent's public key."*
+>
+> What genuinely remains open, in Holochain's own words:
+>
+> * *"Warrants are currently only delivered to the agent public key authorities, so you
+>   have to check for warrants using `get_agent_activity`"* — dissemination is narrow, so
+>   the application must still query rather than being told.
+> * *"Membrane proof checking is currently only enforced via normal validation, not during
+>   handshaking, so unauthorised agents are able to join a network and access it for a
+>   short time before being warranted and blocked."*
+>
+> The 0.8.x roadmap carries a **Warrants** epic — *"enable warranting and blocking of
+> nodes that violate validation rules"* — still in planning, no date, roughly 14 weeks
+> estimated at current velocity.
+>
+> **Net effect on this project: the consequences of forking are real today, not pending.**
+> But they are consequences imposed by *peers*, so the conclusion below is unchanged.
 >
 > **This reverses the direction of the correction on that specific point.** Holochain does
 > not remove the need for independent witnesses, even for ordering — which means Phase 3's
@@ -184,6 +209,58 @@ turnkey one.*
 >
 > What survives: countersigning, agent-centric identity, and the strategic argument below.
 > What does not: the idea that a single-operator hApp gets trustworthy ordering for free.
+
+### How hard is forking, really — and can the UI stop it?
+
+The reasonable objection: forking sounds theoretical, and a well-built client could make
+it very awkward. Worth answering properly, because half of it is right.
+
+**Making a fork is not hard.** The agent runs their own conductor; the source chain is a
+local database and the signing key is in their own keystore. Rolling back is: stop the
+conductor, restore an earlier copy of the state, restart, author something different. No
+cryptography is broken and nothing is exploited — it is file operations by someone with
+administrator access to their own machine.
+
+**The UI is not the security boundary.** It sits above the conductor, and the conductor's
+state is on disk. A client can make forking inconvenient; it cannot make it infeasible,
+because the party the client is protecting against is the party running the client.
+
+**And the adversary here is not casual.** The scenario that motivates the whole project is
+a demurrage dispute at tens of thousands of dollars a day, contested by an operations
+department with IT staff and a direct financial interest. "The interface makes it
+difficult" does not survive that question, and a P&I lawyer will ask it early.
+
+**But the objection is half right, and the half that is right matters.** Phase 0 measured
+divergence between claims and telemetry at 0.372% of fixes, and concluded it was staleness
+at least as much as dishonesty — crews not updating a field nobody is paid to fake. A
+client that makes the honest path easy and the careless path hard genuinely addresses the
+dominant real-world case. It is worth building. It is simply not what answers the
+adversarial question.
+
+### The reframe that actually helps: detection needs one peer, not an industry
+
+The goal is not to prevent forks. It is to make them **detectable**, and detection has a
+much lower bar than it first appears.
+
+If a single independent node has seen and receipted entry *N*, and the author later
+presents a chain in which *N* differs, that node's copy contradicts them. One honest peer
+holding the `RegisterAgentActivity` replica is enough — and since 0.6, the consequence is
+network-level blocking rather than a note in a log.
+
+**One peer.** Not consensus, not a quorum, not an industry. A cargo insurer running a
+node, a neutral body, a class society, or simply a cheap host under a different legal
+entity with a different set of incentives.
+
+That reframes an impossible problem — *recruit the shipping industry* — into a plausible
+one: *persuade a single counterparty to run a node*. It is the same insight Phase 3
+reached about time anchors, arriving from the other direction: you do not need many
+witnesses, you need one you do not control.
+
+**A related design question that has not been decided.** If each party self-hosts its
+conductor, each controls its own chain and the analysis above applies. If conductors are
+hosted — Holo hosting, or edge nodes — the host holds the state, which changes the threat
+model substantially and may be better *or* worse for the neutrality argument depending on
+who the host is. Recorded as open.
 
 **"Not needed for the demonstrator" was conflated with "not the right architecture."**
 Those are different claims. The first is defensible; the second was not argued for and is
