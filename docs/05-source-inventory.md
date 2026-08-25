@@ -44,9 +44,24 @@ by direct fetch. All originals below are from the Internet Archive.
 | Benefits | 2020-08-03 | [`../sources/website/2020-08-03-benefits.txt`](../sources/website/2020-08-03-benefits.txt) |
 | Collaborations | 2020-08-03 | [`../sources/website/2020-08-03-collaborations.txt`](../sources/website/2020-08-03-collaborations.txt) |
 | Post: "The Path to a More Secure World" | 2020-10-26 (post dated 2020-09-29) | [`../sources/website/2020-09-29-post-path-to-a-more-secure-world.txt`](../sources/website/2020-09-29-post-path-to-a-more-secure-world.txt) |
+| Post: "Is Blockchain's Role… Overhyped?" — stub linking out to gCaptain | 2021-12-07 (post dated 13 Oct) | [`../sources/website/2021-10-13-post-is-blockchain-overhyped-stub.txt`](../sources/website/2021-10-13-post-is-blockchain-overhyped-stub.txt) |
 | Advisors | 2021-12-07 | [`../sources/website/2021-12-07-advisors.txt`](../sources/website/2021-12-07-advisors.txt) |
 | Services / "Why Holo Sail Tech?" | 2021-12-07 | [`../sources/website/2021-12-07-services.txt`](../sources/website/2021-12-07-services.txt) |
+| HOLO SAIL HAVEN product page | 2022-05-24 | [`../sources/website/2022-05-24-holosail-haven.txt`](../sources/website/2022-05-24-holosail-haven.txt) |
 | HoloSail Technologies LLC (WordPress) | Live at time of collection | [`../sources/website/holosailtechnologiesllc-wordpress.txt`](../sources/website/holosailtechnologiesllc-wordpress.txt) |
+
+## Primary — trade press
+
+| Source | Status | Local copy |
+|---|---|---|
+| [Is Blockchain's Role in Supply Chain Logistics Overhyped? — gCaptain, 22 Jan 2021](https://gcaptain.com/is-blockchains-role-in-supply-chain-logistics-overhyped/) | **Live** | [`../sources/website/2021-01-22-gcaptain-is-blockchains-role-overhyped.txt`](../sources/website/2021-01-22-gcaptain-is-blockchains-role-overhyped.txt) |
+
+By the CEO, under the entity name "Holo Sail Holdings" — a third corporate variant alongside
+Holo Sail Technologies Inc. and Holo Sail Technologies LLC. **The single most valuable document
+in the corpus.** Found only because the archived blog post of 13 October 2021 is a stub that
+links out to it. It diagnoses TradeLens's eventual cause of death twenty-two months early, and
+names GSBN (Global Shipping Business Network) — the rival carrier consortium — which appears
+nowhere else in the material collected here and is worth following up.
 
 A full Wayback URL inventory for the domain — which is what evidences the 2022 pivot to the
 "Haven" product line, and the 2026 lapse — is at
@@ -57,22 +72,34 @@ site rendered its content via JavaScript and the archive did not capture it.
 
 ### Not recovered
 
-The Internet Archive became intermittently unavailable during collection ("Internet Archive
-services are temporarily offline"). These four blog posts are known to exist from the URL
-inventory but were not retrieved:
+The Internet Archive was intermittently unavailable during collection ("Internet Archive
+services are temporarily offline"). These blog posts are known to exist from the URL inventory
+but were not retrieved:
 
 - `/post/holo-sail-is-headed-to-rotterdam` (snapshot 2020-08-03)
 - `/post/what-is-a-port-community-system-pcs` (snapshot 2020-08-03)
 - `/post/redefining-automation` (snapshot 2020-08-03)
-- `/post/is-blockchain-s-role-in-supply-chain-logistics-overhyped` (snapshot 2021-12-07)
+- `/post/holosail-s-modernization-of-global-supply-chain` (snapshot 2020-08-03)
 
 `what-is-a-port-community-system-pcs` is the one most likely to contain substance, given that
-the home page's standards work is the strongest technical content in the corpus. Worth a retry
-when the Archive is stable.
+the home page's standards work is among the strongest technical content in the corpus. Worth a
+retry when the Archive is stable.
 
-Also not recovered: the promotional interview with Jonny Stang (YouTube), referenced throughout
-the July 2021 forum thread and the source of the "16 verticals" claim. Only the quotations
-preserved in that thread are held here.
+A caution learned the hard way: several retrieval attempts returned an Internet Archive error
+page **padded to 250–870 KB of whitespace**, which passes a naive file-size check. Confirm
+recovered pages by their extracted text, not their byte count. Two files in this collection
+initially looked like large successful captures and were error pages.
+
+Also not recovered:
+
+- The promotional interview with Jonny Stang (YouTube), referenced throughout the July 2021
+  forum thread and the source of the "16 verticals" claim. Only the quotations preserved in
+  that thread are held here.
+- `holosailtechnology.medium.com` — a Medium account belonging to the CEO, returned 403 to
+  automated retrieval. Contents unknown; may hold further writing of the gCaptain kind, which
+  on the evidence is where this company's real thinking lives.
+- The "Interview with The Crypto Truth" and the "Healing the Heroes of 9-11" documentary, both
+  referenced on the archived blog.
 
 ## Secondary
 

@@ -38,6 +38,14 @@ names as prior art — was shut down in November 2022, and the stated reason was
 for full global industry collaboration has not been achieved." Two very differently resourced
 attempts died at the same wall, and it was not the ledger.
 
+**Everything of value this company produced is outside its patent.** The interoperability
+standards work (IPCSA, ISO 28005, EDIFACT, IALA S-211) is on the archived home page. The
+strategic analysis — including a correct prediction of TradeLens's collapse, published
+twenty-two months before it happened — is in a
+[gCaptain editorial](https://gcaptain.com/is-blockchains-role-in-supply-chain-logistics-overhyped/)
+by the CEO. The patent contains neither, and instead explains what a blockchain is. **Start with
+those two documents, not the PDF.**
+
 ---
 
 ## Contents

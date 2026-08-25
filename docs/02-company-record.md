@@ -58,7 +58,10 @@ The same page states the intended operational outcome plainly:
 > Only drivers who have customs-cleared containers ready will be at the gate. Time windows and
 > customs checks will be completely predetermined.
 
-**Anyone picking this up should start from the archived website, not the patent.**
+**Anyone picking this up should start from the archived website and the gCaptain editorial, not
+the patent.** The pattern holds across the whole corpus: everything of value the company
+produced is outside its patent applications. The standards work is on the home page. The
+strategic analysis is in a trade journal. The patent has neither.
 
 ## Timeline
 
@@ -69,7 +72,9 @@ The same page states the intended operational outcome plainly:
 | 3 Aug 2020 | Website archived: shipping-first, standards-aware, names IPCSA / ISO 28005 / EDIFACT / S-211 |
 | **29 Sep 2020** | **Blog post "The Path to a More Secure World" — pure cyber-security framing, no shipping content. Three weeks before the non-provisional is filed** |
 | 19 Oct 2020 | Non-provisional 17/074,484 filed |
+| **22 Jan 2021** | **CEO publishes an editorial in gCaptain: "Is Blockchain's Role in Supply Chain Logistics Overhyped?" The strongest document in the entire corpus — see [`04-strategic-assessment.md`](04-strategic-assessment.md)** |
 | 10 Jun 2021 | Application published as US 2021/0174293 A1 |
+| Sep 2021 | "Healing the Heroes of 9-11" documentary released, featuring the CEO |
 | Jul 2021 | Promotional interview with Jonny Stang; community raises concerns on Reddit and the Holochain forum (see [`03-community-response.md`](03-community-response.md)) |
 | 2 Aug 2021 | Non-final office action mailed |
 | 7 Dec 2021 | Website archived: still no architecture; pitch now leads with "cloud-based vulnerabilities" and "superior cyber-security" |
@@ -101,6 +106,45 @@ for two unanswered office actions than oversight.
 The claim in the same post that the technology is "Cloud free and impenetrable to modern Cyber
 and hacking attacks" is worth recording for calibration. Nothing is impenetrable, and the claim
 indicates how the company's technical statements should be weighted generally.
+
+## Why the pivot happened: they found a user
+
+The archived `holosailhaven` page (May 2022) supplies the missing explanation, and it is not a
+business-strategy story.
+
+The page describes Haven as **"Holo Sail's first live product"** — "a private social network
+designed for organizations and businesses," pitched as "FaceBook without the data harvesting."
+Note the date. Roughly two and a half years after the provisional application, the first thing
+the company shipped was a social network, not the shipping system.
+
+The page carries a testimonial from the founder of **22ZERO**, a non-profit that treats PTSD in
+veterans and first responders:
+
+> "That video has been viewed around 34,000 times in two days with several thousand comments.
+> We helped Cheri in the video Heal her PTS that's she's dealt with since childhood. As a result
+> we are up to nearly 300 requests for help… Holo Sail Technologies developed a PTSD assessment
+> tool through their platform that we can send directly to the client, they fill out the
+> symptoms and they are scored, we get a copy the client gets a copy and we forward the case to
+> the coaches. Normally I would have had to do assessments by phone. 15 minutes each. Multiply
+> that by 300."
+
+The connection is personal and publicly documented by the parties themselves. By 22ZERO's own
+account, the CEO was a US Marine present in New York on 11 September 2001, was interviewed for
+their documentary, and went through their programme. He then built them software.
+
+**This is the clearest contrast in the record.** On one side, a shipping platform requiring
+twelve classes of commercial counterparty to agree before it produced any value, with no
+signed adopter after two and a half years. On the other, a single organisation with 300 people
+waiting and a concrete task — score an assessment, route it to a coach — that software could
+discharge that week.
+
+They went where the users were. Given the two options as they actually stood, it is difficult
+to call that the wrong decision.
+
+*(Inference, but a well-supported one: this reframes the abandoned patents. The applications
+were not neglected through incompetence so much as deprioritised in favour of work that had
+someone waiting for it. The office actions went unanswered because by then nobody wanted the
+thing the patent covered.)*
 
 ## Evidence of traction
 
