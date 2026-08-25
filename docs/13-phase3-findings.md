@@ -122,22 +122,132 @@ the four parties are not.
 
 ## What this means for the Holochain question
 
+> **Corrected 25 August 2026, after challenge from Ceri John.** The section below
+> originally dismissed Holochain for Phase 3 and overstated the case considerably. The
+> correction follows the original so the reasoning stays auditable.
+
+### The original argument
+
 [`docs/09`](09-demo-plan.md) argued Holochain would earn its place at Phase 3, on the
 grounds that witnessed append-only per-agent publication without a central operator is
-exactly what the trust model needs. **That reasoning was sound and the conclusion was
-wrong, for a practical reason the plan did not consider.**
+exactly what the trust model needs.
 
-Holochain's witnessing property depends on *independent peers actually running nodes*. In
-a demonstrator where one person operates every node, there is no independence — it is
-theatre with extra steps. Getting genuinely independent nodes means recruiting
-participants, which is the exact problem this phase existed to route around.
+Phase 3 rejected that: Holochain's witnessing property depends on *independent peers
+actually running nodes*, and in a demonstrator where one person operates every node there
+is no independence — it is theatre with extra steps. Getting genuinely independent nodes
+means recruiting participants, the exact problem this phase existed to route around.
+drand and OpenTimestamps supply real independence today at zero recruitment cost.
 
-drand and OpenTimestamps supply real independence today, at zero recruitment cost,
-because other people already run them for their own reasons.
+### Why that was too sweeping
 
-**Holochain becomes the right answer when there are genuinely independent parties** —
-which is a later problem, and a commercial one rather than a technical one. Recorded as a
-revision rather than quietly dropped.
+**The argument is sound about one property and was applied to all of them.** The
+"one operator, no independence" objection is correct about the *validating DHT*. It says
+nothing about two other things Holochain provides, both of which were skated past
+entirely:
+
+**Countersigning.** Holochain supports atomic multi-party commit — either both parties
+commit to a shared entry or neither does. A custody handover is inherently bilateral, so
+this maps directly onto the actual use case, and plain signed files cannot do it.
+*Caveat, checked against the Holochain reference: it is feature-gated
+`unstable-countersigning`, sessions are time-bounded with a 6-second maximum clock skew,
+and stuck sessions require explicit abandonment. It is a real primitive, not a
+turnkey one.*
+
+> ### ⚠️ A claim in this section was wrong, and is retracted
+>
+> This correction originally also asserted that **"source chains give ordering for free,
+> with a single agent — you can prove event A preceded event B with no external witness at
+> all."** That is false, and checking it against
+> `ValiChord/docs/Holochain_complete.md` is what established it.
+>
+> Fork detection is not intrinsic to a source chain. It is performed by the DHT
+> authorities for the author's public key, via the `RegisterAgentActivity` op — which
+> "appends to replica of author's source chain; **detects forks**." `ChainStatus` can
+> return `Forked(warrant)` precisely because *peers* noticed.
+>
+> **With one operator and no independent peers, a fork is undetectable.** An agent can
+> rewrite or branch their own chain and nobody holds the earlier state to contradict them.
+> A source chain proves ordering to an adversary only if somebody else witnessed the
+> earlier entries.
+>
+> Two further points from the same source sharpen this:
+>
+> * Even when a fork *is* detected, "the network does **not** block them automatically —
+>   on roadmap but not current behaviour." The application must gate on warrants itself.
+> * Holochain action **timestamps are self-reported**. The reference says so directly, in
+>   the context of rate limiting: *"note timestamps are self-reported."*
+>
+> **This reverses the direction of the correction on that specific point.** Holochain does
+> not remove the need for independent witnesses, even for ordering — which means Phase 3's
+> original conclusion was right for a better reason than the one it gave, and external
+> time anchors remain necessary regardless of substrate.
+>
+> What survives: countersigning, agent-centric identity, and the strategic argument below.
+> What does not: the idea that a single-operator hApp gets trustworthy ordering for free.
+
+**"Not needed for the demonstrator" was conflated with "not the right architecture."**
+Those are different claims. The first is defensible; the second was not argued for and is
+probably false.
+
+### The architecture that should have been proposed
+
+Source chains and external anchors are complementary rather than competing:
+
+- **Source chains** establish ordering *within* each party — free, no witness required
+- **External time anchors** pin the chain *head* at intervals
+- Everything between anchor N and anchor N+1 is therefore provably ordered *and* pinned
+  to that window
+- Anchoring becomes periodic rather than per-event — considerably cheaper than what this
+  phase actually built
+- **Countersigning** handles handovers, where both sides must commit together
+
+That uses Holochain for what it is genuinely good at, with external time filling the one
+gap it cannot fill alone: independent proof of *when*, before independent peers exist.
+
+### The strategic objection, which is the stronger one
+
+**If this work never touches Holochain, it is not a ValiChord demonstrator.** It is a
+well-built separate artefact that happens to share an author — and the stated purpose of
+the whole exercise was to get people interested in what ValiChord can do.
+
+[`docs/09`](09-demo-plan.md)'s exclusion table was a good discipline that prevented real
+bloat, and it holds for Unyt (no money moves) and Nondominium (nothing changes custody).
+Applied to Holochain it went too far, and a rule against shoehorning can quietly become a
+rule against ever integrating anything — leaving an orphan demonstrator with no path back
+into the main project.
+
+**Standing position:** Holochain belongs in the system, and its absence from Phases 1–3
+is a statement about the demonstrator's scope, not about the architecture. Phase 3b is
+the source-chain commit log. Setup cost is documented in
+[`14-holochain-setup.md`](14-holochain-setup.md).
+
+---
+
+## A related correction: ValiChord is not trustless
+
+Phase 3's write-up contrasted Bitcoin ("you don't have to trust anyone") with RFC 3161
+timestamp authorities ("you must trust the authority"), implying the second was a
+compromise of the project's principles.
+
+That framing was wrong, because **ValiChord has never been trustless.** Its own
+description specifies *"independent credentialed validators"*, and credentialing is a
+trust operation. ValiChord is **trust-distributed**: individual validators are trusted to
+be competent, and the structure — blind commit-reveal — prevents them colluding or
+anchoring on one another.
+
+That is the same shape as several independent timestamp authorities in different
+jurisdictions, each with a business built on not backdating, all of whom would have to
+collude. Bitcoin occupies a stricter category; ValiChord and multi-authority timestamping
+occupy the same one.
+
+So moving the ceiling to RFC 3161 would be *consistent* with the project's trust model
+rather than a departure from it, and the "trustless versus trusted" framing should not be
+used to argue against it.
+
+**Status: not yet implemented.** Phase 3 as committed uses OpenTimestamps and Bitcoin.
+The case for RFC 3161 — legal recognition, eIDAS presumption of accuracy, instant
+issuance, and no blockchain framing in front of an industry that watched TradeLens die —
+is argued but the code is unchanged. Recorded as an open decision, not a silent one.
 
 ---
 

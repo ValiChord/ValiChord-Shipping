@@ -65,6 +65,7 @@ those two documents, not the PDF.**
 | [`docs/11-phase1-findings.md`](docs/11-phase1-findings.md) | **Phase 1 built and working.** Commit–reveal–verify against a real vessel's real track, with a negative control proving the binding actually holds |
 | [`docs/12-phase2-findings.md`](docs/12-phase2-findings.md) | **Phase 2 built.** The report rendered as one page, plus two layout bugs that were invisible in a screenshot and obvious in the numbers |
 | [`docs/13-phase3-findings.md`](docs/13-phase3-findings.md) | **Phase 3 built.** A witness with nobody to recruit — and the attack it does not stop |
+| [`docs/14-holochain-setup.md`](docs/14-holochain-setup.md) | What Phase 3b would actually cost. The toolchain is not the obstacle — two languages are |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
 | [`tools/phase0/`](tools/phase0/) | The Phase 0 code. Regenerates every number in `docs/10` from public data |
