@@ -139,7 +139,9 @@ makes transaction speeds and volumes "near-limitless," that security is "near im
 crack," and reports that "after a conversation with the Network development team, more
 transactions we add to the network, the faster it will work." No benchmark, model, or citation
 is offered. The payment mechanism is given as "atomic swap utilizing the Holochain networks
-cryptocurrency Holofuel," with no design for it.
+cryptocurrency Holofuel," with no design for it. *(What would fill that gap today is
+assessed in [`07-unyt-payments-and-the-survey-protocol.md`](07-unyt-payments-and-the-survey-protocol.md)
+— and it is not the currency they named.)*
 
 **Not present at all** — anything about governance, onboarding, identity, dispute resolution,
 or how competing commercial parties are induced to run nodes. See
