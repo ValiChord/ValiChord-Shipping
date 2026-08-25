@@ -2,10 +2,10 @@
 
 Two questions this document answers.
 
-1. The patent's payment mechanism — "atomic swap utilizing the Holochain networks cryptocurrency
-   Holofuel" — was assessed in [`docs/02`](02-company-record.md) as a keystone that still does not
-   exist. **That assessment was aimed at the wrong target.** Unyt is the answer, and it is already
-   shipping.
+1. What actually fills the payment gap the patent left. **Not HoloFuel** — that is mutual credit
+   for hosting, and proposing it for cargo invoices was a category error. **Unyt** is the
+   settlement infrastructure, it is already shipping, and its limits are a licensing question
+   rather than a technical one.
 2. Is ValiChord's blind commit-reveal protocol useful here? **Not for the handover chain the
    patent designed. Well matched to marine cargo damage survey**, which is where the disputes and
    the money actually are.
@@ -23,8 +23,45 @@ these notes repeated the conflation by treating HoloFuel's availability as the b
 
 "Payment on delivery" is not a currency problem. It is a conditional-execution problem: *when a
 verified delivery attestation exists and the consignee accepts, release funds.* That is an
-agreement, and it works with whatever unit the parties choose — including one they define
-themselves. HoloFuel's launch date is not on the critical path.
+agreement, and it works with whatever unit the parties choose. HoloFuel's launch date is not on
+the critical path.
+
+### What HoloFuel actually is — and why the patent's plan was a category error
+
+Checked against Holo's own currency page, 25 August 2026. Their words, not a paraphrase:
+
+> **"A currency built for hosting, not for holding"**
+
+> "HoloFuel is a **mutual-credit** cryptocurrency architecture designed for the Holo ecosystem…
+> **Internal accounting**: A system for pricing, payments, and resource allocation **within the
+> hosting network**."
+
+> "HoloFuel will serve as the **internal accounting system** for pricing, payments, and resource
+> allocation."
+
+And the disclaimer is unusually direct:
+
+> "Any HOT redemption or conversion services would be provided by appropriately licensed
+> third-party entities, not Holo Limited. **Holo Limited is a cloud hosting company and does not
+> operate token exchange services.**"
+
+So HoloFuel is mutual credit for settling hosting capacity between hosts and customers. It is not
+a general tradable currency; Holo explicitly disclaims operating exchange; and mutual credit does
+not behave like a bearer asset — balances are credit and debit positions against a network you
+have joined, bounded by credit limits.
+
+**The patent proposed settling international cargo invoices in it.** From the specification:
+payment "in the seller's local currency vie atomic swap utilizing the Holochain networks
+cryptocurrency Holofuel." That is proposing to pay for a container of goods with the unit designed
+for buying server time. It was a category error in 2020, it remains one, and no launch date fixes
+it.
+
+Note also that Holo currently accepts **HOT and national currencies (USD, EUR)** for hosting,
+pending HoloFuel's implementation. Holo does not yet settle Holo in HoloFuel.
+
+*(This correction originated with Ceri John, who queried the "HoloFuel is a currency" framing on
+the grounds that it looked like a hosting unit rather than a tradable one. It was checked against
+the primary source and he was right.)*
 
 ### What Unyt is
 
@@ -43,6 +80,49 @@ Set that last item beside the patent's own sentence:
 
 Unyt's feature list is a closer match to Holo Sail's stated requirement than Holo Sail's own
 architecture was.
+
+### What Unyt can and cannot settle
+
+**Can — units of the network's choosing.** From the Currency Design documentation:
+
+> "**Unit of account:** What does your currency represent? Hours, energy, favors, **dollars**?"
+> "**Issuance:** Mutual credit, admin-issued, earned-only, **backed by locked assets**, etc"
+
+Each deployment — a "Unyt Alliance" — defines its own currencies, rules and governance. Unyt is
+**not** locked to HoloFuel; HoloFuel is one unit among many, and Holo's hosting settlement is built
+*on* Unyt rather than the reverse.
+
+**Can — bridged EVM assets.** Bridging is implemented, not aspirational: a two-way HOT ↔
+bridged-HOT bridge using a Raindex orderbook vault, with Solidity contracts, a Rust orchestrator,
+and lock/claim flows.
+
+**Cannot — fiat.** The full Unyt documentation was searched on 25 August 2026:
+
+| Term | Occurrences |
+|---|---|
+| `fiat` | 0 |
+| `USD` | 0 |
+| `stablecoin` | 0 |
+| `USDC` | 0 |
+
+The only appearance of "dollars" is the rhetorical line above about what a unit may *represent*.
+
+**This distinction is load-bearing: denominating a unit in dollars is not moving dollars.** Unyt
+supplies accounting, agreements, and atomic multi-currency trades. It does not supply a bank
+connection.
+
+### The real barrier is a licence, not a technology
+
+For the patent's actual promise — *immediate payment in the seller's local currency upon
+delivery* — moving real money across borders requires a licensed money transmitter or payment
+institution at the boundary. That is a regulated business, not a missing feature.
+
+Holo's disclaimer is them identifying this exact line and declining to cross it: they are "a cloud
+hosting company" and do "not operate token exchange services."
+
+**Nothing in Holochain, Unyt, Nondominium or ValiChord addresses this, and nothing was ever going
+to.** Holo Sail bolted settlement to provenance because HoloFuel made it sound like a solved
+problem. It was not.
 
 ### The primitive: RAVE
 
@@ -234,8 +314,15 @@ Retaining the full ambition, the order the above suggests:
    `TransferCustody` vocabulary; no Designate hardware; verifiable by a non-participant.
 2. **Blind survey on top.** ValiChord's commit-reveal where multiple assessors are genuinely
    involved — used on merit, not imported wholesale.
-3. **Settlement via Unyt.** `lockbox` + `conditional_forward` for surveyor fees first (small,
-   low-stakes, real), claim settlement later.
+3. **Settlement via Unyt.** `lockbox` + `conditional_forward` for surveyor fees first, claim
+   settlement much later or never.
+
+   This was originally proposed on stakes — start small. The fiat finding above gives a second
+   and better reason: **start where you do not need a licence.** Surveyor fees are modest, between
+   a handful of known parties, and can run as a mutual-credit or dollar-denominated unit inside an
+   alliance — or simply be invoiced conventionally, with Unyt holding the verifiable record rather
+   than moving the money. Claim settlement is large, cross-border and regulated. Do not design for
+   it early, and treat "we settle claims" as a thing to earn, not to promise.
 4. **Standards surface.** ISO 28005, UN/EDIFACT, IALA S-211, IPCSA — from
    [`docs/02`](02-company-record.md). This is what makes any of it legible to a port, and matters
    more than any Holochain version question.
@@ -243,6 +330,23 @@ Retaining the full ambition, the order the above suggests:
    defend themselves stay for the visibility.
 
 Steps 1–3 need one insurer and a panel of surveyors, not an industry.
+
+### Decouple the evidence layer from the payment layer
+
+A structural consequence of the fiat finding, and arguably the most useful thing in this document.
+
+**The verifiable part needs no licence.** Who held what, when, in what condition, and what
+independent assessors concluded — none of that touches regulated money movement. It can be built,
+shipped and sold without becoming a financial institution.
+
+**The money can settle however the parties already settle it.** Letters of credit, open account,
+existing claims processes. The evidence layer produces a record those processes consume; it does
+not have to move the funds.
+
+Holo Sail welded settlement onto provenance because HoloFuel made settlement sound like a solved
+problem. It was not, and the welding added the one component that requires a licence to operate.
+**Separating them removes the project's only regulatory dependency** — and loses nothing, because
+provenance was always the part with no substitute.
 
 ---
 
@@ -265,7 +369,13 @@ The load-bearing ones, in order of how much they decide:
 
 **Sources**
 
-- [unyt.co](https://unyt.co/) — read 25 Aug 2026
+- [holo.host/currency](https://holo.host/currency/) — read 25 Aug 2026; local copy at
+  [`../sources/ecosystem/2026-08-25-holo-host-currency-page.txt`](../sources/ecosystem/2026-08-25-holo-host-currency-page.txt)
+- [unyt.co/docs](https://unyt.co/docs/) — read 25 Aug 2026; local copy at
+  [`../sources/ecosystem/2026-08-25-unyt-documentation.txt`](../sources/ecosystem/2026-08-25-unyt-documentation.txt)
+- [unyt.co](https://unyt.co/) — read 25 Aug 2026; local copy at
+  [`../sources/ecosystem/2026-08-25-unyt-homepage.txt`](../sources/ecosystem/2026-08-25-unyt-homepage.txt)
+- [unytco/raindex-orders](https://github.com/unytco/raindex-orders) — the implemented HOT bridge
 - [unytco/smart_agreement_library](https://github.com/unytco/smart_agreement_library) — README and template listing
 - [unytco GitHub organisation](https://github.com/unytco) — repository activity
 - [HOT to HoloFuel Technical Migration Test — Holo](https://holo.host/blog/hot-to-holofuel-technical-migration-test-ha2gtr4RkYV/)
@@ -275,4 +385,11 @@ The load-bearing ones, in order of how much they decide:
 **Note on the HoloFuel timeline.** A launch date of 1 November 2026 at the latest has been
 reported to this project; it could not be independently confirmed here. What is public is a Holo
 blog post of 3 July 2026 announcing a 30 July livestream at which the official migration date
-would be revealed. Either way, Part 1 argues the date is not on the critical path.
+would be revealed.
+
+The date matters less than it appears, and for a stronger reason than "the rails already exist."
+HoloFuel is mutual credit for hosting. Even fully launched on schedule, it would not be the
+instrument for settling cargo invoices — so its timeline is not a dependency of this project in
+either direction. It is not dismissed: a hosting-backed mutual-credit unit may yet be useful for
+something here, most plausibly for paying network participants rather than for trade settlement.
+But it is not the answer to "payment on delivery," and the patent was wrong to treat it as one.

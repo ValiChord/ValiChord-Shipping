@@ -1,0 +1,81 @@
+SOURCE: https://unyt.co/
+RETRIEVED: 25 August 2026 -- live at time of retrieval
+
+WHY THIS IS HERE: product positioning, incl. "atomic multi-currency trades -- no
+trading pairs, liquidity pools, or crypto exchanges needed", set against the Holo
+Sail patent's "atomic swap". See docs/07.
+
+--- PAGE TEXT ---
+
+Home | Unyt 
+ How It Works 
+ Roadmap 
+ Docs 
+ Blog 
+ About 
+ P2P Payment Rails. Your Rules.
+ Create currencies, automate payments, and connect networks — without middlemen, platform lock-in, or mandatory fees.
+ Try Unyt for Free 
+ See How It Works 
+ What Becomes Possible
+ Launch your own currency
+ Mutual credit, service units, memberships, loyalty programs. Define and run your own digital economic system.
+ Explore Currencies → 
+ Automate payments on your terms
+ Billing, escrow, revenue sharing, etc. Your rules, running on your community's devices instead of someone else's platform.
+ Explore Smart Agreements → 
+ Transact across currencies
+ Multi-currency transactions. Propose and execute trades directly. No exchanges necessary.
+ Explore Trades → 
+ Why Unyt?
+ Define Your Own Units
+ Create currencies that foster the flows you want — from payment units and loyalty points to memberships and reputation.
+ Customizable Fees
+ Set transaction fees to whatever you want — including zero. No gas cost, transaction fees, or platform charges required.
+ Peer to Peer
+ Efficiently runs on participants' own devices to reduce cost and increase resilience.
+ Blockchain Bridging
+ Bridge EVM tokens into Unyt networks. Track and Trade blockchain assets alongside custom currencies.
+ Self-Custodial
+ Your keys, your data, your device. Participants control their own assets — not some custodian.
+ Direct Value Trading
+ Atomic multi-currency trades. No trading pairs, liquidity pools, or crypto exchanges needed.
+ Who is Unyt For?
+ Infrastructure Networks
+ DePIN projects, IoT networks, hosting providers. Automated proof-of-service billing with customizable fees.
+ See DePIN Billing 
+ Crypto Projects
+ Bridge blockchain tokens, atomic multi-currency trades, cross-project marketplaces. Trade at negotiated prices.
+ Learn About Bridging 
+ Communities & Groups
+ Cooperatives, makerspaces, mutual aid networks. Launch your own currency system with the tools the big projects use.
+ Get Started Free 
+ 11 
+ releases since Sep 2025 
+ Latest 
+ Blockchain Bridging v0.54.0 — Feb 2026 
+ See full roadmap → 
+ Ready to Build?
+ Download the sandbox and start experimenting, or reach out to discuss your project.
+ Try Unyt for Free 
+ Schedule a Call 
+ Product
+ How It Works 
+ Roadmap 
+ Docs 
+ FAQ 
+ Community
+ GitHub 
+ X 
+ Discord 
+ LinkedIn 
+ Get Started
+ Try Unyt 
+ Documentation 
+ Unyt on Moss 
+ Company
+ About 
+ Consent Preferences 
+ Privacy Policy 
+ Terms of Service 
+ Cookie Policy

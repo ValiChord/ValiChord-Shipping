@@ -1,0 +1,113 @@
+SOURCE: https://holo.host/currency/
+TITLE: Currency: Pricing, payments and HoloFuel -- Holo Hosting
+RETRIEVED: 25 August 2026 -- live at time of retrieval
+
+WHY THIS IS HERE: establishes in Holo's own words that HoloFuel is mutual credit
+for settling HOSTING capacity -- "a currency built for hosting, not for holding" --
+and not a general tradable currency. See docs/07.
+
+--- PAGE TEXT ---
+
+Currency: Pricing, payments and HoloFuel — Holo Hosting 
+ Product 
+ : 
+ Hosting Services 
+ Product Roadmap 
+ Become an Operator 
+ Resources 
+ : 
+ Pricing & currency 
+ Edge Node Wind Tunnel Testing Guide 
+ Always-On Holochain Node Guide 
+ Holo (HOT) Token Resources 
+ White Papers 
+ Blog 
+ Talk to us 
+ Currency
+ Holo’s approach to pricing, payments and currency .
+ Our approach to pricing, payments, and currency reflects our commitment to
+ creating a fair and efficient distributed hosting ecosystem.
+ Today
+ Pricing and payments with HOT and national currencies
+ Holo plans to accept payments for hosting services primarily in HoloToken (HOT),
+ with additional support for national currencies such as USD and EUR prior to the
+ launch of the full Holo platform, and before the implementation of HoloFuel as
+ the native hosting backed payment currency in Holo.
+ Key detail
+ Simplified pricing
+ Customer pricing will be aggregated by Holo and simplified for alpha testing
+ and provisioning, ensuring straightforward payment processes.
+ Key detail
+ No micro-payments yet
+ Until we implement HoloFuel as the internal accounting system, micro-payments
+ and direct peer payments between customers and hosts will not be supported.
+ Key detail
+ Host price and payment options
+ HoloPort owners will be contacted manually as needed if and when hosting
+ services to customers or projects arise, based on their hardware’s capacity.
+ Hosts will receive compensation for providing alpha hosting services.
+ By design
+ HoloFuel — the future of hosting payments
+ HoloFuel is a mutual-credit cryptocurrency architecture designed for the Holo
+ ecosystem. The design intent, as documented in the 2018 Green Paper and
+ subsequent whitepapers, encompasses:
+ Internal accounting : A system for pricing, payments, and resource allocation within the hosting network
+ Host-determined pricing : Hosts set their own rates based on demand and capacity
+ Direct peer payments : Supporting customer-to-host payments and micro-transactions
+ High-volume capability : Designed for the micro-transaction volume required in a hosting economy
+ The implementation status of HoloFuel components is detailed in our
+ Product Roadmap . 
+ Any HOT redemption or conversion services would be provided by appropriately licensed third-party entities, not Holo Limited. Holo Limited is a cloud hosting company and does not operate token exchange services.
+ How it is designed to work
+ A currency built for hosting, not for holding
+ Unit of account
+ HoloFuel will serve as the internal accounting system for pricing, payments,
+ and resource allocation.
+ Dynamic host-based pricing
+ Hosts will set their own rates based on demand and capacity, creating a
+ decentralized marketplace for hosting services.
+ Direct peer payments
+ Customers will pay hosts directly, and micro-payments will be fully supported
+ for granular, usage-based settlement.
+ Sustainability and scalability
+ Designed to handle the high-volume micro-transactions needed in the hosting
+ economy.
+ History
+ Token design history
+ Holo Token (HOT) was designed and sold in 2018 as a placeholder token representing a future claim on HoloFuel credits within the ecosystem. The original ICO materials and Green Paper documented that HOT would be redeemable for HoloFuel at a 1:1 ratio once the HoloFuel system became operational. The technical infrastructure and operational arrangements for any such redemption process are subject to ongoing development, regulatory requirements, and will be provided by appropriately licensed entities.
+ For the canonical contract addresses, see HOT Token Resources . Any HOT redemption or conversion services would be provided by appropriately licensed third-party entities. Holo Limited is a cloud hosting company and does not operate token exchange services.
+ HoloFuel represents our vision of a decentralized, peer-powered hosting network
+ where hosts and users interact directly, enabled by fair and efficient payments.
+ Who owns this
+ Holochain Foundation
+ Fully owned by the Holochain Foundation, we align with the mission of Holochain,
+ our partners, and the broader open-source community to provide alternatives to
+ fully centralized cloud hosting. Holo highlights the power of collaboration and
+ community, creating a more inclusive and resilient web.
+ Important notice
+ Information about HoloFuel and HOT reflects the original design intent as documented in Holo's 2018 ICO materials. Any token redemption, conversion, or swap mechanisms are subject to regulatory requirements and would be operated by appropriately licensed entities. Holo Limited does not currently offer token exchange, conversion, or redemption services. Nothing on this website constitutes financial advice or an offer of securities.
+ A Holochain Foundation Company 
+ Product
+ Hosting Services 
+ Product Roadmap 
+ Become an Operator 
+ Resources
+ Pricing & currency 
+ Edge Node Wind Tunnel Guide 
+ Always-On Node Guide 
+ Holo (HOT) Resources 
+ White Papers 
+ Community
+ Blog 
+ Hoster Forum 
+ Holochain Discord 
+ Follow us
+ GitHub 
+ Twitter (X) 
+ Linkedin 
+ Youtube 
+ Telegram 
+ Copyright © 2026 Holo Limited 
+ Privacy Policy 
+ Terms of Service 
+ Consent Preferences

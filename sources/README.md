@@ -61,6 +61,17 @@ Filter the third era out with a command like:
 grep -viE 'musik|lagu|makna|/author/|/category/|/tag/' sources/website/wayback-url-inventory.txt
 ```
 
+## `ecosystem/`
+
+Not Holo Sail material. Live third-party pages preserved because `docs/07` quotes them and they
+can change without notice.
+
+| File | Origin |
+|---|---|
+| `2026-08-25-holo-host-currency-page.txt` | Holo's own currency page. Establishes that HoloFuel is mutual credit for **hosting** — "a currency built for hosting, not for holding" — not a general tradable currency |
+| `2026-08-25-unyt-documentation.txt` | Unyt docs. Currency design, bridging, smart agreements. Records the fiat search: 0 hits for fiat / USD / stablecoin / USDC |
+| `2026-08-25-unyt-homepage.txt` | Unyt product positioning, including "atomic multi-currency trades" |
+
 ## Extraction method
 
 PDF via `pdftotext -layout`. HTML by removing `script`, `style`, `noscript` and `svg` elements,
