@@ -58,6 +58,13 @@ those two documents, not the PDF.**
 | [`docs/04-strategic-assessment.md`](docs/04-strategic-assessment.md) | The adoption wall, the TradeLens precedent, and an honest case for and against picking this up |
 | [`docs/05-source-inventory.md`](docs/05-source-inventory.md) | Every URL consulted, whether it is still live, and what could not be recovered |
 | [`sources/`](sources/) | The recovered primary material itself |
+| [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
+
+**Known gap.** Four 2020 blog posts remain unrecovered — the Internet Archive returned 503
+throughout collection, and archive.today was checked by hand and holds nothing for this domain.
+`what-is-a-port-community-system-pcs` is the one worth wanting. Details and the full list of
+routes tried are in [`docs/05`](docs/05-source-inventory.md); the retry script above will fetch
+them straight into `sources/` if the Archive recovers.
 
 ## Method and confidence
 

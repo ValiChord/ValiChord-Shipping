@@ -83,25 +83,42 @@ A full Wayback URL inventory for the domain — which is what evidences the 2022
 The `/advisors` page is included for completeness but recovered as an empty template; the Wix
 site rendered its content via JavaScript and the archive did not capture it.
 
-### Not recovered
+### Not recovered — four blog posts
 
-The Internet Archive was intermittently unavailable during collection ("Internet Archive
-services are temporarily offline"). These blog posts are known to exist from the URL inventory
-but were not retrieved:
+Known to exist from the Wayback CDX inventory, all with 2020-08-03 snapshots, none retrieved:
 
-- `/post/holo-sail-is-headed-to-rotterdam` (snapshot 2020-08-03)
-- `/post/what-is-a-port-community-system-pcs` (snapshot 2020-08-03)
-- `/post/redefining-automation` (snapshot 2020-08-03)
-- `/post/holosail-s-modernization-of-global-supply-chain` (snapshot 2020-08-03)
+- `/post/what-is-a-port-community-system-pcs`
+- `/post/holosail-s-modernization-of-global-supply-chain`
+- `/post/redefining-automation`
+- `/post/holo-sail-is-headed-to-rotterdam`
 
-`what-is-a-port-community-system-pcs` is the one most likely to contain substance, given that
-the home page's standards work is among the strongest technical content in the corpus. Worth a
-retry when the Archive is stable.
+`what-is-a-port-community-system-pcs` is the one worth wanting. Port Community Systems are
+precisely the integration surface the archived home page identifies as the answer, and it is the
+only title in the set that promises technical content rather than an announcement.
 
-A caution learned the hard way: several retrieval attempts returned an Internet Archive error
-page **padded to 250–870 KB of whitespace**, which passes a naive file-size check. Confirm
-recovered pages by their extracted text, not their byte count. Two files in this collection
-initially looked like large successful captures and were error pages.
+**What was tried, 25 August 2026:**
+
+| Route | Result |
+|---|---|
+| Internet Archive, direct | 503 on every request across two collection runs |
+| Internet Archive, eight rounds with backoff | 503 / connection failure on all four, every round |
+| **archive.today** (`archive.ph`) | **Checked by hand in a browser: nothing at all for this domain** |
+| archive.today timemap API | CAPTCHA-gated; no automated route |
+| Memento TimeTravel | Timed out |
+
+The archive.today result is a genuine negative, not an untested assumption — and it is the
+expected one. archive.today is submission-only: it holds pages a person deliberately saved, and
+nobody had reason to hand-save a small Wix marketing blog in 2020. **The Internet Archive is the
+only known source for these four pages.**
+
+To retry when the Archive is healthy, run [`../tools/fetch-missing-posts.sh`](../tools/fetch-missing-posts.sh).
+It fetches, validates, and writes any recovered post straight into `sources/website/`.
+
+**A caution learned the hard way, and the reason that script validates the way it does:** several
+retrieval attempts returned an Internet Archive error page **padded to 250–870 KB of
+whitespace**, which sails past a naive file-size check. Confirm recovered pages by their
+extracted text, never by byte count. Two files in this collection initially looked like large
+successful captures and were error pages.
 
 Also not recovered:
 
