@@ -13,3 +13,7 @@ Desktop.ini
 *.html
 scratch/
 tmp/
+
+# Phase 0 working data (regenerate with tools/phase0/fetch.sh)
+tools/phase0/*.csv
+tools/phase0/*.zip

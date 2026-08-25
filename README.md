@@ -61,8 +61,10 @@ those two documents, not the PDF.**
 | [`docs/07-unyt-payments-and-the-survey-protocol.md`](docs/07-unyt-payments-and-the-survey-protocol.md) | Unyt answers the patent's payment gap; where a blind commit-reveal protocol actually fits; and why the claims application may be the wedge rather than an extra |
 | [`docs/08-external-evidence-and-the-real-gap.md`](docs/08-external-evidence-and-the-real-gap.md) | What the industry is doing in 2026, verified. It is already building neutrality — the gap is claim integrity, not data exchange. Plus the finding that public AIS makes this buildable alone |
 | [`docs/09-demo-plan.md`](docs/09-demo-plan.md) | A phased plan for one artefact, with an explicit record of which ecosystem components are deliberately **not** used |
+| [`docs/10-phase0-findings.md`](docs/10-phase0-findings.md) | **Phase 0 ran and passed.** Maritime events can be timed to ~70 seconds from free public AIS, and self-reported status diverges from telemetry measurably |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
+| [`tools/phase0/`](tools/phase0/) | The Phase 0 code. Regenerates every number in `docs/10` from public data |
 
 **Known gap.** Four 2020 blog posts remain unrecovered — the Internet Archive returned 503
 throughout collection, and archive.today was checked by hand and holds nothing for this domain.
