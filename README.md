@@ -59,6 +59,8 @@ those two documents, not the PDF.**
 | [`docs/05-source-inventory.md`](docs/05-source-inventory.md) | Every URL consulted, whether it is still live, and what could not be recovered |
 | [`docs/06-nondominium-compatibility.md`](docs/06-nondominium-compatibility.md) | Whether a revived version would run on Nondominium/hREA. It would — and why that matters less than it sounds |
 | [`docs/07-unyt-payments-and-the-survey-protocol.md`](docs/07-unyt-payments-and-the-survey-protocol.md) | Unyt answers the patent's payment gap; where a blind commit-reveal protocol actually fits; and why the claims application may be the wedge rather than an extra |
+| [`docs/08-external-evidence-and-the-real-gap.md`](docs/08-external-evidence-and-the-real-gap.md) | What the industry is doing in 2026, verified. It is already building neutrality — the gap is claim integrity, not data exchange. Plus the finding that public AIS makes this buildable alone |
+| [`docs/09-demo-plan.md`](docs/09-demo-plan.md) | A phased plan for one artefact, with an explicit record of which ecosystem components are deliberately **not** used |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
 
