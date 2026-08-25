@@ -1,0 +1,63 @@
+ 
+ Introducing Holo Sail Technologies, Inc - App Ideas - Holochain Forum 
+ Holochain.org 
+ Developers 
+ Forum 
+ Blog 
+ Events 
+ Holochain Forum
+ Introducing Holo Sail Technologies, Inc 
+ General Chat 
+ App Ideas 
+ luke.glaser 
+ March 27, 2020, 7:28pm
+ #1 
+ Hello,
+ We are Holo Sail Technologies, Inc. We are an industry disruptive tech company focused on revolutionizing the global supply chain by taking one of the world’s oldest industries and thrusting it to the forefront of modernization.
+ Holo Sail Technologies, Inc. strongly believes that the HoloChain platform has the answers to the failures of BlockChain. The adaptability of HoloChain makes it able to mitigate the potential negative effects of the thousands of actors and unpredictable factors which exist in the maritime industry. BlockChain lacks this adaptability. With the combination of HoloChain and Holo Sail Technology® the possibilities are limitless, but the reality is increased profit, increased efficiency, environmentally conscious shipping, increased security, fuel savings, and a readiness for the future of multiple industries.
+ Please check out our website: https://www.holosailtechnologies.com/ 
+ Thank you,
+Luke Glaser
+Director of Technology Development
+HoloSail Technologies, Inc.
+ 4 Likes 
+ Questions about Holo Sail Technologies Patent (crosspost from Reddit user u/Goldenkat) 
+ hubject 
+ April 2, 2020, 10:27am
+ #2 
+ Just referenced Holo Sail Technologies ( https://www.topincs.com/EntangledBootstrap/1912 ) in the “Entangled Bootstrap” Repository : https://github.com/iPlumb3r/EntangledBootstrap 
+ 1 Like 
+ Home 
+ Categories 
+ FAQ/Guidelines 
+ Terms of Service 
+ Privacy Policy 
+ Powered by Discourse , best viewed with JavaScript enabled
+ Developers 
+ Get Started 
+ Install 
+ Core Concepts 
+ Tutorials 
+ Glossary 
+ Resources 
+ Guidebook 
+ API Docs 
+ GitHub 
+ Community
+ Forum 
+ Events 
+ Twitter 
+ YouTube 
+ Facebook 
+ Reddit 
+ Blog 
+ Dev Pulse 
+ Tech 
+ Projects 
+ Community 
+ Foundation 
+ Holochain & Holo
+ Holochain.org 
+ Holo.host 
+ Privacy Policy 
+ 

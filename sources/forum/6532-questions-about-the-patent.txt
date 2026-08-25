@@ -1,0 +1,186 @@
+ 
+ Questions about Holo Sail Technologies Patent (crosspost from Reddit user u/Goldenkat) - General Chat - Holochain Forum 
+ Holochain.org 
+ Developers 
+ Forum 
+ Blog 
+ Events 
+ Holochain Forum
+ Questions about Holo Sail Technologies Patent (crosspost from Reddit user u/Goldenkat) 
+ General Chat 
+ Brooks 
+ July 20, 2021, 12:16pm
+ #1 
+ I wanted to share this here in case there are folks in the community who don’t frequent reddit. This seems like an interesting post…
+ Reddit link here: https://www.reddit.com/r/holochain/comments/onujdq/holo_sail_technologies_patent_we_need_to_discuss/ 
+ I recently watched the interview that Jonny Stag did with Holo Sail (linked under a different thread on this sub). Several times they brought up their patent and they seemed to imply they had already received their patent. However, upon researching it further, I actually don’t think they’ve been granted a patent but have put in an application for one (see more about this below). There are several important issues I would like to discuss about this patent but I’ll start with whether or not this patent would in any way interfere with another entity using Holochain technology in similar ways. In fact, I question whether or not the intent of the patent is to make it difficult/impossible for potential competitors to do so. Yes, I know Holochain has a patent and I know the Holochain code is open source but please watch the interview and read their patent to understand better why I’m questioning this. I’ll also mention that the patent is not written well in my opinion and this makes it difficult to know for certain what they actually mean in some areas. I’ll link to Holo Sail’s patent at the end.
+ Related to my first questions, I’d also like to discuss whether or not Holo Sail Technologies should be able to obtain such a patent. Personally, I do not think so. I’m fine with them using Holochain and developing a hApp or hApps to solve the problems/improve the shipping container industry (and other industries) and they could charge for this service of course. However, if the intention and or the result would be to exclude potential competitors from using Holochain because they got there first so to speak and got it patented, I’m not okay with that at all and I am hoping the Holochain patent prevents this. So, I ask, will it? How likely will it be that the USPTO even grants this patent, or any other similar patent, given Holochain’s patent? Do the Holochain/Holo co-founders, Mary Camacho, the Holochain patent lawyers, etc know about this patent application? If not, please make sure they do.
+ Another issue I’d like to discuss is how potentially broad this patent is. During the interview, they state:
+ “…I think we… would be missing a big part if we didn’t mention that we have 16 other applications, industry applications on the patent… banking, fintech, law enforcement, emergency response… just to name a few… that are basically the same thing that we’re doing to supply chain…basically plug and play… once we have all the nodes in for supply chain… once the supply chain is out of beta testing, we’ll begin implement all the other 16 verticals that we have lined up.”
+ In my read of the patent application, it doesn’t specifically mention any of these other industries. However, they may be referring to this wording in their patent:
+ “While the present invention is described herein with illustrative embodiments for particular applications, it should be understood that the invention is not limited thereto. Those skilled in the art with access to the teachings provided herein will recognize additional modifications, applications, and embodiments within the scope thereof and additional fields in which the invention would be of significant utility.”
+ Even though they seem to imply their patent was already granted, my research indicates it’s still pending. Google patent search gives the status as “Still Pending.” A search for “Holochain” in the full text of all patents at the US Patent and Trademark Office gives 5 hits, including Holochain’s patent and four others that mention Holochain:
+ Patent Database Search Results: Holochain in US Patent Collection 
+ A search of all text of patent applications does yield an application by Holo Sail Technologies with at least one of the inventors listed being one of the men interviewed:
+ PreGrant Publication Database Search Results: Holochain in PGPUB Production Database March 15th - September 30th 2001 
+ The title of this patent (application) is: “Method and system for shipping and receiving process automation.” Here’s the official USPTO version: United States Patent Application: 0210174293 
+ Here it is indexed in Google: US20210174293A1 - Method and system for shipping and receiving process automation - Google Patents 
+ 5 Likes 
+ bhaugen 
+ July 23, 2021, 12:14am
+ #2 
+ Let me overstate the problem (I hope - talk me out of it please).
+ Assuming they get the patent and defend it broadly, they could kill any other economic apps doing normal trade using Holochain.
+ So, given that Holochain is prominently mentioned in their patent application, anybody wanting to create economic apps would be wise to avoid Holochain. Could have a depressing effect on the whole ecosystem.
+ I’ll be happy to see somebody convincingly tell me it isn’t so…
+ 1 Like 
+ jeremyboom8 
+ July 23, 2021, 10:29am
+ #3 
+ bhaugen:
+ Assuming they get the patent and defend it broadly, they could kill any other economic apps doing normal trade using Holochain.
+ […] anybody wanting to create economic apps would be wise to avoid Holochain. Could have a depressing effect on the whole ecosystem.
+ Thank you for your clear comment and emphasis @bhaugen .
+ Brooks:
+ “…I think we… would be missing a big part if we didn’t mention that we have 16 other applications, industry applications on the patent… banking, fintech, law enforcement, emergency response… just to name a few… that are basically the same thing that we’re doing to supply chain…basically plug and play… once we have all the nodes in for supply chain… once the supply chain is out of beta testing, we’ll begin implement all the other 16 verticals that we have lined up.”
+ Thank you for copy and posting the Reddit thread here @Brooks . Is this the correct link to the interview? Holo Sail Technologies INC - LIVE with Jonny Stang - YouTube (found through you on Reddit ).
+ Maybe we can get Joey Glaser and John Walker from Holo Sail on this thread? (edit: @luke.glaser are you still involved with Holo Sail ?)
+ IMO to continue carving out spaces of democratic open source cooperation while we transition out of the current paradigm (or as Charles Eisenstein beautifully puts it: “to establish islands of the future in an ocean of the past” ), we might benefit from a (temporary?) IP stewardship component to the Holo foundation that caters specifically to outside projects who are still in their early days and who are thus more vulnerable alone.
+ In other words: from what I’ve seen in the industry today, the Intellectual Property belonging to/created by major open source projects (and their contributors/stewards) are now often donated in their entirety to a non-profit activist organization such as the EFF (‘donated’ since there is no payment for the IP, in contrast to the way IP is usually sold as a commodity in the current system). This strategy of IP stewardship by the EFF and others seems to be, until now, the most powerful strategy to unite commoners, helping them band together and defend the commons and to continue to prove that systems of inter-networked and universally accessible commons, and new methods of commons stewardship, are desired in the next economy.
+ As many know, the Holo foundation has itself already made one pre-emptive move for this exact scenario by applying for a patent on Holochain, so hopefully this event will be a call to action to push further in stewarding and safeguarding the Holochain ecosystem; staying ahead of any other developments (e.g. staying current on the latest patent troll strategies, e.g. by contributing to existing knowledge pools + staying involved in the legal community) and turning these events (others will undoubtedly follow) into new opportunities to forge new alliances. The goal of this specific alliance/component/entity/group/project/initiative/whatever would be to offer a clear and well-communicated path for other projects with the same worries as Holo about the Holochain framework (i.e. being sued and hindered by big-pocketed multinational corporations and patent trolls (also, this link )).
+ Maybe an eventual cooperation with the Electronic Frontier Foundation , starting with informal conversations with an experienced ally there, who might be able to share some ideas/strategies that could help initiators of economic apps (as Bob mentioned) and DWeb projects to band together, forming an alliance of some kind? That way the burden doesn’t fall solely on the Holo team, and the important life-saving strategies to navigate the difficult space in between stories can spread wider.
+ But yeah, I think an initial drive from Holo with a clear call to action for contributions (e.g. an EFF-like attorney referral list), as well as (recurring) donation(s) (systems) used to continue building up a defense fund (copy for this could probably be copied nearly verbatim from the EFF website (since it’s licensed using the Creative Commons licence ), could set a powerful precedent in the DWeb space (and is maybe even essential), since most of us (including myself) are still inexperienced with many facets of new commons-paradigm business models or post-monetary economics. In the current paradigm it is not so strange that we default to trying to guarantee our involvement with something as exciting as a Holochain/Valueflo.ws project etc. by using the Intellectual Property system, since those systems are what have made e.g. Silicon Valley what it is today. Unfortunately said system is a blunt force tool which in reality ends up doing a lot of harm (if not some of the most harm of all the systems):
+ The current political economy is based on a false idea of “immaterial scarcity.” It believes that an exaggerated set of intellectual property monopolies – for copyrights, trademarks and patents – should restrain the sharing of scientific, social and economic innovations. 3 Hence the system discourages human cooperation, excludes many people from benefiting from innovation and slows the collective learning of humanity. In an age of grave global challenges, the political economy keeps many practical alternatives sequestered behind private firewalls or unfunded if they cannot generate adequate profits. [ source ]
+ As it stands though, this patent claim is a clear example of how the current system has clumsily tried to manage scientific and technological discoveries until now (commoditizing it as an ‘Intellectual Property’). This system helps small groups privatize technology and science to the detriment of the working class and to democracy.
+ I believe in this matter it’s not so much about individuals making the wrong or right choice, but about making the democratic transparent alternatives that are developing under our very eyes more easily available. These new alternatives will allow us to continually strive to increase the amount of voices at the table, as well as helping us to quickly restructure and replace the old systems/world.
+ Yet for those alternative systems to become viable and to spread we will need to guide ourselves and each other by continually making our learnings public and confronting the old system together.
+ Edit: I wanted to also share my excitement about others who came before who are also thinking (or have thought) through future ‘Intellectual Property’ stewardship/alternatives in our still early -digital society (‘early’ considering the upcoming DWeb revolution). So yeah one project is called EverywhereTech and even though it focuses on hardware (they even had this cool idea called the ‘IP Rescue Program’ that aimed to focus on “contacting the creators of unlicensed plans and working with those who are willing to properly open source those designs” ), I think we are all on the same boat (no matter if we are working on osftware of hardware), and it is essential for us to also start building bridges to these allies (such as GOSH , OSHWA and others): https://web.archive.org/web/20140106054914/http://everywheretech.org/open-source-tech-transfer-protocol/ (an earlier initiative/project by Caterina Mota, who is now also the partner of the founder of Open Source Ecology ), Marcin Jakubowski.
+ 2 Likes 
+ stephenpurkiss 
+ July 23, 2021, 1:30pm
+ #4 
+ bhaugen:
+ I’ll be happy to see somebody convincingly tell me it isn’t so…
+ I had a read through of the patent application and whilst it does mention a key differentiator is the use of Holochain, much of the application talks about other functionality they say is of value to the system they are building and goes towards what makes it innovative enough to warrant a patent as opposed to just the code itself.
+ To me it sounds like they are applying for a patent because of the sum of all the parts, and to be honest I don’t know enough about that industry to know whether it is innovative enough or not. I have not watched their interview as of yet, as I decided to take a quick look at what Holochain’s CAL license says about patents as the introduction of the CAL caused such a stir one of the founders of the OSI left, but that’s another story 
+ I was interested to see because I am a big fan of the GNU Affero License due to improvements having to be released even if the software is delivered by a service, however many choose not to impose this user freedom as they don’t understand that a world of abundance is vastly more beneficial than a world of scarcity, especially when it comes to virtual things like software.
+ From a quick read, it looks like the patent coverage means if they did try to litigate they would lose use of it for themselves, so not sure how beneficial that would be, and presumably it could only be used once for each instance. I do see how patenting Holochain’s rrDHT networking innovations was necessary to protect Holochain itself, and is different than protecting creations using Holochain as in the instance we are discussing here.
+ So I’m not sure how much of an issue it is really - IANAL so this is only from my many years of musings and discussions with others about how I believe all code should be freely available and continually checksummed, but again that’s another story 
+ 5.3. Termination Due to Litigation
+ If You initiate litigation against Licensor, or any Recipient of the Work, either direct or indirect, asserting that the Work directly or indirectly infringes any patent, then all permissions granted to You by this License shall terminate. In the event of termination due to litigation, all permissions validly granted by You under this License, directly or indirectly, shall survive termination. Administrative review procedures, declaratory judgment actions, counterclaims in response to patent litigation, and enforcement actions against former Licensees terminated under this section do not cause termination due to litigation.
+ https://opensource.org/licenses/CAL-1.0 
+ 1 Like 
+ stephenpurkiss 
+ July 23, 2021, 1:35pm
+ #5 
+ …although saying that I’ve just re-read that paragraph from the CAL and I’m now even more confused. It seems to contradict itself, but what do I know?! 
+ Hey ho…
+ The-A-Man 
+ July 23, 2021, 1:37pm
+ #6 
+ Intellectual property is no private property! Patents, whichever in nature, are always pathological to society. Or so says the austrian school.
+ stephenpurkiss 
+ July 23, 2021, 1:43pm
+ #7 
+ The-A-Man:
+ Intellectual property is no private property! Patents, whichever in nature, are always pathological to society. Or so says the austrian school.
+ Is this the speech you suggest is used in the courts?
+ Asking for a friend… 
+ The-A-Man 
+ July 23, 2021, 1:55pm
+ #8 
+ stephenpurkiss:
+ Is this the speech you suggest is used in the courts?
+ Sorry? In case you meant whether courts accept such speech, then yeah, you’re right. The judge would obviously kick the lawyer who uses this argument in the butt! [Like I’ve been, innumerous times; haha! I’d make for a pretty naughty lawyer, I think.]
+ Anyway, for the mere fact that companies (and even Holochain) and their founders can but fall into this or that jurisdiction, they’d have to play by their rules… I, for one, don’t mind Holochain’s patent at all (and I don’t think those who would love to fork/use their patented technology (the rrDHT) without paying anyone a dime would mind either; the online world is a pretty awesome anonymous anarchist world where these patents hold no value and are virtually unenforceable).
+ bhaugen 
+ July 23, 2021, 2:11pm
+ #9 
+ Brooks:
+ whether or not this patent would in any way interfere with another entity using Holochain technology in similar ways.
+ I re-read the patent document, and any system built on Holo-REA (aka hREA) could easily be able to do everything they mentioned. @pospi even did some experiments somewhat like that for BeefLedger.
+ So if they litigate their patent broadly, they could at least make life difficult for other overlapping apps. I think they would lose everything if they took it to court, but IANAL either, and to win a case would require some expert patent lawyers who would most likely be expensive. And bog your own development process down while the suit lasted.
+ Everything they mentioned except the use of Holochain is being done by other systems now, including ones using blockchains, so their only differentiator I can see is Holochain.
+ 1 Like 
+ bhaugen 
+ July 23, 2021, 2:14pm
+ #10 
+ If Holo Sail were to pre-emptively give legally-reliable permission to any other Holochain apps, that could be a win-win. Otherwise I think they are bad for the ecosystem.
+ 1 Like 
+ stephenpurkiss 
+ July 23, 2021, 2:16pm
+ #11 
+ The-A-Man:
+ the online world is a pretty awesome anonymous anarchist world where these patents hold no value and are virtually unenforceable
+ If I understand it correctly, the issue here is more to do with the outside perception at this early stage of development and the impact it could/would have on adoption from a section of the community whom would also be potential customers for things like hosting, development services, and a wealth of other stuff which all goes to funding and building a sustainable community.
+ Growing something so generic is a tough task - personally I believe all types of users are required in order for Holochain to have the impact it needs to change things, and understandably if one large section doesn’t go near it due to a perception then that hurts the community as a whole.
+ 1 Like 
+ jakintosh 
+ July 23, 2021, 4:21pm
+ #12 
+ To be honest, regardless of Holo Sail’s intentions, if we thought that building the open, inclusive, democratic, distributed future that Holochain enables was going to be swift and silent, and that the old system would go down without a fight, I think we are mistaken.
+ The-A-Man:
+ virtually unenforceable
+ I agree with A-Man here. At the end of the day, these patent laws have to withstand our own moral judgements. If doing the right thing for the world means infringement against a patent troll, so be it. I see Holochain’s patent as a means to prevent the corporate leeches of the old system from gobbling it up for profit; the existing corporate world has more at stake when it comes to respecting patent law, because it is their own primary tool for value extraction from society at large. If they were to weaken its enforceability, they’d only be harming their claim to existence in the first place.
+ Anyhow, I believe all knowledge is derivable, and that patents do not respect that natural law. An idea whose time has come will be discovered in multiple places by multiple people at the same time, and belongs to no single discoverer. I’ll keep building the future that I want to see, documenting my personal derivations, and releasing it all as open source.
+ 2 Likes 
+ The-A-Man 
+ July 23, 2021, 5:35pm
+ #13 
+ jakintosh:
+ patents do not respect natural law
+ I’d like to add that one needn’t even have to resort to natural law to make that assertion. Basically, intellectual property is neither logically nor practically plausible.
+ Logically, as in, it (as a production good) can not be exhausted. Consider two economic goods A and B, both being goods of the higher-order (i.e., production goods). Making a product P (the only product in our imaginary world) takes 2 units of A and 3 units of B. If there are in total 100 units of A and 500 of B, there can be no price for B; only A will be traded in money and be priced in money.
+ Practically, as in intellectual property being a non-excludable and non-rivalrous resource.
+ Just the mere fact that we do have such a thing as IP rights speaks of the ludicrousness of the existing system we’re living in.
+ 1 Like 
+ bhaugen 
+ July 24, 2021, 5:08pm
+ #14 
+ The-A-Man:
+ Just the mere fact that we do have such a thing as IP rights speaks of the ludicrousness of the existing system we’re living in.
+ While I agree with all of those sentiments, I just got hit yesterday with an emailed threat from the lawyers of some IP troll or other. I don’t intend to open the email, and hope they will go away, but if they don’t, they will probably want money that I don’t want to give them, and I might need to get a lawyer, which will also cost time and money and rob me of some sleep.
+ So it’s a ludicrous system but it is unfortunately the one we are all living now…
+ Parasite lawyers love this shit, they roll around in it and get rich off it.
+ 2 Likes 
+ jeremyboom8 
+ July 30, 2021, 11:46am
+ #15 
+ bhaugen:
+ I just got hit yesterday with an emailed threat from the lawyers of some IP troll or other. I don’t intend to open the email, and hope they will go away, but if they don’t, they will probably want money that I don’t want to give them, and I might need to get a lawyer, which will also cost time and money and rob me of some sleep.
+ Ugh that’s aweful! I am sorry to hear this Bob. If it starts to gets more serious please share more details with all of us about their obviously dubious claims, I would hate for any of us in these circles to have to go through serious things like this alone.
+ 1 Like 
+ Home 
+ Categories 
+ FAQ/Guidelines 
+ Terms of Service 
+ Privacy Policy 
+ Powered by Discourse , best viewed with JavaScript enabled
+ Developers 
+ Get Started 
+ Install 
+ Core Concepts 
+ Tutorials 
+ Glossary 
+ Resources 
+ Guidebook 
+ API Docs 
+ GitHub 
+ Community
+ Forum 
+ Events 
+ Twitter 
+ YouTube 
+ Facebook 
+ Reddit 
+ Blog 
+ Dev Pulse 
+ Tech 
+ Projects 
+ Community 
+ Foundation 
+ Holochain & Holo
+ Holochain.org 
+ Holo.host 
+ Privacy Policy 
+ 

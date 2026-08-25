@@ -1,0 +1,430 @@
+                                                                   MATUS 20210174293A1                 IN
+
+(19) United States
+
+(12) Patent Application Publication (10) Pub. No.: US 2021/0174293 A1
+Walker, II et al.                                                  (43) Pub. Date:       Jun . 10, 2021
+
+(54) METHOD AND SYSTEM FOR SHIPPING                                        Publication Classification
+
+        AND RECEIVING PROCESS AUTOMATION                    (51) Int. Ci.
+
+(71 ) Applicant: Holo Sail Technologies, Omaha, NE                 G06Q 10/08       (2006.01 )
+                ( US )
+                                                                   H04L 9/06        (2006.01 )
+(72) Inventors: John Paul Vaughn Walker, II, West
+                Caldwell, NJ (US); Horence Daus             (52) U.S. CI.
+                Hernando, West Caldwell, NJ (US);
+                  Luke Pearse Glaser, West Caldwell,               CPC G06Q 10/0833 (2013.01 ) ; H04L 2209/38
+                 NJ (US ); Joseph O'Callaghan Glaser,
+                 JR., West Caldwell, NJ (US)                                   (2013.01 ) ; H04L 9/0643 (2013.01 )
+
+(73 ) Assignee: Holo Sail Technologies, Omaha, NE           (57 )              ABSTRACT
+                (US)
+                                                            Provided is a system for securely and safely shipping goods
+(21 ) Appl . No.: 17/074,484
+                                                            and services from supply source to a final destination using
+(22) Filed: Oct. 19, 2020
+                                                            a computer-based Holochain platform . The system includes
+             Related U.S. Application Data
+(60) Provisional application No. 62/916,930, filed on Oct.  container means, designate means attached to said container,
+                                                            for generating data for real-time geo -tracking and status
+      18, 2019.                                             monitoring of conditions both inside and outside of the
+                                                            container, and communication means for transmitting data
+
+                                                            streams to and from the Designate means and other com
+
+                                                            ponents of the Holochain platform . Also included are com
+
+                                                            puter means using Holochain logic means for processing
+
+                                                            data uploaded from the Designates and data stream monitor
+
+                                                            means by which customers and clients can access their
+                                                            personal manifests via HoloSail Designates during transit
+
+                                                            and receive appropriate payment upon delivery.
+Patent Application Publication Jun. 10, 2021 Sheet 1 of 3 US 2021/0174293 A1
+
+ HT,LeoclhnoLoSloagCielsOPvreorcveisews ? ! F.1IG
+Patent Application Publication Jun. 10, 2021 Sheet 2 of 3 US 2021/0174293 A1
+
+content     *B*est*
+
+***
+
+         $
+
+                     F,2IG
+Patent Application Publication Jun. 10, 2021 Sheet 3 of 3 US 2021/0174293 A1
+
+      -350 -360 370 380
+
+     OutputDevices InputDevices GraphicsDisplay PeripheralD(s)evice
+
+                              390
+
+                                                                     F.3IG
+
+     Processor Memory MassStorage PortableStorage
+
+300  310 320 330 340
+US 2021/0174293 A1                                               Jun . 10 , 2021
+                                                          1
+
+       METHOD AND SYSTEM FOR SHIPPING                            with security for the companies that will keep out unauthor
+     AND RECEIVING PROCESS AUTOMATION
+                                                                 ized personnel, and finally the ability to bring the United
+                I. FIELD OF THE INVENTION
+                                                                 States to the for front of shipping technology bringing
+[0001] The present invention relates generally to develop
+                                                                 together the United States and other world leaders in the
+ing a process for using a specialized network as a foundation
+for software to automate shipping and receiving from a           shipping industries.
+supply source to a final destination .
+                                                                 [0008] Benefits
+         II . BACKGROUND OF THE INVENTION
+                                                                 [0009] Benefits ofthe inventive Holochain solution we are
+                              Problem                            bringing to the table include : the ability to track and monitor
+                                                                 transactions every step of the way with auto validation once
+[0002] One of the oldest industries on Earth needs a             an active task is complete , this includes tracking the position
+                                                                 of the containers at all times , which is vital for reducing
+massive update and overhaul. Typical problems that plague        cargo loss and human error. We are also offering something
+the sector include: needless expensive paper trails, that are
+                                                                 that is unheard of in the industry; The ability for potentially
+not only ineffective but increase the aspect of human error,
+security of information, lost items such as funds, cargo, and    unlimited scalability on the network this is a problem that
+decreased production . Our invention can increase efficiency     has plagued blockchain since its inception and with the
+in movement of containers to and from destination , replace      Holochain Network we intend to revolutionize the industry
+                                                                 with no bottlenecking of transactions, privacy, and security
+outdated tracking systems that include the tracking of ship      that is second to none, along with seamless ability to make
+                                                                 payments from one local currency to another at speeds never
+ments, money, and vessels. Our invention can be used for         seen before by the industry
+creating efficiency and security in the transport of goods
+                                                                 [0010] Embodiments of the present invention, under cer
+without creating more infrastructure that cannot be accom
+                                                                 tain circumstances, provide a system for securely and safely
+modated by due to lack of land .                                 shipping goods and services from supply source to a final
+                                                                 destination using a computer-based Holochain platform . The
+                              Prior Art                          system includes container means, designate means attached
+
+[0003] The competitors are searching in the wrong direc          to said container, for generating data for real-time geo
+
+tion, for example, Maersk and IBM's Tradelens which is           tracking and status monitoring of conditions both inside and
+
+based on a blockchain platform . Blockchain has been the         outside of the container, and communication means for
+goal of competitors for years now. How to harness the power      transmitting data streams to and from the Designate means
+of the blockchain to achieve their goals of speed, security,     and other components of the Holochain platform . Also
+and digitalization .                                             included are computer means using Holochain logic means
+[0004] To briefly define blockchain : A blockchain is a          for processing data uploaded from the Designates and data
+digital record of transactions. The name comes from its          stream monitor means by which customers and clients can
+structure, in which individual records, called blocks, are       access their personal manifests via HoloSail Designates
+linked together in a single list, called a chain or ledger. To
+make a change to the ledger, it first must be validated along    during transit and receive appropriate payment upon deliv
+the entire chain regardless ofwhat the content involves. This
+is considered a data -centric approach.                          ery.
+
+      III . SUMMARY OF EMBODIMENTS OF THE                        [0011] Further features and advantages of the invention, as
+                             INVENTION                           well as the structure and operation of various embodiments
+                                                                 ofthe invention, are described in detail below with reference
+[0005] Given the aforementioned deficiencies, a need             to the accompanying drawings. It is noted that the invention
+exists for a better solution. What competitors have been         is not limited to the specific embodiments described herein .
+missing is what our software will use as a foundation
+                                                                 Such embodiments are presented herein for illustrative pur
+network known as Holochain .
+                                                                 poses only. Additional embodiments will be apparent to
+[0006] What we are using as Holochain is defined as a            persons skilled in the relevant art(s) based on the teachings
+
+scalable, " agent-centric" distributed computing network.        contained herein .
+
+Unlike other decentralized platforms, the " consensus"                IV . BRIEF DESCRIPTION OF THE DRAWINGS
+engine utilizes a validating distributed hash table (DHT),
+requiring only nodes that are exchanging data with one           [0012] The accompanying drawings, which are incorpo
+another to reach a state of agreement. This makes transaction
+speeds and amounts near-limitless, making it ideal for our       rated herein and form part of the specification, illustrate the
+transactions. In fact, after a conversation with the Network     present invention and, together with the description, further
+development team, more transactions we add to the network ,      serve to explain the principles of the invention and to enable
+the faster it will work, and with our projections, we will be    a person skilled in the relevant art(s) to make and use the
+registering millions of transactions of data in a very short
+                                                                 invention .
+amount of time.
+                                                                 [0013] FIG. 1 is an illustration of an exemplary HoloSail
+[0007] With this, we have already solved multiple issues
+                                                                 technologies shipping process overview in accordance with
+that the competition is still trying to figure out with block
+                                                                 embodiments of the present invention ; and
+chain . We enable limitless volume of data to be moved in a
+                                                                 [0014] FIG. 2 is a block diagram of an exemplary data
+blink of an eye , security on the foundation level that will be
+near impossible to crack due to the validation methods used      update and verification process using a specialized Holo
+
+                                                                 chain Network in accordance with the embodiments .
+
+                                                                 [0015] FIG. 3 illustrates a computing device in accordance
+
+                                                                 with the embodiments .
+US 2021/0174293 A1                                               Jun . 10 , 2021
+
+                                                         2
+
+               V. DETAILED DESCRIPTION OF                        [0023] The process involves hiring a freight forwarding
+                                                                 agent to find a local truck carrier to come to the factory to
+           EMBODIMENTS OF THE INVENTION                          bring and /or pick up the full container and deliver it to the
+                                                                 loading dock of a shipping terminal operator at a time and
+[0016] While the present invention is described herein           location determined by the shipping line that the freight
+                                                                 forwarder arranges to book the shipment with . The terminal
+with illustrative embodiments for particular applications, it    operator unloads the container from the truck, usually via a
+                                                                 crane , and loads it onto the ship.
+should be understood that the invention is not limited           [0024] The ship then sails the oceans and seas to the most
+                                                                 efficient port near the final customer and docks at that local
+thereto . Those skilled in the art with access to the teachings  terminal operator's facility. The terminal operator at the
+provided herein will recognize additional modifications,         destination port unloads the container from the ship to the
+applications, and embodiments within the scope thereof and
+                                                                 dock; then loads the container from the dock to a truck . The
+additional fields in which the invention would be of signifi
+                                                                 truck then takes the container to the final destination . Under
+cant utility.
+                                                                 most current systems, the paperwork and paper trail to track
+[0017] As illustrated in FIG. 1, embodiments of the pres         these systems takes, in some cases, months for the final
+
+ent invention include a process for using a specialized (e.g.,   payment to reach the supplier.
+
+Holochain ) network as a foundation for software to auto         [0025] The value-added feature to the process is the use of
+                                                                 the Holochain platform to track the transaction throughout
+mate shipping and receiving. The automation extends from         the process and in the case of FOB Destination, immediate
+
+a supply source to a final destination and from wholesale to     payment in the local currency upon delivery to the destina
+individual deliveries of goods or services. The definition of
+a blockchain is : a list of digital records of transaction data  tion, rather than waiting for the paper trail to catch up .
+linked cryptographically. As understood in the art, the name
+                                                                 Steps in the Process
+comes from the structure, in which individual records, called
+blocks, are linked together in a single list, called a chain or  [0026] Holochain Technology starts the process with the
+                                                                 freight forwarder as soon as the shipment is booked. The
+ledger.                                                          parties involved will be able to track each step of the
+
+[0018] To make a change to the ledger, it must first be          process. With only those parties having access to the book
+validated along the entire chain regardless of what the
+content involves. This is considered a data -centric approach .  ing in real -time. The time and date of the truck pick up is
+The definition of Holochain is a scalable, " agent-centric "     detected and passed on to all parties. The transfer from truck
+                                                                 to the terminal operator is detected then transmitted to the
+distributed computing platform , considered to be a deriva
+                                                                 computers of all the involved parties.
+tive ofblockchain. Unlike other decentralized platforms, the
+" consensus " engine utilizes a validating DHT, requiring        [0027] The loading of the container onto the ship by the
+only nodes, also called agents, that are exchanging data with    terminal operator is detected, and that data is available to all
+                                                                 parties to the transaction . The transfer of the container to the
+one another to reach a state of agreement. A further expla       dock by the terminal operator at the destination port is
+nation of Holochain specifications, as it is an open -source,    detected and passed on to all parties. The transfer of the
+
+freely distributed platfrom , may be found in the whitepaper     container from the dock to the destination truck is detected
+
+here : https://github.com/holochain/holochain-proto/blob/        and passed on to all the parties. The delivery of the container
+                                                                 to the final destination is detected and passed on to all the
+whitepaper/holochain.pdf.
+                                                                 parties, and payment of the goods is made immediately in
+[0019] The Holochain platform makes transaction speeds
+and volumes near-limitless, making it ideal for transactions     the seller's local currency vie atomic swap utilizing the
+of a large scale, on the order of billions of transaction per
+year. Holochain limits the data sharing to only the parties      Holochain networks cryptocurrency Holofuel upon accep
+
+involved in the transaction instead of all members of the        tance by that customer.
+                                                                 [0028] When exemplary business model includes charging
+ledger. This process can simplify and improve the accuracy       each of the participants a nominal fee for tracking the
+of shipping goods and services, along with allowing for          progress of the shipment and providing detailed data every
+                                                                 step of the way that can be utilized by the shipping lines and
+rapid payment.
+                                                                 ports to analyze data to show their shareholders improve
+[0020] The software will identify the parties involved in a
+shipping and delivery transaction , track the delivery           ments to overall efficiency, loss rates, and intermodal
+throughout the actual transport of the goods or services, and
+execute a transfer of funds upon the delivery of the products    throughput.
+
+or services to the final destination or customer .               [0029] Using state ofthe art technology, along with Holo
+
+[0021] The value of tracking on the Holochain network is         chain Networking, transportation and shipping services are
+similar to blockchain technology in terms of security and
+confidence, however only the parties to the transaction          being developed that have been clinging to outdated meth
+
+receive the information instead of all members of the            ods . These transportation and shipping services transformed
+
+blockchain . This reduces massive amounts of unrelated data      into modern, digital efficiencies in to dominate the con
+                                                                 stantly growing marketplace. These technologies (e.g., Des
+occupying storage facilities and improves the privacy of         ignate) will be attached to the container, monitoring condi
+
+transactions between parties. One of the first areas we are      tions inside and out, feeding that data in real time into the
+                                                                 Designate.
+focusing on is the container shipping industry including:
+                                                                 [0030] The data is then uploaded to the Network, creating
+stevedoring, maritime, intermodal, and trucking of contain
+                                                                 a data stream that customers and clients can access to
+ers from source to the final destination .
+                                                                 monitor their personal manifests via HoloSail Designates
+[0022] In a typical transaction, a producer of a particular      stand -alone portal. The Designate is by no means just an
+product will need to ship goods (usually in bulk) from their
+factory or warehouse to a wholesaler or retailer in another
+location. When shipping to another country, it is generally
+
+more cost -effective to ship via ocean and truck using stan
+
+dard containers that take advantage of transfer facility
+technologies.
+US 2021/0174293 A1                                                Jun . 10 , 2021
+                                                      3
+
+advanced gauge. It also sends signals to show where on the        via a local microprocessor bus , and the mass storage device
+ship it is and its current conditions, recording and alarming     330, peripheral device (s) 380, portable storage device 340,
+                                                                  and display system 370 may be connected via one or more
+crew if there is a shift in position that could cause an          input/output ( 1/0 ) buses.
+accident or personnel injury, reducing the likelihood of
+                                                                  [0051] Mass storage device 330, which may be imple
+cargo falling overboard .
+                                                                  mented with a magnetic disk drive or an optical disk drive,
+[0031] Another feature of Designate is its ability to know
+                                                                  is a non-volatile storage device for storing data and instruc
+where it is going. With the digital manifests, with informa
+                                                                  tions for use by processor unit 310. Mass storage device 330
+tion on where it is supposed to be going it will alert dock side
+workers if it is moved in error. Also alerting the ship's crew    may store the system software for implementing embodi
+
+to this error, reducing, with the goal of entirely eliminating    ments of the present technology for purposes of loading that
+the possibility of losses due to misplaced or lost cargo .        software into main memory 320.
+
+[0032] Being able to have real -time geo -tracking will also      [0052] Portable storage device 340 operates in conjunc
+
+mitigate any growing pains during the transition into the full    tion with a portable non-volatile storage medium, such as a
+                                                                  floppy disk, compact disk, digital video disc, or USB storage
+use of the state -of-the -art technology and automated pro        device, to input and output data and code to and from the
+
+cesses. Designate, while made to interact with our other          computer system 300 of FIG. 3. The system software for
+products, is also able to be utilized as a stand -alone system
+and transmit information to the appropriate portals.              implementing embodiments of the present technology may
+[0033] Provided information includes :
+                                                                  be stored on such a portable medium and input to the
+  [0034] Type of container ISO                                    computer system 300 via the portable storage device 340 .
+  [0035] Shipping line owner
+  [0036] Weight/dimensions                                        [0053] User input devices 360 provide a portion of a user
+
+  [0037] Inside conditions of the container such as tem           interface. User input devices 360 may include an alphanu
+                                                                  meric keypad, such as a keyboard, for inputting alpha
+    perature (low, high, current, reasonable range)
+  [0038] Humidity (acceptable range)                              numeric and other information, or a pointing device, such as
+
+  [0039] Current power drains and fluctuations in power           a mouse, a trackball, stylus, or cursor direction keys. Addi
+
+     connected to the container                                   tional user input devices 360 may comprise, but are not
+
+  [0040] Individual personalized shipping manifests               limited to, devices such as speech recognition systems,
+                                                                  facial recognition systems, motion-based input systems,
+    [0041] accessible by all authorized personnel
+  [0042] Opening of container during transport                    gesture -based systems, and so forth. For example, user input
+
+  [0043] Off -loading within a given reasonable range at          devices 360 may include a touchscreen. Additionally,the
+
+    an incorrect destination will trigger crew alerts to          system 300 as shown in FIG. 3 includes output devices 350 .
+    reduce the number or misplaced containers                     Suitable output devices include speakers, printers, network
+                                                                  interfaces, and monitors .
+  [0044] ETA on arrival date and time based on current
+    speed and route specified                                     [0054] Display system 370 may include a liquid crystal
+                                                                  display (LCD) or other suitable display device. Display
+  [0045] Crew alerts if container shifts profoundly during        system 370 receives textual and graphical information and
+
+   transport ( this should assist in avoiding accidents and       processes the information for output to the display device.
+
+    injury due to rough seas)                                     [0055] Peripherals device(s) 380 may include any type of
+
+     [0046] This should also give the crew a chance to            computer support device to add additional functionality to
+      correct the shift and, if possible, to prevent any
+      personnel risk or cargo loss                                the computer system. Peripheral device (s) 380 may include
+
+[0047] All of this information will be provided in an             a modem or a router.
+
+unbroken, real-time data stream to the agent. This will be        [0056] The components provided in the computer system
+accessible at any time from the client portal to know
+                                                                  300 of FIG. 3 are those typically found in computer systems
+real-time information on their shipment. An exemplary
+                                                                  that maybe suitable for use with embodiments of thepresent
+process is illustrated in FIG. 2 .
+                                                                  technology and are intended to represent a broad category of
+[0048] FIG. 3 is an illustration of an exemplary computing        such computer components that are well known in the art.
+                                                                  Thus, the computer system 300 of FIG. 3 may be a personal
+device 300 that may be used to implement an embodiment            computer, hand -held computing device, telephone, mobile
+of the Holochain systems and methods disclosed herein . The
+system 300 of FIG. 3 may be implemented in the contexts           computing device, workstation, server, minicomputer,main
+of the likes of computing devices including PCs , laptops ,       frame computer,or any other computing device.
+                                                                  [0057] The computer may also include different bus con
+smart phones, tablets, or alike, networks, servers, or com
+                                                                  figurations, networked platforms, multi-processor platforms,
+binations thereof.                                                etc. Various operating systems may be used including Unix,
+
+[0049] The computing device 300 of FIG. 3 includes one            Linux, Windows, Mac OS, Palm OS, Android, iOS (known
+or more processors 310 and main memory 320. Main                  as iPhone OS before June 2010), QNX, and other suitable
+
+memory 320 stores, in part, instructions and data for execu       operating systems .
+tion by processor 310. Main memory 320 may store the
+                                                                  [0058] It is noteworthy that any hardware platform suit
+executable code when in operation. The system 300 of FIG.
+                                                                  able for performing the processing described herein is
+3 further includes a mass storage device 330, portable
+                                                                  suitable for use with the systems and methods provided
+storage device 340, output devices 350, user input devices
+360, a display system 370, and peripheral devices 380.            herein. Computer-readable storage media refer to any
+
+[0050] The components shown in FIG. 3 are depicted as             medium or media that participate in providing instructions to
+                                                                  a central processing unit (CPU), a graphical processing unit
+being connected via a single bus 390. The components may
+                                                                  (GPU), a processor, a microcontroller, or the like. Such
+be connected through one or more data transport means .           media may take forms including, but not limited to, non
+
+Processor unit 310 and main memory 320 may be connected
+US 2021/0174293 A1                                              Jun . 10 , 2021
+
+                                                             4
+
+volatile and volatile media such as optical or magnetic disks   guages (HDL) including Verilog HDL, VHDL, Altera HDL
+
+and dynamic memory, respectively.                               (AHDL) and so on, or other available programming and /or
+
+[0059] Common forms of computer-readable storage                schematic capture tools (such as circuit capture tools).
+media include a floppy disk, a flexible disk, a hard disk,      [0063] It is to be appreciated that the Detailed Description
+
+magnetic tape, any other magnetic storage medium, a CD          section, and not the Summary and Abstract sections, is
+                                                                intended to be used to interpret the claims . The Summary
+ROM disk, digital video disk (DVD), any other optical
+                                                                and Abstract sections may set forth one or more but not all
+storage medium , RAM , PROM, EPROM, a FLASHEP
+                                                                exemplary embodiments of the present invention as con
+ROM, any other memory chip or cartridge.                        templated by the inventor(s ), and thus, are not intended to
+
+[0060] The present invention has been described above           limit the present invention and the appended claims in any
+with the aid of functional building blocks illustrating the
+implementation of specified functions and relationships         way .
+
+thereof. The boundaries of these functional building blocks        What is claimed is :
+have been arbitrarily defined herein for the convenience of
+the description . Alternate boundaries can be defined so long     1. A system for securely and safely shipping goods and
+as the specified functions and relationships thereof are
+                                                                services from supply source to a final destination using a
+appropriately performed.                                        computer-based Holochain platform , comprising:
+
+[0061] For example, various aspects of the present inven          container means;
+                                                                  Designate means attached to said container, for generating
+tion can be implemented by software, firmware, hardware
+(or hardware represented by software such, as for example,          data for real- time geo -tracking and status monitoring of
+Verilog or hardware description language instructions), or a        conditions both inside and outside of the container,
+combination thereof. After reading this description, it will
+                                                                  communication means for transmitting data streams to
+become apparent to a person skilled in the relevant art how         and from the Designate means and other components of
+to implement the invention using other computer systems             the Holochain platform ;
+and/or computer architectures.
+                                                                 computer means using Holochain logic means for pro
+[0062] It should be noted that the simulation, synthesis
+                                                                    cessing data uploaded from the Designates; and
+and / or manufacture of the various embodiments of this
+                                                                  data stream monitor means by which customers and
+invention can be accomplished, in part, through the use of
+computer readable code, including general programming              clients can access their personalmanifests via HoloSail
+                                                                   Designates during transit and receive appropriate pay
+languages (such as C or C++), hardware description lan
+                                                                    ment upon delivery.
+

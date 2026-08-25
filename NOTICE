@@ -1,0 +1,20 @@
+ValiChord-Shipping
+Copyright 2026 Ceri John
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+the contents of this repository except in compliance with the License. A copy of
+the License is provided in the LICENSE file at the root of this repository.
+
+SCOPE NOTE
+This repository contains research notes and recovered third-party source material.
+
+The Apache License, Version 2.0 covers the ORIGINAL NOTES in this repository --
+the README and the contents of docs/. It does not cover the contents of
+sources/, which are third-party materials reproduced for research, commentary,
+and preservation, and which remain the property of their respective authors.
+
+The Apache License does not grant any right to use the "ValiChord" name or logo,
+nor to present a modified or derivative version of this work as official or
+endorsed. See the TRADEMARK.md file in the main ValiChord repository.
+
+"ValiChord" is a trademark of Ceri John.
