@@ -57,6 +57,7 @@ those two documents, not the PDF.**
 | [`docs/03-community-response.md`](docs/03-community-response.md) | The Holochain community's contemporaneous reading of the patent, including Bob Haugen's hREA assessment |
 | [`docs/04-strategic-assessment.md`](docs/04-strategic-assessment.md) | The adoption wall, the TradeLens precedent, and an honest case for and against picking this up |
 | [`docs/05-source-inventory.md`](docs/05-source-inventory.md) | Every URL consulted, whether it is still live, and what could not be recovered |
+| [`docs/06-nondominium-compatibility.md`](docs/06-nondominium-compatibility.md) | Whether a revived version would run on Nondominium/hREA. It would — and why that matters less than it sounds |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
 
