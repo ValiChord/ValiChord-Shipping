@@ -17,3 +17,9 @@ tmp/
 # Phase 0 working data (regenerate with tools/phase0/fetch.sh)
 tools/phase0/*.csv
 tools/phase0/*.zip
+
+# Phase 1 run artefacts (regenerate with tools/phase1/run.sh)
+tools/phase1/case.json
+tools/phase1/discrepancy_record.json
+tools/phase1/commit_log.json
+tools/phase1/__pycache__/

@@ -1,0 +1,37 @@
+{
+  "committedAt": "2026-08-25T20:49:47Z",
+  "entries": [
+    {
+      "seq": 1,
+      "role": "CARRIER",
+      "party": "Global Ocean Line (synthetic)",
+      "commitment_sha256": "c0a8f954b948fa879f53be13dd055b9eeaf8ab8e449d4c514071d69bc2479228",
+      "pubkey_ed25519": "5c62fa090682e4fb22313d0acf05f23bb420d433d8ee64ce777ea97da5762ccb",
+      "signature_ed25519": "0d608faaf6aca3cffe31830bf013a823c64efe0165146b9bbfe3c88ea4de5331accc136f135c900aeb3469cf166907ece46f5c3759ea11083efa882a395b7108"
+    },
+    {
+      "seq": 2,
+      "role": "PORT_AUTHORITY",
+      "party": "USLAX VTS (synthetic)",
+      "commitment_sha256": "6d3d29bbcd68b1ec897a9cf7b0b6856c77dd262ab96708509b3e66824269fb2e",
+      "pubkey_ed25519": "cb8f0233dbd2b58acaea656bab1935002315c45f7ea9c27747ea59ee666b279c",
+      "signature_ed25519": "cea85b95d1d5d3a7f4524219086256958bfd6cc5d7d82960d0e241d43ad8ee289eaa85c1861baecad485ab3fd6de41f9852b30ddc3af6776ed9d3801a6334c0f"
+    },
+    {
+      "seq": 3,
+      "role": "TERMINAL_OPERATOR",
+      "party": "Delta Marine Terminal (synthetic)",
+      "commitment_sha256": "1f2e43927f5b19347728860cffd128b44f6f10e482c099ddc9f34fcc25265dbe",
+      "pubkey_ed25519": "310e00e487ea7c416d48e713118f256f635b604b17715c309b2ba04dde416dca",
+      "signature_ed25519": "fcf347bd09141d8f3b28d2150284f1bc484daac3026db5dd4631fc3194aa64cacc9b766637848fe051c6f1bf9a1b48d48ae6aa224f0e9292edc50ca895082703"
+    },
+    {
+      "seq": 4,
+      "role": "TELEMETRY",
+      "party": "NOAA/MarineCadastre public AIS (REAL)",
+      "commitment_sha256": "db6f7c5584c85c6c4591dca5c04100d5f884f162a160f92d2ee420975328fefa",
+      "pubkey_ed25519": "c6a0b4862d8ef8d4f0dbbadea0ef346bc0f92b9a598d5f7314bffe5275ec4a4f",
+      "signature_ed25519": "bc157085017d5074efcb73ae9b1ba091ee40c0eeed7c54429c1ba1ab08277317fcb36badbe2b27823f771a8cfde2a5aefc2a7ce4978c3f0733f36bbd114a6d0e"
+    }
+  ]
+}

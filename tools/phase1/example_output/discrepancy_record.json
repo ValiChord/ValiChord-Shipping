@@ -1,0 +1,160 @@
+{
+  "_disclosure": {
+    "telemetry": "REAL -- NOAA/MarineCadastre public AIS, unmodified",
+    "partyRecords": "SYNTHETIC -- no operational logs were supplied by any real organisation. Constructed to exercise the mechanism.",
+    "carrierClaim": "SYNTHETIC -- the discrepancy is deliberately injected",
+    "implication": "This demonstrates the mechanism against real telemetry. It is not evidence that any real party misreported anything."
+  },
+  "protocolRun": {
+    "id": "P1-a5440243",
+    "committedAt": "2026-08-25T20:49:47Z",
+    "revealedAt": "2026-08-25T20:49:47Z",
+    "externalWitness": null
+  },
+  "case": {
+    "vessel": {
+      "name": "CSL SPIRIT",
+      "imo": "IMO9138111",
+      "mmsi": "311000368",
+      "callsign": "C6BU6",
+      "vessel_type": "70",
+      "length_m": "225",
+      "draft_m": "14.4"
+    },
+    "port": {
+      "name": "Los Angeles / Long Beach",
+      "unlocode": "USLAX",
+      "lat": 33.72,
+      "lon": -118.19,
+      "limit_nm": 12.0
+    },
+    "telemetryProvenance": {
+      "source": "NOAA / MarineCadastre public AIS, AIS_2023_01_15.zip",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2023/",
+      "status": "REAL DATA -- unmodified public record",
+      "extracted": "2026-08-25T20:49:47Z"
+    },
+    "derivedEvents": {
+      "port_limit_inbound": {
+        "after": "2023-01-15T05:59:33",
+        "before": "2023-01-15T06:00:02",
+        "window_s": 29.0,
+        "note": "vessel crossed the 12nm port limit inbound somewhere in this window"
+      },
+      "stopped": {
+        "after": "2023-01-15T12:49:22",
+        "before": "2023-01-15T12:51:30",
+        "window_s": 128.0,
+        "note": "speed over ground fell below 0.5kt somewhere in this window"
+      }
+    }
+  },
+  "commitmentIntegrity": [
+    {
+      "role": "CARRIER",
+      "party": "Global Ocean Line (synthetic)",
+      "commitment_matches_reveal": true,
+      "signature_valid": true,
+      "commitment_sha256": "c0a8f954b948fa879f53be13dd055b9eeaf8ab8e449d4c514071d69bc2479228",
+      "recomputed_sha256": "c0a8f954b948fa879f53be13dd055b9eeaf8ab8e449d4c514071d69bc2479228"
+    },
+    {
+      "role": "PORT_AUTHORITY",
+      "party": "USLAX VTS (synthetic)",
+      "commitment_matches_reveal": true,
+      "signature_valid": true,
+      "commitment_sha256": "6d3d29bbcd68b1ec897a9cf7b0b6856c77dd262ab96708509b3e66824269fb2e",
+      "recomputed_sha256": "6d3d29bbcd68b1ec897a9cf7b0b6856c77dd262ab96708509b3e66824269fb2e"
+    },
+    {
+      "role": "TERMINAL_OPERATOR",
+      "party": "Delta Marine Terminal (synthetic)",
+      "commitment_matches_reveal": true,
+      "signature_valid": true,
+      "commitment_sha256": "1f2e43927f5b19347728860cffd128b44f6f10e482c099ddc9f34fcc25265dbe",
+      "recomputed_sha256": "1f2e43927f5b19347728860cffd128b44f6f10e482c099ddc9f34fcc25265dbe"
+    },
+    {
+      "role": "TELEMETRY",
+      "party": "NOAA/MarineCadastre public AIS (REAL)",
+      "commitment_matches_reveal": true,
+      "signature_valid": true,
+      "commitment_sha256": "db6f7c5584c85c6c4591dca5c04100d5f884f162a160f92d2ee420975328fefa",
+      "recomputed_sha256": "db6f7c5584c85c6c4591dca5c04100d5f884f162a160f92d2ee420975328fefa"
+    }
+  ],
+  "claimsVersusTelemetry": [
+    {
+      "role": "CARRIER",
+      "party": "Global Ocean Line (synthetic)",
+      "claimedEventDateTime": "2023-01-15T05:30:00Z",
+      "claimedFacilityTypeCode": "BRTH",
+      "telemetryBracket": {
+        "lastFixAtOrBefore": {
+          "t": "2023-01-15T05:29:22Z",
+          "distanceFromPortNm": 17.351,
+          "speedOverGroundKt": 12.2,
+          "vesselBroadcastStatus": "under way using engine"
+        },
+        "firstFixAfter": {
+          "t": "2023-01-15T05:30:23Z",
+          "distanceFromPortNm": 17.148,
+          "speedOverGroundKt": 12.2
+        },
+        "note": "the vessel was between these two fixes and nowhere else"
+      },
+      "finding": "CONTRADICTED_BY_TELEMETRY",
+      "basis": "at the claimed time the vessel was 17.35 nm from the port reference point, outside the stated 12.0 nm port limit, making 12.2 knots, and its own AIS broadcast status was 'under way using engine'"
+    },
+    {
+      "role": "PORT_AUTHORITY",
+      "party": "USLAX VTS (synthetic)",
+      "claimedEventDateTime": "2023-01-15T06:00:02Z",
+      "claimedFacilityTypeCode": "ANCH",
+      "telemetryBracket": {
+        "lastFixAtOrBefore": {
+          "t": "2023-01-15T06:00:02Z",
+          "distanceFromPortNm": 11.952,
+          "speedOverGroundKt": 9.9,
+          "vesselBroadcastStatus": "under way using engine"
+        },
+        "firstFixAfter": {
+          "t": "2023-01-15T06:01:03Z",
+          "distanceFromPortNm": 11.781,
+          "speedOverGroundKt": 9.9
+        },
+        "note": "the vessel was between these two fixes and nowhere else"
+      },
+      "finding": "CONSISTENT_WITH_TELEMETRY",
+      "basis": "vessel 11.95 nm from port reference point at 9.9 knots at the claimed time"
+    },
+    {
+      "role": "TERMINAL_OPERATOR",
+      "party": "Delta Marine Terminal (synthetic)",
+      "claimedEventDateTime": "2023-01-15T12:51:30Z",
+      "claimedFacilityTypeCode": "BRTH",
+      "telemetryBracket": {
+        "lastFixAtOrBefore": {
+          "t": "2023-01-15T12:51:30Z",
+          "distanceFromPortNm": 3.523,
+          "speedOverGroundKt": 0.0,
+          "vesselBroadcastStatus": "moored"
+        },
+        "firstFixAfter": {
+          "t": "2023-01-15T12:54:32Z",
+          "distanceFromPortNm": 3.524,
+          "speedOverGroundKt": 0.0
+        },
+        "note": "the vessel was between these two fixes and nowhere else"
+      },
+      "finding": "CONSISTENT_WITH_TELEMETRY",
+      "basis": "vessel 3.52 nm from port reference point at 0.0 knots at the claimed time"
+    }
+  ],
+  "notDetermined": [
+    "Whether Notice of Readiness was validly tendered. That turns on whether the vessel was an 'arrived ship', a contested question of law, not of position.",
+    "Whether any laytime or demurrage consequence follows, and in what amount.",
+    "Whether any divergence was deliberate. Nothing here speaks to intent.",
+    "Commitment ordering relative to any external clock. Phase 1 has no external witness; commit and reveal occur in one process. See docs/09 Phase 3."
+  ]
+}
