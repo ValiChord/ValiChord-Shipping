@@ -38,7 +38,10 @@ s=re.sub(r'(?s)<!--.*?-->',' ',s)
 s=re.sub(r'(?i)<(br|/p|/div|/li|/h[1-6]|/span)[^>]*>','\n',s)
 s=re.sub(r'(?s)<[^>]+>',' ',s); s=html.unescape(s)
 s=re.sub(r'[ \t]+',' ',s); s=re.sub(r'\n\s*\n+','\n',s).strip()
-if len(re.sub(r'\s+',' ',s))<400: sys.exit(1)
+# Floor is deliberately low. These Wix posts are tiny -- "Automation Redefined"
+# is 389 characters of text in total, and an earlier 400-char floor rejected a
+# perfectly good capture of it. Anything under ~200 is a stub or an error page.
+if len(re.sub(r'\s+',' ',s))<200: sys.exit(1)
 open(sys.argv[2],'w',encoding='utf-8').write(s)
 sys.exit(0)
 PY
