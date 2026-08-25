@@ -48,10 +48,12 @@ script that already exists.
 
 ---
 
-> **Revised by [`15-dna-architecture.md`](15-dna-architecture.md).** The DNA layout below
-> was sketched before the architecture was designed properly. The conclusion holds — Phase
-> 3b is smaller than first estimated — but the shape is two DNAs, not one, and the private
-> per-party tiers do not translate from ValiChord at all. Read `docs/15` for the design.
+> **Superseded by [`15-dna-architecture.md`](15-dna-architecture.md).** The sketch below
+> assumed a single DNA. The design is **four** — `registry`, `telemetry`, `voyage`,
+> `record` — driven by four genuinely different peer groups and by a platform constraint
+> this document did not account for: validation cannot read across DNA boundaries, so the
+> membrane verifies signed credentials rather than performing lookups. The effort estimate
+> further down is therefore too low. Read `docs/15` for the design.
 
 ## What Phase 3b actually needs — less than first estimated
 
