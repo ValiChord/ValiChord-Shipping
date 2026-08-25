@@ -48,6 +48,11 @@ script that already exists.
 
 ---
 
+> **Revised by [`15-dna-architecture.md`](15-dna-architecture.md).** The DNA layout below
+> was sketched before the architecture was designed properly. The conclusion holds — Phase
+> 3b is smaller than first estimated — but the shape is two DNAs, not one, and the private
+> per-party tiers do not translate from ValiChord at all. Read `docs/15` for the design.
+
 ## What Phase 3b actually needs — less than first estimated
 
 **ValiChord already implements this protocol.** From
