@@ -237,7 +237,57 @@ client that makes the honest path easy and the careless path hard genuinely addr
 dominant real-world case. It is worth building. It is simply not what answers the
 adversarial question.
 
-### The reframe that actually helps: detection needs one peer, not an industry
+### This is ValiChord's founding principle, not a new idea
+
+Recorded because the analysis below was arrived at independently and then found to be
+project doctrine already — stated from ValiChord's first weeks as **detect over prevent,
+and make cheating expensive**, and documented since:
+
+> **"Detection is the deterrent."**
+> — `ValiChord/docs/2_ValiChord_Governance_Framework.md`
+
+> "A validator who games the system cannot quietly rehabilitate their history. The record
+> is immutable. Every future participant can see it. **This permanence is not a secondary
+> safeguard — it is the primary deterrent**, and it gets stronger the longer the system
+> runs."
+> — `ValiChord/docs/1_ValiChord_Vision&Architecture.md`
+
+> "This is, in many ways, **a more natural deterrent than cryptographic enforcement.**"
+> — `ValiChord/docs/23_Two_Round_Protocol_Proposal.md`
+
+That doctrine dissolves the forking objection rather than answering it. A system built to
+*prevent* forks would be defeated by the fact that a party controls its own conductor. A
+system built to *detect* them and make them costly is unbothered by it.
+
+**And the same source anticipates Phase 0's finding.** On what to do when a pattern is
+detected: *"The appropriate response to this pattern is not punishment — it is
+investigation and support. The most likely explanations are benign."* Phase 0 measured
+0.372% divergence between claims and telemetry and concluded it was staleness at least as
+much as dishonesty. The philosophy predicted the shape of the data three years after the
+data was recorded.
+
+### What makes cheating expensive here specifically
+
+The second half of the principle needs a maritime translation, because the economics are
+unusually favourable:
+
+**Shipping is a repeat-player industry.** The same carriers, charterers, terminals and P&I
+clubs transact with each other continuously, for decades. Reputational deterrence works
+best exactly where parties meet again, which is the opposite of a one-off marketplace.
+
+**Contagion across claims is the real cost.** A carrier caught backdating one Notice of
+Readiness has not lost one claim — every other NOR it has filed becomes worth
+re-examining, and the counterparties have both the motive and now the means. The exposure
+is the whole book, not the instance.
+
+**Network-level blocking is now a live consequence, not a pending one.** Since 0.6, a
+detected fork means transport-level exclusion.
+
+**Discovery is cheap and being caught is expensive.** Checking a claim against public AIS
+costs seconds. That asymmetry is the whole deterrent, and it is the maritime form of
+"permanence gets stronger the longer the system runs."
+
+### Detection needs one peer, not an industry
 
 The goal is not to prevent forks. It is to make them **detectable**, and detection has a
 much lower bar than it first appears.
@@ -255,6 +305,18 @@ That reframes an impossible problem — *recruit the shipping industry* — into
 one: *persuade a single counterparty to run a node*. It is the same insight Phase 3
 reached about time anchors, arriving from the other direction: you do not need many
 witnesses, you need one you do not control.
+
+**And in a bilateral handover, the counterparty *is* the peer.** This may make the
+recruitment question smaller still.
+
+A Notice of Readiness is tendered *to* the charterer. A custody transfer has a receiving
+party. In every case the person who would be harmed by a false claim is already in the
+transaction, already has to receive the claim, and already has every reason to keep a
+signed copy and check it.
+
+There is no neutral third party to find. The adversary's counterparty is the honest peer,
+present by default and motivated by self-interest — which is what "make cheating
+expensive" looks like when the evidence sits with the person being cheated.
 
 **A related design question that has not been decided.** If each party self-hosts its
 conductor, each controls its own chain and the analysis above applies. If conductors are
