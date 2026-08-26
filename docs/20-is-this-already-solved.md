@@ -132,6 +132,25 @@ that the judgements are not independent.
 requires surveyors, which requires relationships — the same wall everything else in this
 repository has been routing around since Phase 0.
 
+> ### ❌ Retracted the same day — see [`docs/22`](22-why-shipping-resists-this.md)
+>
+> **This was wrong, and so were `docs/08` and `docs/09` on the same point.** None of the
+> three checked what surveyors actually do.
+>
+> Established practice is the **joint survey**: surveyors for all interests attend
+> together, explicitly *"without prejudice"*, and are meant to **agree quantum and cause at
+> the scene** so litigation is avoided. Failing to invite the other side's surveyor can
+> *prejudice* recovery.
+>
+> **Blind independent capture would deliberately destroy the convergence the industry
+> relies on to settle cheaply.** The anchoring-contamination argument may still be true,
+> but it is now something to prove against entrenched practice — a research programme, not
+> a product.
+>
+> What survives instead is **draft survey**, for a reason none of these documents had
+> noticed: the buyer is not the constrained party, and adoption is unilateral. See
+> `docs/22` and [`docs/23`](23-draft-survey.md).
+
 ---
 
 ## What this means, plainly
