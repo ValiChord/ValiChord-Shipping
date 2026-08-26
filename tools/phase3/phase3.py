@@ -3,9 +3,9 @@
 Run order per party:
   1. fetch the current drand round                  -> the FLOOR
   2. embed it in the payload, hash, sign            -> the COMMITMENT
-  3. submit the commitment digest to 3 calendars    -> the CEILING
+  3. get signed tokens from independent timestamp authorities -> the CEILING
   4. (later) reveal
-  5. verify: hash, signature, floor re-fetched independently, calendar receipts
+  5. verify: hash, signature, floor re-fetched from independent relays, ceiling tokens
 
 What this establishes is an INTERVAL, not an instant. Fabricating or omitting the beacon
 is refused outright. Embedding a genuine but STALE round is not refused -- it verifies
@@ -13,8 +13,8 @@ perfectly and proves nothing, and the only thing that exposes it is how wide the
 resulting interval is. So every party record carries the width, and a boolean
 "witnessed: true" would be misleading. See negative_control.py.
 
-CORRECTED 26 August 2026 -- THERE IS NO INTERVAL UNTIL BITCOIN CONFIRMS
-------------------------------------------------------------------------
+CORRECTED 26 August 2026 -- THE CEILING WAS THIS MACHINE'S CLOCK
+----------------------------------------------------------------
 This file previously computed the interval as `int(time.time()) - roundUnixTime` and
 declared that the commitment "provably exists somewhere inside this window and nowhere
 outside it". The top of that window was this machine's own clock. A party wanting to
@@ -26,16 +26,34 @@ The record now separates three different things, and calls each what it is:
 
   timeFloor            established, independent, verifiable immediately
   localAnchorRequest   SELF-REPORTED. Evidence of nothing. Recorded for operations only
-  timeCeiling          NOT ESTABLISHED until a Bitcoin block confirms; run upgrade.py
+  timeCeiling          signed by independent RFC 3161 authorities, immediately
 
 An interval is reported only when a real ceiling exists. See docs/16 Part 3.
+
+WHY NOT BITCOIN
+---------------
+The first fix used OpenTimestamps, which pins the digest into Bitcoin. It works, but the
+ceiling takes HOURS -- so in the meantime there was no interval, and the one attack this
+phase could not refuse (a genuine but STALE beacon round) stayed unmeasurable. It also
+means saying "blockchain" to a sector that watched TradeLens fail.
+
+RFC 3161 timestamp authorities return a signed token in about a second, from independent
+operators in different jurisdictions. The interval is real and narrow immediately. Bitcoin
+is still available -- set VALICHORD_OTS=1 -- but it is no longer the default and is not
+what anyone gets shown.
 """
 import hashlib, json, os, secrets, sys, time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "phase1"))
 from demo import canonical, Party, verify_commitment, CLAIM_TIMES   # noqa: E402
-from witness import beacon_floor, verify_floor, anchor              # noqa: E402
+from witness import (beacon_floor, verify_floor, tsa_ceiling,       # noqa: E402
+                     anchor, TSAS)
+
+# Bitcoin anchoring is OFF by default. The ceiling comes from RFC 3161 timestamp
+# authorities, which are immediate and do not require explaining a blockchain to a
+# laytime desk. Set VALICHORD_OTS=1 to additionally anchor to Bitcoin.
+USE_OTS = os.environ.get("VALICHORD_OTS") == "1"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CASE = os.path.join(HERE, "..", "phase1", "case.json")
@@ -87,14 +105,26 @@ def main():
         parties.append(p)
         commit_log.append(p.commit_record(len(commit_log) + 1))
 
-    print("anchoring commitments to OpenTimestamps calendars ...")
-    ots_dir = os.path.join(HERE, "ots")
-    anchors = {}
+    print(f"getting ceilings from {len(TSAS)} independent timestamp authorities "
+          f"({', '.join(t[2] for t in TSAS)}) ...")
+    tok_dir = os.path.join(HERE, "timestamps")
+    ceilings, anchors = {}, {}
     for c in commit_log:
-        a = anchor(c["commitment_sha256"], ots_dir=ots_dir, label=c["role"].lower())
-        anchors[c["role"]] = a
-        print(f"  {c['role']:18s} {a['accepted']}/3 calendars accepted"
-              f"  -> {a['otsFile']}  ceiling={'established' if a['ceilingEstablished'] else 'PENDING'}")
+        t = tsa_ceiling(c["commitment_sha256"], out_dir=tok_dir,
+                        label=c["role"].lower())
+        ceilings[c["role"]] = t
+        print(f"  {c['role']:18s} {t['granted']}/{len(TSAS)} granted"
+              f"  ceiling={t['ceilingNote'][:34] if not t['ceilingEstablished'] else 'established'}")
+
+    if USE_OTS:
+        print("\nalso anchoring to Bitcoin via OpenTimestamps (VALICHORD_OTS=1) ...")
+        ots_dir = os.path.join(HERE, "ots")
+        for c in commit_log:
+            a = anchor(c["commitment_sha256"], ots_dir=ots_dir,
+                       label=c["role"].lower())
+            anchors[c["role"]] = a
+            print(f"  {c['role']:18s} {a['accepted']}/3 calendars, "
+                  f"{a['ceilingNote'][:40]}")
 
     # SELF-REPORTED. This is when this machine says it asked for the anchors. It proves
     # nothing to an adversary and is NOT the ceiling. Kept only so an operator can see
@@ -108,30 +138,38 @@ def main():
         integ = verify_commitment(c, r)
         f = r["payload"].get("_timeFloor")
         fv = verify_floor(f)
-        a = anchors[c["role"]]
+        tc = ceilings[c["role"]]
+        a = anchors.get(c["role"])
         floor_unix = f.get("roundUnixTime") if f else None
 
         # An interval requires BOTH ends to be established by someone other than us.
-        # The floor is. The ceiling is not, until Bitcoin confirms. So until then there
-        # is no interval, and saying so is the whole correction.
-        if a["ceilingEstablished"] and floor_unix:
+        # Both now are, immediately: an unpredictable beacon below, signed timestamp
+        # authorities above. Neither is this machine's clock.
+        if tc["ceilingEstablished"] and floor_unix:
+            width = tc["ceilingUnix"] - floor_unix
             interval = {
                 "established": True,
                 "floorUnix": floor_unix,
-                "ceilingBitcoinBlocks": a["bitcoinBlockHeights"],
+                "ceilingUnix": tc["ceilingUnix"],
+                "seconds": width,
                 "meaning": "the commitment was made after the drand round and before "
-                           "the named Bitcoin block. Both bounds are set by systems "
-                           "this project does not operate.",
+                           "the earliest timestamp authority signed for it. Both bounds "
+                           "are set by parties this project does not operate.",
+                # docs/13's unrefused attack -- a genuine but STALE beacon round --
+                # is exposed by this number and nothing else. Which is why the ceiling
+                # had to be immediate rather than pending.
+                "strength": ("tight" if width <= 300 else
+                             "loose" if width <= 3600 else
+                             "weak -- a stale beacon round would look like this"),
             }
         else:
             interval = {
                 "established": False,
                 "floorUnix": floor_unix,
-                "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending "
-                           "Bitcoin confirmation. Until then this record proves the "
-                           "commitment was not made EARLIER than the drand round, and "
-                           "nothing at all about how much later it may have been made.",
-                "toComplete": "python upgrade.py  (once a block has confirmed)",
+                "meaning": "NO INTERVAL. The floor holds; no timestamp authority "
+                           "granted a ceiling. This record proves the commitment was "
+                           "not made EARLIER than the drand round, and nothing about "
+                           "how much later.",
             }
 
         # Self-reported, and labelled as such wherever it appears.
@@ -145,13 +183,16 @@ def main():
             "timeFloor": {"round": f["round"] if f else None,
                           "roundUnixTime": floor_unix,
                           "independentlyReVerified": fv},
-            "timeCeiling": {"calendarsAccepted": a["accepted"],
-                            "of": len(a["calendars"]),
-                            "established": a["ceilingEstablished"],
-                            "bitcoinConfirmed": a["bitcoinConfirmed"],
-                            "note": a["ceilingNote"],
-                            "otsFile": a["otsFile"],
-                            "verifyBy": a["verifyBy"]},
+            "timeCeiling": {"protocol": "RFC3161",
+                            "authoritiesGranting": tc["granted"],
+                            "of": len(TSAS),
+                            "established": tc["ceilingEstablished"],
+                            "ceilingUnix": tc["ceilingUnix"],
+                            "authorities": tc["authorities"],
+                            "note": tc["ceilingNote"],
+                            "limitation": tc["limitation"],
+                            "verifyBy": tc["verifyBy"],
+                            "bitcoinAlsoAnchored": bool(a)},
             "localAnchorRequest": {
                 "secondsAfterFloor": elapsed,
                 "selfReported": True,
@@ -162,12 +203,13 @@ def main():
             "timeInterval": interval,
         })
         ok = (integ["commitment_matches_reveal"] and integ["signature_valid"]
-              and fv.get("randomnessMatches") and a["accepted"] > 0)
+              and fv.get("randomnessMatches") and tc["ceilingEstablished"])
         print(f"  [{'OK  ' if ok else 'FAIL'}] {c['role']:18s} "
               f"hash={'match' if integ['commitment_matches_reveal'] else 'MISMATCH'} "
               f"sig={'valid' if integ['signature_valid'] else 'INVALID'} "
               f"floor={fv.get('relaysAgreeing')}/{len(fv.get('relays', []))} relays "
-              f"ceiling={'BLOCK ' + str(a.get('bitcoinBlockHeights')) if a['ceilingEstablished'] else 'pending'}")
+              f"ceiling={tc['granted']}/{len(TSAS)} TSAs "
+              f"interval={interval.get('seconds')}s")
 
     record = {
         "_disclosure": {
@@ -182,12 +224,13 @@ def main():
                       "proves": "the commitment was not constructed before this round",
                       "round": floor["round"], "chainHash": floor["chainHash"],
                       "verifyBy": floor["verifyBy"]},
-            "ceiling": {"what": "OpenTimestamps calendars, Bitcoin-anchored",
-                        "proves": "the commitment existed before the confirming block",
-                        "calendars": [c["calendar"] for c in
-                                      anchors[commit_log[0]["role"]]["calendars"]],
-                        "established": anchors[commit_log[0]["role"]]["ceilingEstablished"],
-                        "bitcoinConfirmed": anchors[commit_log[0]["role"]]["bitcoinConfirmed"],
+            "ceiling": {"what": "RFC 3161 timestamp authorities, independent operators "
+                                "in different jurisdictions",
+                        "proves": "the commitment existed before the earliest authority "
+                                  "signed for it",
+                        "authorities": [f"{n} ({j})" for n, _u, j in TSAS],
+                        "established": ceilings[commit_log[0]["role"]]["ceilingEstablished"],
+                        "bitcoinAlsoUsed": USE_OTS,
                         "note": "A pending calendar attestation carries a URI and "
                                 "NOTHING ELSE -- no time, no signature over a time. It "
                                 "is a promise, not a bound. Until a block confirms "
@@ -211,10 +254,11 @@ def main():
             "of law, not of position or of timing.",
             "Any laytime or demurrage consequence, or amount.",
             "Whether any divergence was deliberate.",
-            "WHEN the commitment was made, beyond 'not before the drand round'. There "
-            "is no upper bound until Bitcoin confirms the .ots files. An earlier "
-            "version of this record answered this using its own system clock, which "
-            "was not evidence. Run upgrade.py to complete it.",
+            "Whether the timestamp authorities told the truth about the time. RFC 3161 "
+            "is trusted, not trustless; several independent operators in different "
+            "jurisdictions would have to collude. An earlier version of this record "
+            "answered the WHEN question using its own system clock, which was not "
+            "evidence at all.",
             "Whether drand's threshold signature is valid. Independent relays agree on "
             "the round, which is weaker than verifying the signature.",
         ],
@@ -224,7 +268,8 @@ def main():
         json.dump(record, fh, indent=2)
     print(f"\nwrote {os.path.basename(out)}")
     print(f"floor: drand round {floor['round']}   ceiling: "
-          f"{results[0]['timeCeiling']['calendarsAccepted']}/3 calendars   humans: 0")
+          f"{results[0]['timeCeiling']['authoritiesGranting']}/{len(TSAS)} authorities"
+          f"   interval: {results[0]['timeInterval'].get('seconds')}s   humans: 0")
 
 
 if __name__ == "__main__":

@@ -383,10 +383,44 @@ So moving the ceiling to RFC 3161 would be *consistent* with the project's trust
 rather than a departure from it, and the "trustless versus trusted" framing should not be
 used to argue against it.
 
-**Status: not yet implemented.** Phase 3 as committed uses OpenTimestamps and Bitcoin.
-The case for RFC 3161 — legal recognition, eIDAS presumption of accuracy, instant
-issuance, and no blockchain framing in front of an industry that watched TradeLens die —
-is argued but the code is unchanged. Recorded as an open decision, not a silent one.
+> ### ✅ Status: IMPLEMENTED, 26 August 2026
+>
+> This section argued for RFC 3161 and then left the code unchanged. The code now matches
+> the argument. What moved it was Ceri John's objection to the earlier fix — *"nothing is
+> more likely to put people off than that word"* — which is the same point this section
+> had already made and not acted on.
+>
+> Phase 3 takes its ceiling from **three independent timestamp authorities in three
+> jurisdictions**: DigiCert (US), FreeTSA (DE), BOSA (BE). All three granted on the live
+> run. Bitcoin remains available behind `VALICHORD_OTS=1` and is no longer what anyone is
+> shown.
+>
+> **It turned out to be a correctness fix, not only a presentation one.** A Bitcoin
+> ceiling takes hours, so in the meantime there was *no interval at all* — and interval
+> width is the only thing that exposes this section's own unrefused attack, the genuine
+> but stale beacon round. RFC 3161 returns a signed token in about a second:
+>
+> ```
+> honest commitment        11 s
+> backdated attempt    86,412 s   (24 hours)
+> ```
+>
+> Both ends of both intervals are set by parties this project does not operate. Attack 4
+> can now be **measured** rather than described — which is what this document claimed all
+> along and could not previously back.
+>
+> The trust trade is the one argued above and is unchanged: RFC 3161 is trusted, not
+> trustless. Several independent operators in different jurisdictions would have to
+> collude, which is the same shape as ValiChord's own validator model. **eIDAS is not
+> claimed** — the authorities used are not all qualified trust service providers, so no
+> legal presumption of accuracy attaches. Moving to qualified providers is a procurement
+> decision, not a code change.
+
+**Original status, superseded and kept for the record: not yet implemented.** Phase 3 as
+committed uses OpenTimestamps and Bitcoin. The case for RFC 3161 — legal recognition,
+eIDAS presumption of accuracy, instant issuance, and no blockchain framing in front of an
+industry that watched TradeLens die — is argued but the code is unchanged. Recorded as an
+open decision, not a silent one.
 
 ---
 

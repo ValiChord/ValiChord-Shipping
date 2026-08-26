@@ -29,8 +29,16 @@ FLOOR ("this was not made earlier")
     created after that moment.
 
 CEILING ("this was not made later")
-    OpenTimestamps aggregates a digest into the Bitcoin blockchain via independent
-    calendar servers. The block timestamp proves the digest existed before that block.
+    Several independent RFC 3161 timestamp authorities, in different jurisdictions, each
+    return a SIGNED token stating the time they saw the digest. The earliest is the
+    binding upper bound. Immediate -- about a second.
+
+    Bitcoin, via OpenTimestamps, remains available in `anchor()` for anyone who wants a
+    trustless ceiling and can wait hours for it. It is no longer the default, for
+    reasons argued at length above `tsa_ceiling()`. The short version: this sector
+    watched TradeLens fail, "timestamp authority" is a boring phrase and "blockchain" is
+    not, and a ceiling that takes hours leaves the one attack docs/13 could not refuse
+    unmeasurable in the meantime.
 
 CORRECTION, 26 August 2026 -- THE CEILING WAS NOT WHAT THIS FILE CLAIMED
 ------------------------------------------------------------------------
@@ -67,8 +75,12 @@ HONEST LIMITS
 """
 import json
 import os
+import re
+import shutil
 import subprocess
+import tempfile
 import urllib.request
+from datetime import datetime, timezone
 
 from opentimestamps.calendar import RemoteCalendar
 from opentimestamps.core.notary import (BitcoinBlockHeaderAttestation,
@@ -94,6 +106,15 @@ CALENDARS = [
     "https://b.pool.opentimestamps.org",
     "https://finney.calendar.eternitywall.com",   # Eternity Wall
     "https://btc.calendar.catallaxy.com",         # Catallaxy
+]
+
+# RFC 3161 timestamp authorities -- the DEFAULT ceiling. Independent operators in
+# different jurisdictions, so backdating requires all of them to collude. See the
+# note on why this replaced Bitcoin as the default, below.
+TSAS = [
+    ("DigiCert", "http://timestamp.digicert.com", "US"),
+    ("FreeTSA", "https://freetsa.org/tsr", "DE"),
+    ("Belgium (BOSA)", "http://tsa.belgium.be/connect", "BE"),
 ]
 UA = "valichord-shipping-phase3"
 
@@ -178,7 +199,118 @@ def verify_floor(floor):
     }
 
 
-# ------------------------------------------------------------------- ceiling
+# ------------------------------------------------------- ceiling (RFC 3161)
+#
+# WHY THIS REPLACED BITCOIN AS THE DEFAULT
+# ----------------------------------------
+# Two reasons, one commercial and one technical, and the commercial one is decisive.
+#
+# COMMERCIAL. This sector watched TradeLens fail and the word "blockchain" carries that
+# with it. docs/04 and docs/08 both make the point. A ceiling that requires explaining
+# Bitcoin to a laytime desk has lost the room before the evidence is discussed. RFC 3161
+# is thirty years old, is what code signing has always used, and the words are "timestamp
+# authority" -- boring, which is the point.
+#
+# TECHNICAL. Bitcoin's ceiling takes HOURS to confirm. RFC 3161 returns a signed token in
+# about a second, so the interval between floor and ceiling is seconds wide rather than
+# unmeasurable. That matters more than it sounds: docs/13's one unrefused attack -- a
+# genuine but stale drand round -- is exposed ONLY by a narrow interval. With a pending
+# ceiling there was no interval at all, so the attack was undetectable. A prompt ceiling
+# is what makes the honest limitation enforceable rather than merely described.
+#
+# WHAT IT COSTS. RFC 3161 is trusted, not trustless: you rely on the authority not to
+# lie about the time. docs/13 already settled the principle -- ValiChord has never been
+# trustless, it is trust-DISTRIBUTED, and "several independent authorities in different
+# jurisdictions, each with a business built on not backdating, all of whom would have to
+# collude" is the same shape as its own validator model. So this is consistent with the
+# project's trust model rather than a departure from it. Bitcoin remains available via
+# anchor() for anyone who wants the stricter category.
+#
+# eIDAS is a bonus, not the argument: a QUALIFIED timestamp carries a legal presumption of
+# accuracy in the EU. The authorities used here are not all qualified TSPs, so that
+# presumption is NOT claimed. Moving to qualified providers is a procurement decision.
+
+def tsa_ceiling(digest_hex, out_dir=None, label=None):
+    """Get signed timestamps from several independent authorities. Immediate."""
+    digest = bytes.fromhex(digest_hex)
+    tmp = tempfile.mkdtemp()
+    data = os.path.join(tmp, "digest.bin")
+    with open(data, "wb") as fh:
+        fh.write(digest)
+
+    req = os.path.join(tmp, "req.tsq")
+    q = subprocess.run(["openssl", "ts", "-query", "-data", data, "-sha256",
+                        "-cert", "-out", req], capture_output=True)
+    if q.returncode != 0:
+        return {"protocol": "RFC3161", "authorities": [], "granted": 0,
+                "ceilingEstablished": False,
+                "ceilingNote": "openssl could not build a timestamp query: "
+                               + q.stderr.decode("utf-8", "replace")[:200]}
+
+    results = []
+    for name, url, jurisdiction in TSAS:
+        entry = {"authority": name, "url": url, "jurisdiction": jurisdiction}
+        resp = os.path.join(tmp, f"{name.split()[0].lower()}.tsr")
+        c = subprocess.run(
+            ["curl", "-s", "-m", "30", "-A", UA,
+             "-H", "Content-Type: application/timestamp-query",
+             "--data-binary", f"@{req}", url, "-o", resp],
+            capture_output=True)
+        if c.returncode != 0 or not os.path.exists(resp) or not os.path.getsize(resp):
+            entry.update(granted=False, error="no response")
+            results.append(entry)
+            continue
+        r = subprocess.run(["openssl", "ts", "-reply", "-in", resp, "-text"],
+                           capture_output=True)
+        text = r.stdout.decode("utf-8", "replace")
+        granted = "Status: Granted" in text
+        stamp = re.search(r"Time stamp:\s*(.+)", text)
+        entry.update(granted=granted,
+                     timestamp=stamp.group(1).strip() if stamp else None,
+                     unix=_parse_tsa_time(stamp.group(1).strip()) if stamp else None,
+                     tokenBytes=os.path.getsize(resp))
+        if granted and out_dir and label:
+            os.makedirs(out_dir, exist_ok=True)
+            keep = os.path.join(out_dir,
+                                f"{label}.{name.split()[0].lower()}.tsr")
+            shutil.copy(resp, keep)
+            entry["tokenFile"] = os.path.basename(keep)
+        results.append(entry)
+
+    shutil.rmtree(tmp, ignore_errors=True)
+    times = [e["unix"] for e in results if e.get("granted") and e.get("unix")]
+    return {
+        "protocol": "RFC3161",
+        "submittedDigest": digest_hex,
+        "authorities": results,
+        "granted": sum(1 for e in results if e.get("granted")),
+        "ceilingEstablished": bool(times),
+        # the EARLIEST authority is the binding upper bound: the digest demonstrably
+        # existed by then, whatever any later authority says
+        "ceilingUnix": min(times) if times else None,
+        "ceilingNote": ("signed by independent timestamp authorities; the earliest is "
+                        "the binding upper bound" if times else
+                        "no authority granted a timestamp -- no ceiling"),
+        "verifyBy": "openssl ts -reply -in <file>.tsr -text",
+        "limitation": "RFC 3161 is trusted, not trustless: each authority is relied on "
+                      "not to misstate the time. Several independent operators in "
+                      "different jurisdictions would have to collude. This is the same "
+                      "trust model ValiChord already uses -- see docs/13.",
+    }
+
+
+def _parse_tsa_time(s):
+    """openssl prints e.g. 'Aug 26 14:41:42 2026 GMT'."""
+    for fmt in ("%b %d %H:%M:%S %Y GMT", "%b %d %H:%M:%S.%f %Y GMT"):
+        try:
+            return int(datetime.strptime(s, fmt)
+                       .replace(tzinfo=timezone.utc).timestamp())
+        except ValueError:
+            continue
+    return None
+
+
+# ------------------------------------------------- ceiling (Bitcoin, optional)
 
 def anchor(digest_hex, ots_dir=None, label=None):
     """Submit a digest to independent OpenTimestamps calendars.

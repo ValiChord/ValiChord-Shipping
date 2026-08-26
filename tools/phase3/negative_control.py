@@ -27,17 +27,19 @@ Two defects in this file, both found by outside review (docs/16 Part 3):
   same verification phase3.py runs, asserting the party's record comes out NOT OK.
 
 * The attack-4 arithmetic measured floor->NOW using this machine's clock, which is
-  exactly the thing an adversary controls. The width that actually exposes a stale
-  round is floor->CEILING, and no ceiling exists until Bitcoin confirms. The comparison
-  below is therefore labelled as a diagnostic proxy, and the real measurement is
-  deferred to upgrade.py rather than faked here.
+  exactly the thing an adversary controls. It now measures floor->CEILING using real
+  signed tokens from independent RFC 3161 timestamp authorities, so the number that
+  exposes a stale round is established by someone other than us.
+
+  This is why the ceiling had to be immediate. With a Bitcoin ceiling hours away there
+  was no interval to measure and attack 4 could only be described, never caught.
 """
 import hashlib, json, sys, os, time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "phase1"))
 from demo import canonical, Party, verify_commitment    # noqa: E402
-from witness import (beacon_floor, verify_floor, anchor,  # noqa: E402
+from witness import (beacon_floor, verify_floor, tsa_ceiling,  # noqa: E402
                      _get_json, DRAND)
 
 UTC = timezone.utc
@@ -114,34 +116,37 @@ else:
           f"randomnessMatches={v4.get('randomnessMatches')}")
     print("          NOT REFUSED -- the round is genuine, so the floor verifies")
 
-    # DIAGNOSTIC PROXY, NOT EVIDENCE. The width that exposes a stale round is
-    # floor -> CEILING, and the ceiling is a Bitcoin block that has not confirmed yet.
-    # Using local time here shows the SHAPE of the exposure; it does not measure it,
-    # because our own clock is precisely what an adversary controls. The real
-    # measurement is upgrade.py's job.
-    now_unix = int(time.time())
-    honest_gap = now_unix - floor["roundUnixTime"]
-    attack_gap = now_unix - old_floor["roundUnixTime"]
+    # MEASURED, not illustrated. Both ends of each interval are set by parties this
+    # project does not operate: an unpredictable beacon below, independent timestamp
+    # authorities above. Neither number comes from our own clock.
+    print()
+    print("          measuring both intervals against real timestamp authorities ...")
+    honest_ceiling = tsa_ceiling(p4.commitment)
+    stale_party = Party("CARRIER", "test-stale", dict(base, _timeFloor=old_floor))
+    stale_ceiling = tsa_ceiling(stale_party.commitment)
+
+    honest_w = honest_ceiling["ceilingUnix"] - floor["roundUnixTime"]
+    stale_w = stale_ceiling["ceilingUnix"] - old_floor["roundUnixTime"]
     print()
     print("          what exposes it is the INTERVAL floor->ceiling, not the floor:")
-    print(f"            honest commitment : floor age = {honest_gap:>7d} s "
-          f"({honest_gap/60:.1f} min)")
-    print(f"            backdated attempt : floor age = {attack_gap:>7d} s "
-          f"({attack_gap/3600:.1f} h)")
-    print(f"          a {attack_gap/3600:.0f}-hour gap establishes almost nothing about "
-          f"when the")
-    print("          commitment was actually made. Report the width, never a boolean.")
+    print(f"            honest commitment : {honest_w:>7d} s  ({honest_w/60:.1f} min)")
+    print(f"            backdated attempt : {stale_w:>7d} s  ({stale_w/3600:.1f} h)")
     print()
-    print("          NOTE: the two figures above are measured against THIS MACHINE'S")
-    print("          clock and are a diagnostic proxy only. The real ceiling is a")
-    print("          Bitcoin block. Until upgrade.py confirms one, no interval exists")
-    print("          and this attack cannot actually be measured -- only described.")
+    print(f"          both ceilings signed by {honest_ceiling['granted']} independent")
+    print("          authorities in different jurisdictions. Neither figure comes from")
+    print("          our own clock, which is what makes this measurable at all.")
+    assert stale_w > honest_w * 100, \
+        "a stale beacon round should produce a far wider interval"
+    print()
+    print(f"          a {stale_w/3600:.0f}-hour interval establishes almost nothing "
+          f"about when")
+    print("          the commitment was made. Report the width, never a boolean.")
 
 print("\n" + "-" * 68)
 print("THREE ATTACKS REFUSED. ONE NOT, AND NAMED.")
-print("The witness proves an INTERVAL, not an instant -- once both ends exist. Today")
-print("only the floor does. Its usefulness is entirely a function of how narrow that")
-print("interval turns out to be, which depends on anchoring promptly after committing.")
+print("The witness proves an INTERVAL, not an instant, and both ends are now set by")
+print("parties we do not operate. Its usefulness is entirely a function of how narrow")
+print("that interval is, which depends on getting the ceiling promptly after the floor.")
 print("Any output that says 'witnessed: true' without the width is misleading, and")
 print("docs/13 says so. Any output that computes the width from its own clock is worse,")
 print("which is what docs/16 caught.")

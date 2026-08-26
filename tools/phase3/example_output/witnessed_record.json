@@ -5,27 +5,27 @@
     "witnesses": "REAL -- drand and OpenTimestamps are live public services, contacted at run time. Neither is operated by this project."
   },
   "protocolRun": {
-    "id": "P3-f1dcd7eb",
-    "at": "2026-08-26T14:26:03Z"
+    "id": "P3-5ed8b6b0",
+    "at": "2026-08-26T14:44:06Z"
   },
   "witnessModel": {
     "floor": {
       "what": "drand / League of Entropy public randomness beacon",
       "proves": "the commitment was not constructed before this round",
-      "round": 6410777,
+      "round": 6410813,
       "chainHash": "8990e7a9aaed2ffed73dbd7092123d6f289930540d7651336225dc172e51b2ce",
-      "verifyBy": "GET https://api.drand.sh/public/6410777 and compare 'randomness'"
+      "verifyBy": "GET https://api.drand.sh/public/6410813 and compare 'randomness'"
     },
     "ceiling": {
-      "what": "OpenTimestamps calendars, Bitcoin-anchored",
-      "proves": "the commitment existed before the confirming block",
-      "calendars": [
-        "https://b.pool.opentimestamps.org",
-        "https://finney.calendar.eternitywall.com",
-        "https://btc.calendar.catallaxy.com"
+      "what": "RFC 3161 timestamp authorities, independent operators in different jurisdictions",
+      "proves": "the commitment existed before the earliest authority signed for it",
+      "authorities": [
+        "DigiCert (US)",
+        "FreeTSA (DE)",
+        "Belgium (BOSA) (BE)"
       ],
-      "established": false,
-      "bitcoinConfirmed": false,
+      "established": true,
+      "bitcoinAlsoUsed": false,
       "note": "A pending calendar attestation carries a URI and NOTHING ELSE -- no time, no signature over a time. It is a promise, not a bound. Until a block confirms there is no ceiling, and this record does not pretend there is one. Corrected 26 Aug 2026, docs/16 Part 3."
     },
     "humansRequired": 0,
@@ -53,15 +53,15 @@
     {
       "role": "CARRIER",
       "party": "Global Ocean Line (synthetic)",
-      "commitmentSha256": "d9fb8b4018f1156f63d4ccf181de4bab700b892b5db0b721f5ff4050511a1b9d",
+      "commitmentSha256": "435f56881d95bbb70f284ae3bec90b232b1da0cdc7ba1653ad8faed77f41a4cc",
       "hashMatches": true,
       "signatureValid": true,
       "timeFloor": {
-        "round": 6410777,
-        "roundUnixTime": 1787754330,
+        "round": 6410813,
+        "roundUnixTime": 1787755410,
         "independentlyReVerified": {
           "checked": true,
-          "round": 6410777,
+          "round": 6410813,
           "relaysAgreeing": 4,
           "relaysDisagreeing": 0,
           "relaysUnreachable": 0,
@@ -94,38 +94,74 @@
         }
       },
       "timeCeiling": {
-        "calendarsAccepted": 3,
+        "protocol": "RFC3161",
+        "authoritiesGranting": 3,
         "of": 3,
-        "established": false,
-        "bitcoinConfirmed": false,
-        "note": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has.",
-        "otsFile": "carrier.ots",
-        "verifyBy": "ots verify carrier.ots"
+        "established": true,
+        "ceilingUnix": 1787755437,
+        "authorities": [
+          {
+            "authority": "DigiCert",
+            "url": "http://timestamp.digicert.com",
+            "jurisdiction": "US",
+            "granted": true,
+            "timestamp": "Aug 26 14:43:57 2026 GMT",
+            "unix": 1787755437,
+            "tokenBytes": 6007,
+            "tokenFile": "carrier.digicert.tsr"
+          },
+          {
+            "authority": "FreeTSA",
+            "url": "https://freetsa.org/tsr",
+            "jurisdiction": "DE",
+            "granted": true,
+            "timestamp": "Aug 26 14:43:58 2026 GMT",
+            "unix": 1787755438,
+            "tokenBytes": 4642,
+            "tokenFile": "carrier.freetsa.tsr"
+          },
+          {
+            "authority": "Belgium (BOSA)",
+            "url": "http://tsa.belgium.be/connect",
+            "jurisdiction": "BE",
+            "granted": true,
+            "timestamp": "Aug 26 14:43:58 2026 GMT",
+            "unix": 1787755438,
+            "tokenBytes": 4257,
+            "tokenFile": "carrier.belgium.tsr"
+          }
+        ],
+        "note": "signed by independent timestamp authorities; the earliest is the binding upper bound",
+        "limitation": "RFC 3161 is trusted, not trustless: each authority is relied on not to misstate the time. Several independent operators in different jurisdictions would have to collude. This is the same trust model ValiChord already uses -- see docs/13.",
+        "verifyBy": "openssl ts -reply -in <file>.tsr -text",
+        "bitcoinAlsoAnchored": false
       },
       "localAnchorRequest": {
-        "secondsAfterFloor": 28,
+        "secondsAfterFloor": 31,
         "selfReported": true,
         "provesNothing": "this is our own clock. An adversary sets it freely. It is operational hygiene -- did we anchor promptly after committing -- not evidence."
       },
       "timeInterval": {
-        "established": false,
-        "floorUnix": 1787754330,
-        "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending Bitcoin confirmation. Until then this record proves the commitment was not made EARLIER than the drand round, and nothing at all about how much later it may have been made.",
-        "toComplete": "python upgrade.py  (once a block has confirmed)"
+        "established": true,
+        "floorUnix": 1787755410,
+        "ceilingUnix": 1787755437,
+        "seconds": 27,
+        "meaning": "the commitment was made after the drand round and before the earliest timestamp authority signed for it. Both bounds are set by parties this project does not operate.",
+        "strength": "tight"
       }
     },
     {
       "role": "PORT_AUTHORITY",
       "party": "USLAX VTS (synthetic)",
-      "commitmentSha256": "872ccb21c4c92d47a892179b08c8e383246984d8d387a93ff88e287c50a09bf1",
+      "commitmentSha256": "28bbeff607e5d5df1b262103be1995b2e498bc1a104773712616d0816be99882",
       "hashMatches": true,
       "signatureValid": true,
       "timeFloor": {
-        "round": 6410777,
-        "roundUnixTime": 1787754330,
+        "round": 6410813,
+        "roundUnixTime": 1787755410,
         "independentlyReVerified": {
           "checked": true,
-          "round": 6410777,
+          "round": 6410813,
           "relaysAgreeing": 4,
           "relaysDisagreeing": 0,
           "relaysUnreachable": 0,
@@ -158,38 +194,74 @@
         }
       },
       "timeCeiling": {
-        "calendarsAccepted": 3,
+        "protocol": "RFC3161",
+        "authoritiesGranting": 3,
         "of": 3,
-        "established": false,
-        "bitcoinConfirmed": false,
-        "note": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has.",
-        "otsFile": "port_authority.ots",
-        "verifyBy": "ots verify port_authority.ots"
+        "established": true,
+        "ceilingUnix": 1787755439,
+        "authorities": [
+          {
+            "authority": "DigiCert",
+            "url": "http://timestamp.digicert.com",
+            "jurisdiction": "US",
+            "granted": true,
+            "timestamp": "Aug 26 14:43:59 2026 GMT",
+            "unix": 1787755439,
+            "tokenBytes": 6008,
+            "tokenFile": "port_authority.digicert.tsr"
+          },
+          {
+            "authority": "FreeTSA",
+            "url": "https://freetsa.org/tsr",
+            "jurisdiction": "DE",
+            "granted": true,
+            "timestamp": "Aug 26 14:44:00 2026 GMT",
+            "unix": 1787755440,
+            "tokenBytes": 4643,
+            "tokenFile": "port_authority.freetsa.tsr"
+          },
+          {
+            "authority": "Belgium (BOSA)",
+            "url": "http://tsa.belgium.be/connect",
+            "jurisdiction": "BE",
+            "granted": true,
+            "timestamp": "Aug 26 14:44:00 2026 GMT",
+            "unix": 1787755440,
+            "tokenBytes": 4258,
+            "tokenFile": "port_authority.belgium.tsr"
+          }
+        ],
+        "note": "signed by independent timestamp authorities; the earliest is the binding upper bound",
+        "limitation": "RFC 3161 is trusted, not trustless: each authority is relied on not to misstate the time. Several independent operators in different jurisdictions would have to collude. This is the same trust model ValiChord already uses -- see docs/13.",
+        "verifyBy": "openssl ts -reply -in <file>.tsr -text",
+        "bitcoinAlsoAnchored": false
       },
       "localAnchorRequest": {
-        "secondsAfterFloor": 28,
+        "secondsAfterFloor": 31,
         "selfReported": true,
         "provesNothing": "this is our own clock. An adversary sets it freely. It is operational hygiene -- did we anchor promptly after committing -- not evidence."
       },
       "timeInterval": {
-        "established": false,
-        "floorUnix": 1787754330,
-        "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending Bitcoin confirmation. Until then this record proves the commitment was not made EARLIER than the drand round, and nothing at all about how much later it may have been made.",
-        "toComplete": "python upgrade.py  (once a block has confirmed)"
+        "established": true,
+        "floorUnix": 1787755410,
+        "ceilingUnix": 1787755439,
+        "seconds": 29,
+        "meaning": "the commitment was made after the drand round and before the earliest timestamp authority signed for it. Both bounds are set by parties this project does not operate.",
+        "strength": "tight"
       }
     },
     {
       "role": "TERMINAL_OPERATOR",
       "party": "Delta Marine Terminal (synthetic)",
-      "commitmentSha256": "f1fd5736e64dd3f5bc4c5928c00fd84c8307f19fed0264510190d65db72838b2",
+      "commitmentSha256": "5acadfd7c80035f90045f5d0ea9e86809b481345b81c300cfa0830aa4dddb953",
       "hashMatches": true,
       "signatureValid": true,
       "timeFloor": {
-        "round": 6410777,
-        "roundUnixTime": 1787754330,
+        "round": 6410813,
+        "roundUnixTime": 1787755410,
         "independentlyReVerified": {
           "checked": true,
-          "round": 6410777,
+          "round": 6410813,
           "relaysAgreeing": 4,
           "relaysDisagreeing": 0,
           "relaysUnreachable": 0,
@@ -222,121 +294,69 @@
         }
       },
       "timeCeiling": {
-        "calendarsAccepted": 3,
+        "protocol": "RFC3161",
+        "authoritiesGranting": 3,
         "of": 3,
-        "established": false,
-        "bitcoinConfirmed": false,
-        "note": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has.",
-        "otsFile": "terminal_operator.ots",
-        "verifyBy": "ots verify terminal_operator.ots"
+        "established": true,
+        "ceilingUnix": 1787755440,
+        "authorities": [
+          {
+            "authority": "DigiCert",
+            "url": "http://timestamp.digicert.com",
+            "jurisdiction": "US",
+            "granted": true,
+            "timestamp": "Aug 26 14:44:00 2026 GMT",
+            "unix": 1787755440,
+            "tokenBytes": 6007,
+            "tokenFile": "terminal_operator.digicert.tsr"
+          },
+          {
+            "authority": "FreeTSA",
+            "url": "https://freetsa.org/tsr",
+            "jurisdiction": "DE",
+            "granted": true,
+            "timestamp": "Aug 26 14:44:01 2026 GMT",
+            "unix": 1787755441,
+            "tokenBytes": 4642,
+            "tokenFile": "terminal_operator.freetsa.tsr"
+          },
+          {
+            "authority": "Belgium (BOSA)",
+            "url": "http://tsa.belgium.be/connect",
+            "jurisdiction": "BE",
+            "granted": true,
+            "timestamp": "Aug 26 14:44:01 2026 GMT",
+            "unix": 1787755441,
+            "tokenBytes": 4256,
+            "tokenFile": "terminal_operator.belgium.tsr"
+          }
+        ],
+        "note": "signed by independent timestamp authorities; the earliest is the binding upper bound",
+        "limitation": "RFC 3161 is trusted, not trustless: each authority is relied on not to misstate the time. Several independent operators in different jurisdictions would have to collude. This is the same trust model ValiChord already uses -- see docs/13.",
+        "verifyBy": "openssl ts -reply -in <file>.tsr -text",
+        "bitcoinAlsoAnchored": false
       },
       "localAnchorRequest": {
-        "secondsAfterFloor": 28,
+        "secondsAfterFloor": 31,
         "selfReported": true,
         "provesNothing": "this is our own clock. An adversary sets it freely. It is operational hygiene -- did we anchor promptly after committing -- not evidence."
       },
       "timeInterval": {
-        "established": false,
-        "floorUnix": 1787754330,
-        "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending Bitcoin confirmation. Until then this record proves the commitment was not made EARLIER than the drand round, and nothing at all about how much later it may have been made.",
-        "toComplete": "python upgrade.py  (once a block has confirmed)"
+        "established": true,
+        "floorUnix": 1787755410,
+        "ceilingUnix": 1787755440,
+        "seconds": 30,
+        "meaning": "the commitment was made after the drand round and before the earliest timestamp authority signed for it. Both bounds are set by parties this project does not operate.",
+        "strength": "tight"
       }
     }
   ],
-  "anchors": {
-    "CARRIER": {
-      "protocol": "OpenTimestamps",
-      "submittedDigest": "d9fb8b4018f1156f63d4ccf181de4bab700b892b5db0b721f5ff4050511a1b9d",
-      "calendars": [
-        {
-          "calendar": "https://b.pool.opentimestamps.org",
-          "accepted": true,
-          "pendingUris": []
-        },
-        {
-          "calendar": "https://finney.calendar.eternitywall.com",
-          "accepted": true,
-          "pendingUris": []
-        },
-        {
-          "calendar": "https://btc.calendar.catallaxy.com",
-          "accepted": true,
-          "pendingUris": []
-        }
-      ],
-      "accepted": 3,
-      "otsFile": "carrier.ots",
-      "meaning": "each accepting calendar has undertaken to include this digest in Bitcoin. A pending attestation carries a URI and NOTHING ELSE -- no time, no calendar signature. It is not yet a ceiling.",
-      "verifyBy": "ots verify carrier.ots",
-      "ceilingEstablished": false,
-      "bitcoinConfirmed": false,
-      "pendingCalendars": [],
-      "ceilingNote": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has."
-    },
-    "PORT_AUTHORITY": {
-      "protocol": "OpenTimestamps",
-      "submittedDigest": "872ccb21c4c92d47a892179b08c8e383246984d8d387a93ff88e287c50a09bf1",
-      "calendars": [
-        {
-          "calendar": "https://b.pool.opentimestamps.org",
-          "accepted": true,
-          "pendingUris": []
-        },
-        {
-          "calendar": "https://finney.calendar.eternitywall.com",
-          "accepted": true,
-          "pendingUris": []
-        },
-        {
-          "calendar": "https://btc.calendar.catallaxy.com",
-          "accepted": true,
-          "pendingUris": []
-        }
-      ],
-      "accepted": 3,
-      "otsFile": "port_authority.ots",
-      "meaning": "each accepting calendar has undertaken to include this digest in Bitcoin. A pending attestation carries a URI and NOTHING ELSE -- no time, no calendar signature. It is not yet a ceiling.",
-      "verifyBy": "ots verify port_authority.ots",
-      "ceilingEstablished": false,
-      "bitcoinConfirmed": false,
-      "pendingCalendars": [],
-      "ceilingNote": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has."
-    },
-    "TERMINAL_OPERATOR": {
-      "protocol": "OpenTimestamps",
-      "submittedDigest": "f1fd5736e64dd3f5bc4c5928c00fd84c8307f19fed0264510190d65db72838b2",
-      "calendars": [
-        {
-          "calendar": "https://b.pool.opentimestamps.org",
-          "accepted": true,
-          "pendingUris": []
-        },
-        {
-          "calendar": "https://finney.calendar.eternitywall.com",
-          "accepted": true,
-          "pendingUris": []
-        },
-        {
-          "calendar": "https://btc.calendar.catallaxy.com",
-          "accepted": true,
-          "pendingUris": []
-        }
-      ],
-      "accepted": 3,
-      "otsFile": "terminal_operator.ots",
-      "meaning": "each accepting calendar has undertaken to include this digest in Bitcoin. A pending attestation carries a URI and NOTHING ELSE -- no time, no calendar signature. It is not yet a ceiling.",
-      "verifyBy": "ots verify terminal_operator.ots",
-      "ceilingEstablished": false,
-      "bitcoinConfirmed": false,
-      "pendingCalendars": [],
-      "ceilingNote": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has."
-    }
-  },
+  "anchors": {},
   "notDetermined": [
     "Whether Notice of Readiness was validly tendered -- a contested question of law, not of position or of timing.",
     "Any laytime or demurrage consequence, or amount.",
     "Whether any divergence was deliberate.",
-    "WHEN the commitment was made, beyond 'not before the drand round'. There is no upper bound until Bitcoin confirms the .ots files. An earlier version of this record answered this using its own system clock, which was not evidence. Run upgrade.py to complete it.",
+    "Whether the timestamp authorities told the truth about the time. RFC 3161 is trusted, not trustless; several independent operators in different jurisdictions would have to collude. An earlier version of this record answered the WHEN question using its own system clock, which was not evidence at all.",
     "Whether drand's threshold signature is valid. Independent relays agree on the round, which is weaker than verifying the signature."
   ]
 }

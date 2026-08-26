@@ -265,6 +265,25 @@ Two real fixes, either of which works:
   **`docs/13` already argued for this** — legal recognition, eIDAS presumption, no blockchain
   framing — and recorded that the code was unchanged. It still is.
 
+> ### ✅ Both were done, and the second is now the default — 26 August 2026
+>
+> The first fix shipped `.ots` files and `upgrade.py`. Ceri John then asked whether Bitcoin
+> was necessary at all, which turned out to be the better question.
+>
+> Phase 3 now takes its ceiling from **three independent RFC 3161 authorities in three
+> jurisdictions** — DigiCert (US), FreeTSA (DE), BOSA (BE) — all three granting on the live
+> run in about a second. Bitcoin sits behind `VALICHORD_OTS=1`.
+>
+> **This review framed it as presentation. It was correctness.** With a Bitcoin ceiling
+> hours away there was no interval at all in the meantime, and interval width is the only
+> thing that exposes `docs/13`'s unrefused attack. The negative control now *measures* that
+> attack instead of describing it: **11 seconds honest against 86,412 backdated**, both ends
+> set by parties this project does not operate.
+>
+> This is a third place where the review's own reasoning was weaker than the thing it was
+> reviewing. `docs/13` had already argued for RFC 3161 on its own merits and simply never
+> acted on it.
+
 Until one is done, the record should say *"floor → self-reported anchoring time, with three
 calendar receipts pending"* and nothing stronger.
 
