@@ -73,56 +73,65 @@ the question rather than leaving it to be discovered.
 
 ---
 
+> ## ⚠️ Emails 2–4 were rewritten on 26 August 2026
+>
+> The originals led with *"I can time a vessel's arrival to seventy seconds from public
+> AIS."* [`docs/20`](../docs/20-is-this-already-solved.md) establishes that Marcura and
+> Veson already sell exactly that, reconciled against digitised Statements of Facts,
+> through an AI pipeline trained on 700,000 documents.
+>
+> **Leading with that capability is the single fastest way to sound like someone who has
+> not done the reading** — which is precisely what Ceri asked to avoid. The rewrites below
+> name the incumbents first and ask about the part they do not cover.
+
 ## 2 — A P&I or defence club, to whoever wrote their NOR guidance
 
-**Subject:** A question about your Notice of Readiness guidance
+**Subject:** The bit of a Statement of Facts that telemetry can't see
 
 > Dear [NAME],
 >
 > I read your piece on Notice of Readiness. I have a question I can't answer from outside
-> the industry, and you plainly can.
+> the industry.
 >
-> I've been testing whether public AIS data can settle the factual half of an NOR dispute
-> — where the vessel actually was at the moment readiness was tendered. Using free NOAA
-> data I can pin a port-limit crossing to about seventy seconds.
+> I've been looking at what public AIS can settle in a laytime dispute, and my honest
+> conclusion is: less than I expected. Marcura and Veson already reconcile AIS against
+> digitised SOFs at scale, and AIS only speaks to four or five lines of a Statement of
+> Facts anyway — arrival, anchoring, berthing, departure. It says nothing about hoses,
+> cargo operations, or whether it rained.
 >
-> My question is whether that's worth anything to you. My assumption is that the *facts*
-> are often not what's argued — that the disagreement is usually about the charterparty,
-> not the position. If that's right, this is a solution looking for a problem and I'd
-> rather find that out now.
+> So my question is the opposite of the one I started with. **When the disagreement is
+> about something telemetry can't see, what actually resolves it today?** Is it just
+> whoever's SOF the tribunal prefers?
 >
-> One page attached if you have ten minutes. No reply needed if not.
+> No pitch attached. I'd rather understand the problem than describe a solution.
 >
 > [NAME]
 
-**Why it's shaped like this.** It invites the recipient to say "no, that isn't the
-problem" — which is the answer most worth having, and the one a pitch would never get.
-[`docs/16`](../docs/16-external-review.md) Part 1 is about exactly this: the value is in
-being told you are wrong early.
+**Why it's shaped like this.** It concedes the incumbents in the first paragraph, which is
+what buys credibility, and then asks about the residual — which is the only place anything
+new could live. It invites "no, that isn't a problem either," which is the answer most
+worth having.
 
 ---
 
 ## 3 — A demurrage consultancy or laytime calculation firm
 
-**Subject:** Do you ever argue about where the ship actually was?
+**Subject:** Where does a claim actually die?
 
 > Dear [NAME],
 >
-> You calculate laytime and demurrage claims for a living, so you'll know immediately
-> whether this is useful or not.
+> You handle these claims for a living, so you'll know in ten seconds whether I'm asking
+> a real question.
 >
-> I can reconstruct a vessel's arrival from free public AIS and pin the moment she
-> crossed the port limit to roughly seventy seconds. Not an opinion on the charterparty
-> — just where she was, and when.
+> Everything I've read says demurrage money is lost to workload, missed time bars, and
+> SOFs that aren't in a queryable form — not to arguments about when the vessel arrived.
+> The one reported case I could find where AIS would have settled the timings had the
+> timings agreed; the fight was a time bar over missing documents.
 >
-> Two questions:
+> Does that match your experience? And if it does — when a claim *is* genuinely contested
+> on the facts rather than the paperwork, what is it usually contested about?
 >
-> 1. How often does a claim you handle turn on a disputed *time*, rather than on the
->    wording of the clause?
-> 2. If you could establish that time independently in seconds, would it change anything,
->    or would the other side simply argue the law instead?
->
-> I'd value a blunt answer more than a polite one.
+> A blunt answer is worth more to me than a polite one.
 >
 > [NAME]
 
@@ -130,26 +139,29 @@ being told you are wrong early.
 
 ## 4 — A maritime law academic
 
-**Subject:** Testing an assumption about NOR disputes — am I wrong?
+**Subject:** Where do laytime disputes actually turn on contested facts?
 
 > Dear Professor [NAME],
 >
 > I'm testing a premise and would rather have it demolished by someone who knows the field
 > than discover the problem later.
 >
-> The premise: that disputes over Notice of Readiness sometimes turn on a genuine factual
-> disagreement about where a vessel was, and that free public AIS could settle that half
-> of it in seconds.
+> I assumed disputes over Notice of Readiness often turn on a genuine factual disagreement
+> about where a vessel was, and that public AIS could settle that. Having looked, I think
+> I was wrong twice: the market already sells AIS-to-SOF reconciliation, and most reported
+> cases turn on law because the facts were settled below.
 >
-> I've built a demonstration that does this against a real vessel's real track. But I've
-> noticed that most *reported* cases turn on questions of law, because the facts were
-> settled below — which makes me suspect the factual disagreements happen in arbitration,
-> where the awards are anonymised and I can't see them.
->
-> Is that right? And if it is, does the factual question matter enough to be worth
-> solving?
+> Two questions. Do the genuine factual disagreements end up in arbitration, where the
+> awards are anonymised and I can't see them? And when SOFs genuinely conflict — different
+> agents, or the Master's own — is there any mechanism today beyond the tribunal picking
+> one?
 >
 > [NAME]
+
+**Why this one is worth sending even if the others land.** It asks about the structural
+problem [`docs/17`](../docs/17-phase0b-case-candidates.md) uncovered and
+[`docs/20`](../docs/20-is-this-already-solved.md) sharpened — which nobody outside the
+field can answer from documents.
 
 **Why this one is worth sending even if the others land.** It asks about the structural
 problem [`docs/17`](../docs/17-phase0b-case-candidates.md) uncovered — disputed facts end

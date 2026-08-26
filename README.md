@@ -71,11 +71,13 @@ those two documents, not the PDF.**
 | [`docs/17-phase0b-case-candidates.md`](docs/17-phase0b-case-candidates.md) | **Phase 0b ran.** 290 published judgments mined for real disputed times; 43 mention a US port, three survive reading, and the false positives are the instructive part |
 | [`docs/18-outreach-and-funding.md`](docs/18-outreach-and-funding.md) | Who to contact and why they are reachable without an introduction, plus the funding calendar — every named UK call is currently shut |
 | [`docs/19-handover-brief.md`](docs/19-handover-brief.md) | **Read first if you are picking this up.** The stopping condition that was missing, four corrections to carry, and what not to do |
+| [`docs/20-is-this-already-solved.md`](docs/20-is-this-already-solved.md) | **⚠️ READ BEFORE WRITING TO ANYONE IN THE INDUSTRY.** Marcura and Veson already sell AIS-to-SOF reconciliation at scale, and the industry's own account of demurrage leakage never mentions disputed facts. What survives, and why it is the survey case |
+| [`docs/21-tricon-run.md`](docs/21-tricon-run.md) | **A real judgment reconstructed from real AIS.** The method works end to end with no counterparty — and corroborates rather than contradicts, which is the finding |
 | [`outreach/draft-emails.md`](outreach/draft-emails.md) | Five drafts. Nothing sent. One is marked HOLD until Phase 0b actually runs |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
 | [`tools/phase0/`](tools/phase0/) | The Phase 0 code. Regenerates every number in `docs/10` from public data |
-| [`tools/phase0b/`](tools/phase0b/) | Mines Find Case Law for judgments with a named vessel, a US port and a disputed time. Scored candidates committed |
+| [`tools/phase0b/`](tools/phase0b/) | Mines Find Case Law for judgments with a named vessel, a US port and a disputed time. Scored candidates committed | Includes `tricon_run.py`, which reconstructs the [2020] EWHC 700 port call from public AIS.
 | [`tools/phase1/`](tools/phase1/) | The Phase 1 demonstrator. `bash run.sh` reproduces `docs/11` end to end |
 | [`tools/phase2/`](tools/phase2/) | Renders the discrepancy record as a single page. Sample output committed under `example_output/` |
 | [`tools/phase3/`](tools/phase3/) | The witness layer — drand floor, OpenTimestamps ceiling, and a negative control that names what it cannot prove |
