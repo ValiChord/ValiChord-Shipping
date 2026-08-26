@@ -32,16 +32,27 @@ stopped binding.
 
 ## Four corrections to carry forward
 
-**1. `verify_signature` IS available in integrity zomes.** `hdi::ed25519` exports
-`verify_signature` and `verify_signature_raw`. ValiChord's `attestation_integrity` carries
-a comment asserting the opposite and has built around it, putting the real Ed25519 check
-in the coordinator's `init()`. That is a bug **in ValiChord**, not here, and it should be
-raised there. `docs/15`'s credential mechanism is sound.
+**1. `verify_signature` IS available in integrity zomes, and it is callable inside
+`validate`.** Settled since: Holochain's `ValidateHostAccess` sets
+`keystore_deterministic: Permission::Allow`, which is exactly the permission the host
+function requires. ValiChord's `attestation_integrity` carries a comment asserting the
+opposite and has built around it, putting the real Ed25519 check in the coordinator's
+`init()`. That is a bug **in ValiChord**, not here. It arrived in `73c3e9b` (11 Mar 2026),
+five months before the 0.7 merge — so it is not upgrade staleness, it was false when
+written. `docs/15`'s credential mechanism is sound.
 
-**2. ValiChord's commit-reveal is coordinator code.** There is no `sha2` dependency in
-`attestation_integrity` at all. `docs/14`'s "reuse of a tested pattern" is unfounded for
-the part that matters — the hash check is not enforced by validators, and it has a dev
-bypass.
+**2. ValiChord's commit-reveal is coordinator code — but the fix is a schema change, not a
+code move.** `docs/14`'s "reuse of a tested pattern" is unfounded for the part that
+matters: the hash check is not enforced by validators and has a dev bypass. **The obstacle
+is not the missing `sha2` dependency**, which is trivial — it is that **the nonce is never
+published**, so no peer can recompute the hash. Publishing it at reveal is harmless but
+changes the entry schema. `docs/16` Finding 1 originally implied otherwise and is corrected
+there.
+
+**2b. The credential layer is coordinator-enforced throughout — the membrane is not an
+outlier.** `certification_tier` is not checked in the integrity zome either, and the
+live-`StudyClaim` guard is coordinator-side. The right question is not "fix the membrane"
+but *"what do we say is validated, versus what a peer actually checks?"*
 
 **3. Per-voyage clones destroy the deterrent.** Each clone gives every party a fresh source
 chain. `docs/13`'s contagion argument — a carrier caught once has its whole book reopened —

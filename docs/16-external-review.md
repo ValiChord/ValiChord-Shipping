@@ -146,6 +146,16 @@ The mechanism is real and tested. It is not validated by peers, and the preceden
 cited does not do the thing being claimed of it. This is the pattern `docs/08` names: our
 documents describe intent.
 
+> **Correction, on close examination of the ValiChord code.** Naming the absent `sha2`
+> dependency implied that adding it would move the check into validation. **It would not.**
+> SHA-256 in an integrity zome is pure computation, no host function involved, and the
+> dependency is trivial to add. The real obstacle is that **the nonce is never published** —
+> there is no `nonce` field anywhere in `shared_types/src/lib.rs`; it exists only as a
+> coordinator function input. No peer can recompute the hash from what is on the DHT.
+>
+> Fixing it means publishing the nonce at reveal, which is harmless in itself but is a
+> **schema change**, not a code move. The finding stands; the remedy implied by it did not.
+
 ### Finding 2 — per-voyage clones destroy the deterrent `docs/13` is built on
 
 **A cell is a DNA–agent pair, and each cell has its own source chain.** Cloning per
