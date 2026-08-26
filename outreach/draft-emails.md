@@ -19,33 +19,57 @@ Replace `[NAME]` and check the current author or contact on the page before send
 
 ---
 
-## 1 — Lloyd's Register Foundation
+## 1 — Lloyd's Register Foundation ✅ VERIFIED AND READY
 
-**To:** maritimeconnected@lrfoundation.org.uk
+**Checked against their own pages, 26 August 2026.** Everything on their calls list is
+closed except NEST, which is for their own former scholars.
+
+| | |
+|---|---|
+| **To** | maritimeconnected@lrfoundation.org.uk |
+| **Grant size** | **£2,000 – £60,000.** Smaller grants are processed faster |
+| **Last round** | 19 Aug 2025 – 6 Feb 2026, now closed |
+| **Eligibility** | registered charities, NGOs, academic institutions, non-profits, social enterprises. **Individuals may apply** if *"demonstrating strong collaborative connections addressing maritime safety challenges"* |
+| **Scope** | *"decarbonisation, digitalisation, the impacts of climate and safety at sea"* |
+
 **Subject:** Maritime Connected — is this the kind of thing you fund?
 
 > Dear Lloyd's Register Foundation,
 >
-> I'm a solo founder working on a narrow question: whether an operational event a ship
-> reports — an arrival time, say — can be independently checked against public position
-> data, so that a disagreement about what happened can be settled from evidence rather
-> than argued.
+> I'm working on a narrow question: whether an operational event a ship reports — an
+> arrival time, say — can be independently checked against public position data, so that a
+> disagreement about what happened gets settled from evidence rather than argued.
 >
-> I've built a working demonstration using free public AIS from NOAA, and I can time a
-> vessel's arrival to about seventy seconds. The parties in the demonstration are
-> invented; only the ship's track is real.
+> I've built a working demonstration using free public AIS from NOAA. It times a vessel's
+> arrival to about seventy seconds. The parties in it are invented; only the ship's track
+> is real.
 >
-> I saw the Maritime Connected call has closed. I'm not asking you to make an exception.
-> I'd like to know whether this sits inside what you fund at all, and if not, who you'd
-> point me towards.
+> I know Maritime Connected is closed and I'm not asking for an exception. Two questions:
 >
-> Happy to send a one-page example if useful.
+> Does this sit inside what you fund at all?
 >
-> [NAME]
+> Your criteria mention collaborative connections. I'm an independent developer without an
+> institutional partner yet — is that a bar, and if so, is there anyone you'd point me
+> towards?
+>
+> Happy to send a one-page example.
+>
+> Ceri
 
-**Why this one first.** They are the best fit of any funder found, their remit is safety
-and evidence, and asking a funder who else to talk to is the cheapest introduction
-available.
+**Why this one first.** Best fit of any funder found — their remit is safety and evidence.
+The grant size is right for one person rather than a consortium. And asking a funder who
+else to talk to is the cheapest introduction available.
+
+**Why the eligibility question earns its place.** It is specific, answerable, and honest
+about the weakest part of the position. Their own criteria name *collaborative
+connections*, which is exactly what is missing — so raising it first turns the gap into
+the question rather than leaving it to be discovered.
+
+> ⚠️ **Before attaching the Phase 2 page.** It names a real ship — CSL SPIRIT, IMO 9138111
+> — beside a fabricated carrier claim marked *contradicted by telemetry*. The disclosure
+> block handles it; a screenshot would not carry the disclosure. Sending it as-is is
+> defensible, because "the track is real, check it yourself" is the whole argument and
+> anonymising the vessel would gut it. Decide knowingly rather than discover it later.
 
 ---
 
