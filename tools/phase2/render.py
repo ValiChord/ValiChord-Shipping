@@ -128,6 +128,13 @@ def main():
     for f in rec["claimsVersusTelemetry"]:
         bk = f["telemetryBracket"]["lastFixAtOrBefore"]
         bad = f["finding"] == "CONTRADICTED_BY_TELEMETRY"
+        # Show WHAT was tested, not just the verdict. A reader who cannot see the
+        # assertions has to take the verdict on trust, which is the opposite of the
+        # point. Added 26 Aug 2026 -- see docs/16 Part 3.
+        tested = "".join(
+            f'<span class="pty">{"&#10007;" if not a["holds"] else "&#10003;"} '
+            f'{esc(a["assertion"])} &#8212; {esc(a["measured"])}</span>'
+            for a in f.get("assertionsTested", []))
         rows += f'''<tr class="{'flag' if bad else ''}">
       <td><span class="role">{esc(f['role'].replace('_',' '))}</span>
           <span class="pty">{esc(f['party'])}</span></td>
@@ -136,7 +143,7 @@ def main():
       <td class="num">{bk['speedOverGroundKt']:.1f}</td>
       <td class="stat">{esc(bk['vesselBroadcastStatus'])}</td>
       <td><span class="verdict {'v-bad' if bad else 'v-ok'}">
-        {'contradicted' if bad else 'consistent'}</span></td></tr>'''
+        {'contradicted' if bad else 'consistent'}</span>{tested}</td></tr>'''
 
     seals = ""
     for i in rec["commitmentIntegrity"]:
@@ -274,6 +281,11 @@ a{{color:inherit}}
   <p><b>The four parties are synthetic.</b> No shipping line, port authority or terminal
   supplied operational records. The carrier&#8217;s claim is deliberately constructed to
   test the method. Nothing here says any real carrier misreported anything.</p>
+  <p><b>Each claimed time was stated independently of the track.</b> The port
+  authority&#8217;s and terminal operator&#8217;s times are fixed clock values with
+  plausible reporting lags, not values copied from the telemetry &#8212; so their
+  agreement below is a result, not an artefact of how the scenario was built. Every
+  assertion tested is printed against its verdict.</p>
 </div>
 
 <dl class="particulars">

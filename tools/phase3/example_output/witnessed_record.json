@@ -5,16 +5,16 @@
     "witnesses": "REAL -- drand and OpenTimestamps are live public services, contacted at run time. Neither is operated by this project."
   },
   "protocolRun": {
-    "id": "P3-7b920db5",
-    "at": "2026-08-25T21:14:00Z"
+    "id": "P3-f1dcd7eb",
+    "at": "2026-08-26T14:26:03Z"
   },
   "witnessModel": {
     "floor": {
       "what": "drand / League of Entropy public randomness beacon",
       "proves": "the commitment was not constructed before this round",
-      "round": 6408713,
+      "round": 6410777,
       "chainHash": "8990e7a9aaed2ffed73dbd7092123d6f289930540d7651336225dc172e51b2ce",
-      "verifyBy": "GET https://api.drand.sh/public/6408713 and compare 'randomness'"
+      "verifyBy": "GET https://api.drand.sh/public/6410777 and compare 'randomness'"
     },
     "ceiling": {
       "what": "OpenTimestamps calendars, Bitcoin-anchored",
@@ -24,11 +24,12 @@
         "https://finney.calendar.eternitywall.com",
         "https://btc.calendar.catallaxy.com"
       ],
+      "established": false,
       "bitcoinConfirmed": false,
-      "note": "until a block confirms, the ceiling rests on the calendars' signatures -- hence three independent operators rather than one"
+      "note": "A pending calendar attestation carries a URI and NOTHING ELSE -- no time, no signature over a time. It is a promise, not a bound. Until a block confirms there is no ceiling, and this record does not pretend there is one. Corrected 26 Aug 2026, docs/16 Part 3."
     },
     "humansRequired": 0,
-    "whatItProves": "an INTERVAL, not an instant. A genuine but stale beacon round verifies perfectly while proving nothing, so the interval width -- not a boolean -- is the measure. See negative_control.py attack 4."
+    "whatItProves": "TODAY: a FLOOR only -- the commitment was not made before the drand round. That refutes backdating to any point earlier than the round, and nothing else. Once the .ots files are upgraded, floor and ceiling together give an interval. A genuine but stale round still verifies perfectly while proving little, so interval width -- not a boolean -- remains the measure. See negative_control.py attack 4."
   },
   "case": {
     "vessel": {
@@ -52,190 +53,290 @@
     {
       "role": "CARRIER",
       "party": "Global Ocean Line (synthetic)",
-      "commitmentSha256": "23e8aabb054c38b644910f23049343f7f151b7c8bd0b1fe7a7c168b4e85cd08b",
+      "commitmentSha256": "d9fb8b4018f1156f63d4ccf181de4bab700b892b5db0b721f5ff4050511a1b9d",
       "hashMatches": true,
       "signatureValid": true,
       "timeFloor": {
-        "round": 6408713,
-        "roundUnixTime": 1787692410,
+        "round": 6410777,
+        "roundUnixTime": 1787754330,
         "independentlyReVerified": {
           "checked": true,
-          "round": 6408713,
+          "round": 6410777,
+          "relaysAgreeing": 4,
+          "relaysDisagreeing": 0,
+          "relaysUnreachable": 0,
+          "relays": [
+            {
+              "relay": "https://api.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://api2.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://api3.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://drand.cloudflare.com",
+              "reachable": true,
+              "matches": true
+            }
+          ],
           "randomnessMatches": true,
-          "signatureMatches": true
+          "signatureMatches": true,
+          "thresholdSignatureVerified": false,
+          "limitation": "drand's BLS threshold signature is NOT verified here -- no BLS library is available. Agreement across independent relays is a weaker substitute and should not be described as a signature check."
         }
       },
       "timeCeiling": {
         "calendarsAccepted": 3,
         "of": 3,
-        "bitcoinConfirmed": false
+        "established": false,
+        "bitcoinConfirmed": false,
+        "note": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has.",
+        "otsFile": "carrier.ots",
+        "verifyBy": "ots verify carrier.ots"
+      },
+      "localAnchorRequest": {
+        "secondsAfterFloor": 28,
+        "selfReported": true,
+        "provesNothing": "this is our own clock. An adversary sets it freely. It is operational hygiene -- did we anchor promptly after committing -- not evidence."
       },
       "timeInterval": {
-        "seconds": 28,
-        "meaning": "the commitment provably exists somewhere inside this window and nowhere outside it",
-        "strength": "tight"
+        "established": false,
+        "floorUnix": 1787754330,
+        "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending Bitcoin confirmation. Until then this record proves the commitment was not made EARLIER than the drand round, and nothing at all about how much later it may have been made.",
+        "toComplete": "python upgrade.py  (once a block has confirmed)"
       }
     },
     {
       "role": "PORT_AUTHORITY",
       "party": "USLAX VTS (synthetic)",
-      "commitmentSha256": "41b48a6083f338e3c11dc9ed15f0dc33f189611193723e372730cfd0e9f2de5e",
+      "commitmentSha256": "872ccb21c4c92d47a892179b08c8e383246984d8d387a93ff88e287c50a09bf1",
       "hashMatches": true,
       "signatureValid": true,
       "timeFloor": {
-        "round": 6408713,
-        "roundUnixTime": 1787692410,
+        "round": 6410777,
+        "roundUnixTime": 1787754330,
         "independentlyReVerified": {
           "checked": true,
-          "round": 6408713,
+          "round": 6410777,
+          "relaysAgreeing": 4,
+          "relaysDisagreeing": 0,
+          "relaysUnreachable": 0,
+          "relays": [
+            {
+              "relay": "https://api.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://api2.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://api3.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://drand.cloudflare.com",
+              "reachable": true,
+              "matches": true
+            }
+          ],
           "randomnessMatches": true,
-          "signatureMatches": true
+          "signatureMatches": true,
+          "thresholdSignatureVerified": false,
+          "limitation": "drand's BLS threshold signature is NOT verified here -- no BLS library is available. Agreement across independent relays is a weaker substitute and should not be described as a signature check."
         }
       },
       "timeCeiling": {
         "calendarsAccepted": 3,
         "of": 3,
-        "bitcoinConfirmed": false
+        "established": false,
+        "bitcoinConfirmed": false,
+        "note": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has.",
+        "otsFile": "port_authority.ots",
+        "verifyBy": "ots verify port_authority.ots"
+      },
+      "localAnchorRequest": {
+        "secondsAfterFloor": 28,
+        "selfReported": true,
+        "provesNothing": "this is our own clock. An adversary sets it freely. It is operational hygiene -- did we anchor promptly after committing -- not evidence."
       },
       "timeInterval": {
-        "seconds": 28,
-        "meaning": "the commitment provably exists somewhere inside this window and nowhere outside it",
-        "strength": "tight"
+        "established": false,
+        "floorUnix": 1787754330,
+        "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending Bitcoin confirmation. Until then this record proves the commitment was not made EARLIER than the drand round, and nothing at all about how much later it may have been made.",
+        "toComplete": "python upgrade.py  (once a block has confirmed)"
       }
     },
     {
       "role": "TERMINAL_OPERATOR",
       "party": "Delta Marine Terminal (synthetic)",
-      "commitmentSha256": "26ee5b1b303017b2e7f747220bcdc89e36d0478014edef32d7b65a3c04d92bf9",
+      "commitmentSha256": "f1fd5736e64dd3f5bc4c5928c00fd84c8307f19fed0264510190d65db72838b2",
       "hashMatches": true,
       "signatureValid": true,
       "timeFloor": {
-        "round": 6408713,
-        "roundUnixTime": 1787692410,
+        "round": 6410777,
+        "roundUnixTime": 1787754330,
         "independentlyReVerified": {
           "checked": true,
-          "round": 6408713,
+          "round": 6410777,
+          "relaysAgreeing": 4,
+          "relaysDisagreeing": 0,
+          "relaysUnreachable": 0,
+          "relays": [
+            {
+              "relay": "https://api.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://api2.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://api3.drand.sh",
+              "reachable": true,
+              "matches": true
+            },
+            {
+              "relay": "https://drand.cloudflare.com",
+              "reachable": true,
+              "matches": true
+            }
+          ],
           "randomnessMatches": true,
-          "signatureMatches": true
+          "signatureMatches": true,
+          "thresholdSignatureVerified": false,
+          "limitation": "drand's BLS threshold signature is NOT verified here -- no BLS library is available. Agreement across independent relays is a weaker substitute and should not be described as a signature check."
         }
       },
       "timeCeiling": {
         "calendarsAccepted": 3,
         "of": 3,
-        "bitcoinConfirmed": false
+        "established": false,
+        "bitcoinConfirmed": false,
+        "note": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has.",
+        "otsFile": "terminal_operator.ots",
+        "verifyBy": "ots verify terminal_operator.ots"
+      },
+      "localAnchorRequest": {
+        "secondsAfterFloor": 28,
+        "selfReported": true,
+        "provesNothing": "this is our own clock. An adversary sets it freely. It is operational hygiene -- did we anchor promptly after committing -- not evidence."
       },
       "timeInterval": {
-        "seconds": 28,
-        "meaning": "the commitment provably exists somewhere inside this window and nowhere outside it",
-        "strength": "tight"
+        "established": false,
+        "floorUnix": 1787754330,
+        "meaning": "NO INTERVAL YET. The floor holds; the ceiling is pending Bitcoin confirmation. Until then this record proves the commitment was not made EARLIER than the drand round, and nothing at all about how much later it may have been made.",
+        "toComplete": "python upgrade.py  (once a block has confirmed)"
       }
     }
   ],
   "anchors": {
     "CARRIER": {
       "protocol": "OpenTimestamps",
-      "submittedDigest": "23e8aabb054c38b644910f23049343f7f151b7c8bd0b1fe7a7c168b4e85cd08b",
+      "submittedDigest": "d9fb8b4018f1156f63d4ccf181de4bab700b892b5db0b721f5ff4050511a1b9d",
       "calendars": [
         {
           "calendar": "https://b.pool.opentimestamps.org",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 205,
-          "receiptSha256": "3f34e3c3f699a2b21909d43f7e1570852dab61c5c4221fe632b9a0bfc06be843",
-          "receiptHex": "f00844c8d2071d9474c808f0106700bf66ec5f376b7d4f809bca7235c108f120bfee96b3b6c87b4d8d823a3fdead5e7bf2a10e3b2929ca2dbfe26f8f6c65ee3508f120dde4106c2e5f726a7cf6edab7f708db96376bafc7593f59e25ee80779f44157408f020619a5649d323e5581cb8428943d93908b48efb2f9f5c23e8a5b6a1dc3896a06308f1046a8e058ff00881b9bd27906cdcc30083dfe30d2ef90c8e2c2b68747470733a2f2f626f622e6274632e63616c656e6461722e6f70656e74696d657374616d70732e6f7267"
+          "pendingUris": []
         },
         {
           "calendar": "https://finney.calendar.eternitywall.com",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 226,
-          "receiptSha256": "175202ecb12ae6cc94c2ff1b231105568581aab85e0a971d3646874b816f6631",
-          "receiptHex": "f010c06d40c3dbbafc22e7f67aba5c53dc4e08f02034051d1e0142966d5f1829c04e8567c05791828205589c692877298e692d54c208f020726e872d71893bc2d3e6877c1265717056bad22aa874ad42c8ad819fef72950808f020f76460ad919f4ad14022242c88b6b24aa5ebfedec785ff4d1065bc6938946f5508f02082f1e1103cb52c1678cb76136648eff3ce15abb0373d8c9202b815e6ae6f243c08f1046a8e0590f008c8fbae9b275765450083dfe30d2ef90c8e292868747470733a2f2f66696e6e65792e63616c656e6461722e657465726e69747977616c6c2e636f6d"
+          "pendingUris": []
         },
         {
           "calendar": "https://btc.calendar.catallaxy.com",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 185,
-          "receiptSha256": "854adf84a35c3c6cefd6d324016f8e9535bf0ad754d2cbeea624d65a0a893468",
-          "receiptHex": "f0103520e117f9387a15c5cf346fe509b61d08f0206de54a154adb37ee4ff9e448957bda0521ef45dd492267db1e6ced5bddfdd6f108f020a985a7f0621bece897cc9fa9486d19181edbf38edcf9bc77e264ba2fc7ae84b808f0200bb043279cd8b9fe8043f4b68d5b27357e2f95b0f380b0d477feceefb75a4d7708f1046a8e0591f0087fc3538de3a9fdf60083dfe30d2ef90c8e232268747470733a2f2f6274632e63616c656e6461722e636174616c6c6178792e636f6d"
+          "pendingUris": []
         }
       ],
       "accepted": 3,
-      "meaning": "each accepting calendar has signed a commitment to include this digest in Bitcoin. Until a block confirms, the ceiling rests on these signatures, which is why several independent operators are used rather than one.",
-      "bitcoinConfirmed": false
+      "otsFile": "carrier.ots",
+      "meaning": "each accepting calendar has undertaken to include this digest in Bitcoin. A pending attestation carries a URI and NOTHING ELSE -- no time, no calendar signature. It is not yet a ceiling.",
+      "verifyBy": "ots verify carrier.ots",
+      "ceilingEstablished": false,
+      "bitcoinConfirmed": false,
+      "pendingCalendars": [],
+      "ceilingNote": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has."
     },
     "PORT_AUTHORITY": {
       "protocol": "OpenTimestamps",
-      "submittedDigest": "41b48a6083f338e3c11dc9ed15f0dc33f189611193723e372730cfd0e9f2de5e",
+      "submittedDigest": "872ccb21c4c92d47a892179b08c8e383246984d8d387a93ff88e287c50a09bf1",
       "calendars": [
         {
           "calendar": "https://b.pool.opentimestamps.org",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 240,
-          "receiptSha256": "c7a1ce6fd1beadbabb86728628f268fbd11327baa59f1521932b5d9edf94614f",
-          "receiptHex": "f0084345293d98fa681108f020777b3c5a439e2226a20a257c5d75147fabe1a2d583620c1978543d7bfcac3cd908f01047bfebb6917f8a187a56a6cfcc8891f308f020af8b931d801c4c32344085a10312b1b4733288be46e7243c95ccba05f09a736c08f02063b615a108258f0e35fe32ed75ee47f9a19fceb52cd1090c1181ba5a55252c2e08f020b928ede71d494b4bc4339ad071addc6e920b2dc637d33ff4825d7cd714653ab708f1046a8e0593f0088d4e9246dd6032c40083dfe30d2ef90c8e2c2b68747470733a2f2f626f622e6274632e63616c656e6461722e6f70656e74696d657374616d70732e6f7267"
+          "pendingUris": []
         },
         {
           "calendar": "https://finney.calendar.eternitywall.com",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 156,
-          "receiptSha256": "fd5054cd9c419d095f044c90f2ea64a3836fb6e732f015953484810b32d50c91",
-          "receiptHex": "f01021bce40feabe84ed898aa2fdb464e4ae08f120a2662cedff1b8b37a49c99605cb2520655f9bf9e076dbab40cc0cb1b0d61791008f12045d07a59ce78ab66bdaf2074df557d9ed19fc4e18d31552e388a60d92821a1b608f1046a8e0593f00888782b46502c4e8e0083dfe30d2ef90c8e292868747470733a2f2f66696e6e65792e63616c656e6461722e657465726e69747977616c6c2e636f6d"
+          "pendingUris": []
         },
         {
           "calendar": "https://btc.calendar.catallaxy.com",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 150,
-          "receiptSha256": "b2b9730f099b6749fc1fb7964ec593306e46137c0c843f65df37dc5cce300a4a",
-          "receiptHex": "f0105bdcadbb2030efd39fb95ffd4836545308f0207bf91269ea53fd188c01776e1fe9919591bf5987885c40933dd9e78fdc55500a08f0206971951c773d0fd5fa7f31baaf077ce2a45055d513a344d03b04cf4b10ff517008f1046a8e0594f00885b89b7240189eaf0083dfe30d2ef90c8e232268747470733a2f2f6274632e63616c656e6461722e636174616c6c6178792e636f6d"
+          "pendingUris": []
         }
       ],
       "accepted": 3,
-      "meaning": "each accepting calendar has signed a commitment to include this digest in Bitcoin. Until a block confirms, the ceiling rests on these signatures, which is why several independent operators are used rather than one.",
-      "bitcoinConfirmed": false
+      "otsFile": "port_authority.ots",
+      "meaning": "each accepting calendar has undertaken to include this digest in Bitcoin. A pending attestation carries a URI and NOTHING ELSE -- no time, no calendar signature. It is not yet a ceiling.",
+      "verifyBy": "ots verify port_authority.ots",
+      "ceilingEstablished": false,
+      "bitcoinConfirmed": false,
+      "pendingCalendars": [],
+      "ceilingNote": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has."
     },
     "TERMINAL_OPERATOR": {
       "protocol": "OpenTimestamps",
-      "submittedDigest": "26ee5b1b303017b2e7f747220bcdc89e36d0478014edef32d7b65a3c04d92bf9",
+      "submittedDigest": "f1fd5736e64dd3f5bc4c5928c00fd84c8307f19fed0264510190d65db72838b2",
       "calendars": [
         {
           "calendar": "https://b.pool.opentimestamps.org",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 275,
-          "receiptSha256": "0a8080daddd625be105c0ab86f6cb03726615246c13abb58d7a5b89dd2410022",
-          "receiptHex": "f00829ff139f58029d1408f020c8d75c1c68a25ee8b2783920d38119123fd30fd6243e5faede79756467e858cd08f120c7e509fd65e274571853e35cc0481f6917a39fb37d65e9c3d5a8a984bf06893208f0107c2f7ce0ef6fa6ad4b2f3a1b81adf93a08f0209735ac0c20562ea11ae3e8e7293d6415ca3cb64a43bb91cff781e19f8d105b9a08f0200cb3d001ed4f693684452fa54b827c10cf241fb7af47def9df69a0483bf76a1208f020454d0d501690270267fea02b422d166a5ee62fc257b34f47268b5efc1b6ff2a908f1046a8e0596f008b90bbf08fe0041bb0083dfe30d2ef90c8e2c2b68747470733a2f2f626f622e6274632e63616c656e6461722e6f70656e74696d657374616d70732e6f7267"
+          "pendingUris": []
         },
         {
           "calendar": "https://finney.calendar.eternitywall.com",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 156,
-          "receiptSha256": "8c1b4b99cb4606bb9e0d8f6ba606bfe590c22e694794dbbe46a491181ae839a3",
-          "receiptHex": "f010b5f3587836efe89e9be8ad0591e2a2b608f1200398c1d5eae6eedc52bd5e23714962debeb8361c8a7501d16df24b05c65b63b208f120aedfd3758878413079a169ff62ba60fa7acd95e13f1cc433591241202d5de36408f1046a8e0596f0085e6a25e78f8905780083dfe30d2ef90c8e292868747470733a2f2f66696e6e65792e63616c656e6461722e657465726e69747977616c6c2e636f6d"
+          "pendingUris": []
         },
         {
           "calendar": "https://btc.calendar.catallaxy.com",
           "accepted": true,
-          "httpStatus": "200",
-          "receiptBytes": 150,
-          "receiptSha256": "342424458455bd2103a92564610a1786cc91f06fe9e830455b2e32eeda68a79e",
-          "receiptHex": "f01015a75a0e2110c02b4cfdf37a1c7b8a1608f1205d71edb4c429dbb3aef808b43f28e5c4ed7dda0c2b1231d7f16edd464ee4d5f808f1202c3cb56cc2fd7e10ae61346b12c87d9be3e6b4fd7d5f068a19f9a3ba5500f40008f1046a8e0596f0088da343869939ed090083dfe30d2ef90c8e232268747470733a2f2f6274632e63616c656e6461722e636174616c6c6178792e636f6d"
+          "pendingUris": []
         }
       ],
       "accepted": 3,
-      "meaning": "each accepting calendar has signed a commitment to include this digest in Bitcoin. Until a block confirms, the ceiling rests on these signatures, which is why several independent operators are used rather than one.",
-      "bitcoinConfirmed": false
+      "otsFile": "terminal_operator.ots",
+      "meaning": "each accepting calendar has undertaken to include this digest in Bitcoin. A pending attestation carries a URI and NOTHING ELSE -- no time, no calendar signature. It is not yet a ceiling.",
+      "verifyBy": "ots verify terminal_operator.ots",
+      "ceilingEstablished": false,
+      "bitcoinConfirmed": false,
+      "pendingCalendars": [],
+      "ceilingNote": "PENDING -- no upper bound exists yet. Bitcoin confirmation typically takes hours. Run upgrade.py once it has."
     }
   },
   "notDetermined": [
     "Whether Notice of Readiness was validly tendered -- a contested question of law, not of position or of timing.",
     "Any laytime or demurrage consequence, or amount.",
     "Whether any divergence was deliberate.",
-    "Bitcoin confirmation of the ceiling, which takes hours. At the moment of writing, the ceiling is three independent calendar signatures."
+    "WHEN the commitment was made, beyond 'not before the drand round'. There is no upper bound until Bitcoin confirms the .ots files. An earlier version of this record answered this using its own system clock, which was not evidence. Run upgrade.py to complete it.",
+    "Whether drand's threshold signature is valid. Independent relays agree on the round, which is weaker than verifying the signature."
   ]
 }

@@ -1,5 +1,39 @@
 # 15 — DNA architecture
 
+> ## ⚠️ PARKED — design, not decided. Read [`docs/16`](16-external-review.md) first.
+>
+> An outside review on 26 August 2026 found seven problems with what follows and
+> recommended building **one persistent DNA with two agents** instead. This document is
+> kept, not deleted, because the reasoning is worth having and one part of it survived
+> in better shape than it was written.
+>
+> **What survives.** The core platform constraint is correctly stated — validation is
+> deterministic and its dependencies must be "retrievable from the same DHT," so a
+> voyage cell genuinely cannot look up the registry. And the credential mechanism is
+> **sound**: `hdi::ed25519` exports `verify_signature`, so a signed joining credential
+> can be checked at validation time with no network call. The review initially claimed
+> the opposite and was wrong.
+>
+> **What does not.**
+>
+> 1. `docs/14`'s "reuse of a tested pattern" is unfounded. ValiChord's commit-reveal
+>    hash check lives in the **coordinator**, not the integrity zome — there is no
+>    `sha2` dependency in `attestation_integrity` at all.
+> 2. **Per-voyage clones destroy the deterrent.** Each clone gives every party a fresh
+>    source chain, so no cross-voyage record accumulates — and `docs/13`'s contagion
+>    argument depends entirely on one that does.
+> 3. Clone data does not survive the cell; English limitation periods run six years.
+> 4. `network_seed = hash(transport_call_id)` is not enough to put parties in the same
+>    cell. Properties are DNA modifiers too, so the whole `authorised_parties` map must
+>    serialise byte-identically.
+> 5. `record` (DNA 4) cannot be validated by the same cross-DNA argument this document
+>    applies to `registry`, and its schema carries no party signatures.
+> 6. Bridge calls (`call`, within one agent's hApp instance) are the mechanism for the
+>    coordinator-side telemetry check, and are not named here.
+> 7. The cloning precedent cited is Nondominium's. ValiChord uses no cloned cells at all.
+>
+> Nothing below has been changed. The findings are argued in full in `docs/16` Part 2.
+
 **Four DNAs: `registry`, `telemetry`, `voyage`, `record`.**
 
 Designed from this project's own requirements. An earlier version of this document reached

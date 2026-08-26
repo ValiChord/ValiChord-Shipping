@@ -3,12 +3,13 @@
     "telemetry": "REAL -- NOAA/MarineCadastre public AIS, unmodified",
     "partyRecords": "SYNTHETIC -- no operational logs were supplied by any real organisation. Constructed to exercise the mechanism.",
     "carrierClaim": "SYNTHETIC -- the discrepancy is deliberately injected",
+    "claimConstruction": "Each synthetic claim is a fixed clock time, stated independently, NOT read from the telemetry. How each was chosen is recorded against the finding it produced, so the scenario can be judged rather than trusted.",
     "implication": "This demonstrates the mechanism against real telemetry. It is not evidence that any real party misreported anything."
   },
   "protocolRun": {
-    "id": "P1-a5440243",
-    "committedAt": "2026-08-25T20:49:47Z",
-    "revealedAt": "2026-08-25T20:49:47Z",
+    "id": "P1-1e58a626",
+    "committedAt": "2026-08-26T14:29:09Z",
+    "revealedAt": "2026-08-26T14:29:09Z",
     "externalWitness": null
   },
   "case": {
@@ -55,32 +56,32 @@
       "party": "Global Ocean Line (synthetic)",
       "commitment_matches_reveal": true,
       "signature_valid": true,
-      "commitment_sha256": "c0a8f954b948fa879f53be13dd055b9eeaf8ab8e449d4c514071d69bc2479228",
-      "recomputed_sha256": "c0a8f954b948fa879f53be13dd055b9eeaf8ab8e449d4c514071d69bc2479228"
+      "commitment_sha256": "fc6a63e114df00d6688d4348b725edb970073fdf0f587f130056b392a81eabc2",
+      "recomputed_sha256": "fc6a63e114df00d6688d4348b725edb970073fdf0f587f130056b392a81eabc2"
     },
     {
       "role": "PORT_AUTHORITY",
       "party": "USLAX VTS (synthetic)",
       "commitment_matches_reveal": true,
       "signature_valid": true,
-      "commitment_sha256": "6d3d29bbcd68b1ec897a9cf7b0b6856c77dd262ab96708509b3e66824269fb2e",
-      "recomputed_sha256": "6d3d29bbcd68b1ec897a9cf7b0b6856c77dd262ab96708509b3e66824269fb2e"
+      "commitment_sha256": "dc13934b904aec3c752efa49c8242e9584991f36cd7a23acbbd442b03a7e2197",
+      "recomputed_sha256": "dc13934b904aec3c752efa49c8242e9584991f36cd7a23acbbd442b03a7e2197"
     },
     {
       "role": "TERMINAL_OPERATOR",
       "party": "Delta Marine Terminal (synthetic)",
       "commitment_matches_reveal": true,
       "signature_valid": true,
-      "commitment_sha256": "1f2e43927f5b19347728860cffd128b44f6f10e482c099ddc9f34fcc25265dbe",
-      "recomputed_sha256": "1f2e43927f5b19347728860cffd128b44f6f10e482c099ddc9f34fcc25265dbe"
+      "commitment_sha256": "a99d782fd39f6228ff15a8e127d0e5b3cebc3ea5ca669c59386c52ec53d76301",
+      "recomputed_sha256": "a99d782fd39f6228ff15a8e127d0e5b3cebc3ea5ca669c59386c52ec53d76301"
     },
     {
       "role": "TELEMETRY",
       "party": "NOAA/MarineCadastre public AIS (REAL)",
       "commitment_matches_reveal": true,
       "signature_valid": true,
-      "commitment_sha256": "db6f7c5584c85c6c4591dca5c04100d5f884f162a160f92d2ee420975328fefa",
-      "recomputed_sha256": "db6f7c5584c85c6c4591dca5c04100d5f884f162a160f92d2ee420975328fefa"
+      "commitment_sha256": "9dffa9b0b85a7dc6c6310559c6a4519a7f75d534d7a3a1ab1ff7db226c134f45",
+      "recomputed_sha256": "9dffa9b0b85a7dc6c6310559c6a4519a7f75d534d7a3a1ab1ff7db226c134f45"
     }
   ],
   "claimsVersusTelemetry": [
@@ -89,6 +90,14 @@
       "party": "Global Ocean Line (synthetic)",
       "claimedEventDateTime": "2023-01-15T05:30:00Z",
       "claimedFacilityTypeCode": "BRTH",
+      "claimConstruction": "THE INJECTED DISCREPANCY. A Notice of Readiness tendered well before the vessel reached the port limit. Chosen to be clearly wrong so the mechanism has something to catch.",
+      "assertionsTested": [
+        {
+          "assertion": "vessel within port limits",
+          "holds": false,
+          "measured": "17.35 nm from port reference point, stated limit 12.0 nm"
+        }
+      ],
       "telemetryBracket": {
         "lastFixAtOrBefore": {
           "t": "2023-01-15T05:29:22Z",
@@ -104,51 +113,72 @@
         "note": "the vessel was between these two fixes and nowhere else"
       },
       "finding": "CONTRADICTED_BY_TELEMETRY",
-      "basis": "at the claimed time the vessel was 17.35 nm from the port reference point, outside the stated 12.0 nm port limit, making 12.2 knots, and its own AIS broadcast status was 'under way using engine'"
+      "basis": "claim implies vessel within port limits, telemetry shows 17.35 nm from port reference point, stated limit 12.0 nm"
     },
     {
       "role": "PORT_AUTHORITY",
       "party": "USLAX VTS (synthetic)",
-      "claimedEventDateTime": "2023-01-15T06:00:02Z",
+      "claimedEventDateTime": "2023-01-15T06:04:00Z",
       "claimedFacilityTypeCode": "ANCH",
+      "claimConstruction": "A plausible VTS entry: logged to the whole minute, a few minutes after the event. Not taken from the track.",
+      "assertionsTested": [
+        {
+          "assertion": "vessel within port limits",
+          "holds": true,
+          "measured": "11.40 nm from port reference point, stated limit 12.0 nm"
+        }
+      ],
       "telemetryBracket": {
         "lastFixAtOrBefore": {
-          "t": "2023-01-15T06:00:02Z",
-          "distanceFromPortNm": 11.952,
+          "t": "2023-01-15T06:03:21Z",
+          "distanceFromPortNm": 11.404,
           "speedOverGroundKt": 9.9,
           "vesselBroadcastStatus": "under way using engine"
         },
         "firstFixAfter": {
-          "t": "2023-01-15T06:01:03Z",
-          "distanceFromPortNm": 11.781,
-          "speedOverGroundKt": 9.9
+          "t": "2023-01-15T06:04:22Z",
+          "distanceFromPortNm": 11.241,
+          "speedOverGroundKt": 9.8
         },
         "note": "the vessel was between these two fixes and nowhere else"
       },
       "finding": "CONSISTENT_WITH_TELEMETRY",
-      "basis": "vessel 11.95 nm from port reference point at 9.9 knots at the claimed time"
+      "basis": "vessel within port limits holds -- 11.40 nm from port reference point, stated limit 12.0 nm"
     },
     {
       "role": "TERMINAL_OPERATOR",
       "party": "Delta Marine Terminal (synthetic)",
-      "claimedEventDateTime": "2023-01-15T12:51:30Z",
+      "claimedEventDateTime": "2023-01-15T13:05:00Z",
       "claimedFacilityTypeCode": "BRTH",
+      "claimConstruction": "A plausible terminal 'all fast' entry: logged to the nearest five minutes, after mooring completed. Not taken from the track.",
+      "assertionsTested": [
+        {
+          "assertion": "vessel within port limits",
+          "holds": true,
+          "measured": "3.52 nm from port reference point, stated limit 12.0 nm"
+        },
+        {
+          "assertion": "vessel stationary",
+          "holds": true,
+          "measured": "0.0 kt over ground, own broadcast status 'moored'"
+        }
+      ],
       "telemetryBracket": {
         "lastFixAtOrBefore": {
-          "t": "2023-01-15T12:51:30Z",
-          "distanceFromPortNm": 3.523,
+          "t": "2023-01-15T13:03:28Z",
+          "distanceFromPortNm": 3.515,
           "speedOverGroundKt": 0.0,
           "vesselBroadcastStatus": "moored"
         },
         "firstFixAfter": {
-          "t": "2023-01-15T12:54:32Z",
-          "distanceFromPortNm": 3.524,
+          "t": "2023-01-15T13:06:36Z",
+          "distanceFromPortNm": 3.526,
           "speedOverGroundKt": 0.0
         },
         "note": "the vessel was between these two fixes and nowhere else"
       },
       "finding": "CONSISTENT_WITH_TELEMETRY",
-      "basis": "vessel 3.52 nm from port reference point at 0.0 knots at the claimed time"
+      "basis": "vessel within port limits holds -- 3.52 nm from port reference point, stated limit 12.0 nm; vessel stationary holds -- 0.0 kt over ground, own broadcast status 'moored'"
     }
   ],
   "notDetermined": [

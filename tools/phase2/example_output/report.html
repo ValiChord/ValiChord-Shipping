@@ -1,0 +1,258 @@
+<title>Arrived Ship Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --paper:#FBFAF7; --ink:#12202B; --sea:#E6EDF1; --rule:#C3CFD6;
+  --rule-soft:#E1E8EC; --caution:#B0177C; --verified:#2E6B5E; --muted:#5A6C76;
+  --band:#F2F0EB;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1820; --ink:#E8EFF3; --sea:#16242E; --rule:#2E404C;
+    --rule-soft:#1E2E38; --caution:#FF6BC0; --verified:#63BCA2; --muted:#8FA0AB;
+    --band:#121F27;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1820; --ink:#E8EFF3; --sea:#16242E; --rule:#2E404C;
+  --rule-soft:#1E2E38; --caution:#FF6BC0; --verified:#63BCA2; --muted:#8FA0AB;
+  --band:#121F27;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.55;margin:0;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:44px 28px 80px;
+  display:flex;flex-direction:column;gap:34px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}
+h1{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:clamp(30px,4vw,44px);
+  line-height:1.12;margin:8px 0 0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:20px;margin:0;
+  text-wrap:balance}
+p{margin:0}
+.lede{font-size:17px;color:var(--muted);max-width:62ch;margin-top:10px}
+.disclosure{border:1px solid var(--rule);border-left:3px solid var(--muted);
+  background:var(--band);padding:14px 18px;font-size:13.5px;color:var(--muted);
+  display:flex;flex-direction:column;gap:5px}
+.disclosure b{color:var(--ink);font-weight:600}
+.particulars{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:0;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule)}
+.particulars div{padding:12px 16px 13px;border-right:1px solid var(--rule-soft)}
+.particulars div:last-child{border-right:none}
+.particulars dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 3px}
+.particulars dd{margin:0;font-size:15px;font-weight:500;
+  font-variant-numeric:tabular-nums}
+.finding{border:1px solid var(--caution);border-left:4px solid var(--caution);
+  padding:18px 22px;display:flex;flex-direction:column;gap:8px}
+.finding .eyebrow{color:var(--caution)}
+.finding p{font-size:16.5px;max-width:66ch}
+figure{margin:0;display:flex;flex-direction:column;gap:12px}
+.chartbox{overflow-x:auto;border:1px solid var(--rule);background:var(--paper)}
+svg{display:block;min-width:760px;width:100%;height:auto}
+.seaband{fill:var(--sea)}
+.grid{stroke:var(--rule-soft);stroke-width:1}
+.axis{stroke:var(--rule);stroke-width:1}
+.tick{stroke:var(--rule);stroke-width:1}
+.ax{font-family:"IBM Plex Mono",monospace;font-size:10.5px;fill:var(--muted)}
+.ylab{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  fill:var(--muted)}
+.limit{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:7 4}
+.limitlab{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  fill:var(--ink)}
+.track{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.actual{stroke:var(--verified);stroke-width:1.5}
+.actualdot{fill:var(--verified)}
+.actuallab{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--verified)}
+.claimline{stroke:var(--caution);stroke-width:1.5;stroke-dasharray:3 3}
+.claimdot{fill:var(--caution)}
+.claimlab{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;
+  fill:var(--caution);font-weight:500}
+.claimsub{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--caution)}
+.gaplab{font-family:"IBM Plex Mono",monospace;font-size:11.5px;fill:var(--caution);
+  font-weight:500;letter-spacing:.04em}
+.gapline{stroke:var(--caution);stroke-width:1}
+.gaptick{stroke:var(--caution);stroke-width:1}
+.zonelab{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  fill:var(--muted)}
+figcaption{font-size:13px;color:var(--muted);max-width:70ch}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);text-align:left;font-weight:400;
+  padding:0 12px 8px;border-bottom:1.5px solid var(--ink)}
+tbody td{padding:12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tbody tr.flag{background:color-mix(in srgb,var(--caution) 6%,transparent)}
+.role{display:block;font-weight:600;font-size:13.5px}
+.pty{display:block;font-size:12px;color:var(--muted)}
+.num,.hash{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  white-space:nowrap}
+.hash{font-size:12px;color:var(--muted)}
+.stat{font-size:12.5px;color:var(--muted)}
+.verdict{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 8px;border:1px solid currentColor;
+  white-space:nowrap;display:inline-block}
+.v-ok{color:var(--verified)} .v-bad{color:var(--caution)}
+.tablewrap{overflow-x:auto}
+section{display:flex;flex-direction:column;gap:14px}
+.nd{border-top:1.5px solid var(--ink);padding-top:16px}
+.nd ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:9px;
+  font-size:14px;color:var(--muted);max-width:74ch}
+.nd li::marker{color:var(--rule)}
+footer{border-top:1px solid var(--rule);padding-top:16px;font-size:12.5px;
+  color:var(--muted);display:flex;flex-direction:column;gap:5px}
+a{color:inherit}
+@media (max-width:640px){
+  .wrap{padding:28px 16px 60px;gap:26px}
+  .particulars div{border-right:none;border-bottom:1px solid var(--rule-soft)}
+}
+</style>
+<div class="wrap">
+<header>
+  <p class="eyebrow">Independent telemetry check &#183; protocol run P1-7c069d71</p>
+  <h1>Was she an arrived ship?</h1>
+  <p class="lede">A carrier's claimed arrival time, sealed before disclosure and then
+  checked against the public record of where the vessel physically was.</p>
+</header>
+
+<div class="disclosure">
+  <p><b>Telemetry is real.</b> CSL SPIRIT&#8217;s complete track &#8212;
+  460 position fixes &#8212; is unmodified public AIS from
+  NOAA&#8239;/&#8239;MarineCadastre.</p>
+  <p><b>The four parties are synthetic.</b> No shipping line, port authority or terminal
+  supplied operational records. The carrier&#8217;s claim is deliberately constructed to
+  test the method. Nothing here says any real carrier misreported anything.</p>
+  <p><b>Each claimed time was stated independently of the track.</b> The port
+  authority&#8217;s and terminal operator&#8217;s times are fixed clock values with
+  plausible reporting lags, not values copied from the telemetry &#8212; so their
+  agreement below is a result, not an artefact of how the scenario was built. Every
+  assertion tested is printed against its verdict.</p>
+</div>
+
+<dl class="particulars">
+  <div><dt>Vessel</dt><dd>CSL SPIRIT</dd></div>
+  <div><dt>IMO</dt><dd>9138111</dd></div>
+  <div><dt>Port</dt><dd>USLAX</dd></div>
+  <div><dt>Date</dt><dd>15 Jan 2023</dd></div>
+  <div><dt>Fixes</dt><dd>460</dd></div>
+</dl>
+
+<div class="finding">
+  <p class="eyebrow">Finding</p>
+  <p>The carrier sealed a claim that the vessel had arrived at
+  <b>05:30&#8239;UTC</b>. At that moment the public track puts her
+  <b>17.35&#8239;nm</b> from the port reference point &#8212;
+  5.35&#8239;nm outside the
+  12&#8239;nm limit &#8212; making <b>12.2 knots</b>,
+  broadcasting her own status as &#8220;under way using engine&#8221;.
+  She crossed the limit <b>30 minutes later</b>.</p>
+</div>
+
+<figure>
+  <div class="chartbox"><svg viewBox="0 0 1000 360" role="img"
+  aria-label="Distance of the vessel from the port reference point during her approach.
+  The carrier's claimed arrival time falls where she was still 17.4
+  nautical miles out, well above the 12 nautical mile port limit,
+  making 12.2 knots.">
+  <rect class="seaband" x="64" y="171.3" width="910"
+        height="152.7"/>
+  <text class="zonelab" x="74" y="189.3">INSIDE PORT LIMITS</text>
+  <line class="grid" x1="64" y1="324.0" x2="974" y2="324.0"/><text class="ax" x="54" y="328.0" text-anchor="end">0</text><line class="grid" x1="64" y1="260.4" x2="974" y2="260.4"/><text class="ax" x="54" y="264.4" text-anchor="end">5</text><line class="grid" x1="64" y1="196.8" x2="974" y2="196.8"/><text class="ax" x="54" y="200.8" text-anchor="end">10</text><line class="grid" x1="64" y1="133.1" x2="974" y2="133.1"/><text class="ax" x="54" y="137.1" text-anchor="end">15</text><line class="grid" x1="64" y1="69.5" x2="974" y2="69.5"/><text class="ax" x="54" y="73.5" text-anchor="end">20</text><line class="tick" x1="198.2" y1="324" x2="198.2" y2="329"/><text class="ax" x="198.2" y="343" text-anchor="middle">05:30</text><line class="tick" x1="353.3" y1="324" x2="353.3" y2="329"/><text class="ax" x="353.3" y="343" text-anchor="middle">05:45</text><line class="tick" x1="508.4" y1="324" x2="508.4" y2="329"/><text class="ax" x="508.4" y="343" text-anchor="middle">06:00</text><line class="tick" x1="663.5" y1="324" x2="663.5" y2="329"/><text class="ax" x="663.5" y="343" text-anchor="middle">06:15</text><line class="tick" x1="818.6" y1="324" x2="818.6" y2="329"/><text class="ax" x="818.6" y="343" text-anchor="middle">06:30</text><line class="tick" x1="973.7" y1="324" x2="973.7" y2="329"/><text class="ax" x="973.7" y="343" text-anchor="middle">06:45</text>
+  <line class="axis" x1="64" y1="46" x2="64" y2="324"/>
+  <line class="axis" x1="64" y1="324" x2="974" y2="324"/>
+  <line class="limit" x1="64" y1="171.3" x2="974" y2="171.3"/>
+  <text class="limitlab" x="966" y="162.3" text-anchor="end">PORT LIMIT 12 nm</text>
+  <line class="gapline" x1="198.2" y1="60.0" x2="508.7" y2="60.0"/>
+  <line class="gaptick" x1="198.2" y1="55.0" x2="198.2" y2="65.0"/>
+  <line class="gaptick" x1="508.7" y1="55.0" x2="508.7" y2="65.0"/>
+  <text class="gaplab" x="353.5" y="50.0" text-anchor="middle">30 min before she was inside</text>
+  <polyline class="track" points="64.0,71.3 76.2,74.4 88.1,77.3 100.2,80.3 110.7,82.9 122.8,86.0 134.8,89.0 145.3,91.5 156.9,94.5 167.4,97.1 179.6,100.2 191.7,103.2 202.2,105.8 214.1,108.7 226.1,111.8 238.2,114.7 250.1,117.4 262.3,120.1 274.2,122.8 286.3,125.4 298.5,128.1 309.0,130.3 320.9,132.8 331.4,135.0 343.2,137.5 353.7,139.7 365.7,142.3 377.6,144.8 389.8,147.4 401.9,150.0 412.4,152.1 424.1,154.6 436.5,157.2 448.3,159.7 460.5,162.2 471.0,164.3 482.7,166.7 493.2,168.8 503.8,171.0 508.7,171.9 519.3,174.1 531.0,176.5 543.0,178.9 553.5,181.0 565.6,183.4 577.5,185.8 589.7,188.2 601.6,190.6 613.7,192.9 625.7,195.4 636.3,197.4 649.9,200.1 662.1,202.5 672.6,204.5 684.5,206.9 696.4,209.0 708.6,211.6 720.7,214.0 731.2,216.0 743.1,218.4 753.6,220.4 765.3,222.7 777.4,225.1 789.4,227.5 801.7,229.9 813.7,232.2 825.8,234.6 837.7,236.9 849.9,239.4 862.0,241.8 874.1,244.1 886.1,246.6 898.2,249.0 910.2,251.5 922.1,253.9 934.4,256.3 946.4,258.8 958.3,261.2 970.4,263.7"/>
+  <line class="actual" x1="508.7" y1="171.3" x2="508.7" y2="324"/>
+  <circle class="actualdot" cx="508.7" cy="171.3" r="4.5"/>
+  <text class="actuallab" x="518.7" y="205.3" text-anchor="start">CROSSED 06:00</text>
+  <line class="claimline" x1="198.2" y1="103.2" x2="198.2" y2="171.3"/>
+  <circle class="claimdot" cx="198.2" cy="103.2" r="5.5"/>
+  <text class="claimlab" x="210.2" y="97.2" text-anchor="start">CARRIER CLAIMS ARRIVED 05:30</text>
+  <text class="claimsub" x="210.2" y="114.2" text-anchor="start">still 17.35 nm out &#183; 12.2 kt &#183; &#8220;under way using engine&#8221;</text>
+  <text class="ylab" x="16" y="185.0" transform="rotate(-90 16 185.0)" text-anchor="middle">NAUTICAL MILES FROM PORT</text>
+</svg></div>
+  <figcaption>Distance from the port reference point, plotted from all
+  460 real AIS fixes. Position, speed and the vessel&#8217;s own broadcast
+  status contradict the claim independently, so the finding does not rest on where the
+  limit is drawn. Timing uncertainty on the crossing is
+  29 seconds &#8212; the discrepancy is
+  62 times larger than the
+  measurement window.</figcaption>
+</figure>
+
+<section>
+  <h2>Every claim against the track</h2>
+  <div class="tablewrap"><table>
+  <thead><tr><th>Party</th><th>Claimed time&#8239;(UTC)</th><th>Distance&#8239;nm</th>
+    <th>Speed&#8239;kt</th><th>Vessel&#8217;s own status</th><th></th></tr></thead>
+  <tbody><tr class="flag">
+      <td><span class="role">CARRIER</span>
+          <span class="pty">Global Ocean Line (synthetic)</span></td>
+      <td class="num">2023-01-15T05:30:00Z</td>
+      <td class="num">17.35</td>
+      <td class="num">12.2</td>
+      <td class="stat">under way using engine</td>
+      <td><span class="verdict v-bad">
+        contradicted</span><span class="pty">&#10007; vessel within port limits &#8212; 17.35 nm from port reference point, stated limit 12.0 nm</span></td></tr><tr class="">
+      <td><span class="role">PORT AUTHORITY</span>
+          <span class="pty">USLAX VTS (synthetic)</span></td>
+      <td class="num">2023-01-15T06:04:00Z</td>
+      <td class="num">11.40</td>
+      <td class="num">9.9</td>
+      <td class="stat">under way using engine</td>
+      <td><span class="verdict v-ok">
+        consistent</span><span class="pty">&#10003; vessel within port limits &#8212; 11.40 nm from port reference point, stated limit 12.0 nm</span></td></tr><tr class="">
+      <td><span class="role">TERMINAL OPERATOR</span>
+          <span class="pty">Delta Marine Terminal (synthetic)</span></td>
+      <td class="num">2023-01-15T13:05:00Z</td>
+      <td class="num">3.52</td>
+      <td class="num">0.0</td>
+      <td class="stat">moored</td>
+      <td><span class="verdict v-ok">
+        consistent</span><span class="pty">&#10003; vessel within port limits &#8212; 3.52 nm from port reference point, stated limit 12.0 nm</span><span class="pty">&#10003; vessel stationary &#8212; 0.0 kt over ground, own broadcast status 'moored'</span></td></tr></tbody></table></div>
+  <p class="lede" style="font-size:13.5px">Each claimed time is placed between the last fix
+  before it and the first fix after. The vessel was between those two points and nowhere
+  else &#8212; no interpolation, no smoothing.</p>
+</section>
+
+<section>
+  <h2>Seals</h2>
+  <div class="tablewrap"><table>
+  <thead><tr><th>Party</th><th>SHA&#8209;256 commitment</th><th></th></tr></thead>
+  <tbody><tr><td><span class="role">CARRIER</span></td>
+      <td class="hash">d6035330a0f7f632c54f24cce674813d&#8230;</td>
+      <td><span class="verdict v-ok">
+        hash &amp; signature verified</span></td></tr><tr><td><span class="role">PORT AUTHORITY</span></td>
+      <td class="hash">4f38a5a2079487b25f7b125851c47f2c&#8230;</td>
+      <td><span class="verdict v-ok">
+        hash &amp; signature verified</span></td></tr><tr><td><span class="role">TERMINAL OPERATOR</span></td>
+      <td class="hash">f6ef2cb6f7b9d762d118a560a5c4b82e&#8230;</td>
+      <td><span class="verdict v-ok">
+        hash &amp; signature verified</span></td></tr><tr><td><span class="role">TELEMETRY</span></td>
+      <td class="hash">8d2456bc34884a31cd7cac307737f477&#8230;</td>
+      <td><span class="verdict v-ok">
+        hash &amp; signature verified</span></td></tr></tbody></table></div>
+  <p class="lede" style="font-size:13.5px">Each party sealed a hash of its record, signed
+  with an Ed25519 key, before any record was disclosed. Altering a record after sealing
+  breaks the hash; recomputing the hash breaks the signature. Both were tested against
+  three substitution attacks and refused all three.</p>
+</section>
+
+<section class="nd">
+  <h2>What this record does not decide</h2>
+  <ul><li>Whether Notice of Readiness was validly tendered. That turns on whether the vessel was an 'arrived ship', a contested question of law, not of position.</li><li>Whether any laytime or demurrage consequence follows, and in what amount.</li><li>Whether any divergence was deliberate. Nothing here speaks to intent.</li><li>Commitment ordering relative to any external clock. Phase 1 has no external witness; commit and reveal occur in one process. See docs/09 Phase 3.</li></ul>
+</section>
+
+<footer>
+  <p>Telemetry: NOAA&#8239;/&#8239;MarineCadastre public AIS, 15 January 2023, unmodified.</p>
+  <p>Demonstrator &#8212; ValiChord&#8209;Shipping, Phase&#8239;2. Method and limitations
+  are documented in full alongside the code.</p>
+</footer>
+</div>

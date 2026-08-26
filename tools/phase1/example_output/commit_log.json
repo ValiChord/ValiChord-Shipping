@@ -1,37 +1,37 @@
 {
-  "committedAt": "2026-08-25T20:49:47Z",
+  "committedAt": "2026-08-26T14:29:09Z",
   "entries": [
     {
       "seq": 1,
       "role": "CARRIER",
       "party": "Global Ocean Line (synthetic)",
-      "commitment_sha256": "c0a8f954b948fa879f53be13dd055b9eeaf8ab8e449d4c514071d69bc2479228",
-      "pubkey_ed25519": "5c62fa090682e4fb22313d0acf05f23bb420d433d8ee64ce777ea97da5762ccb",
-      "signature_ed25519": "0d608faaf6aca3cffe31830bf013a823c64efe0165146b9bbfe3c88ea4de5331accc136f135c900aeb3469cf166907ece46f5c3759ea11083efa882a395b7108"
+      "commitment_sha256": "fc6a63e114df00d6688d4348b725edb970073fdf0f587f130056b392a81eabc2",
+      "pubkey_ed25519": "189d313fe9baab9d04f67a3192e66bb98fd85c6227e232b5a7ac793fcfc57a7c",
+      "signature_ed25519": "d6e9ba0c781b485737ace80929626759082f8a56c8e8d5e0ef61973c9b0eb304c1a449b9f16a4e23e608fd5d5ad9202244f743ed5d97ad4116fd78cdd5e30102"
     },
     {
       "seq": 2,
       "role": "PORT_AUTHORITY",
       "party": "USLAX VTS (synthetic)",
-      "commitment_sha256": "6d3d29bbcd68b1ec897a9cf7b0b6856c77dd262ab96708509b3e66824269fb2e",
-      "pubkey_ed25519": "cb8f0233dbd2b58acaea656bab1935002315c45f7ea9c27747ea59ee666b279c",
-      "signature_ed25519": "cea85b95d1d5d3a7f4524219086256958bfd6cc5d7d82960d0e241d43ad8ee289eaa85c1861baecad485ab3fd6de41f9852b30ddc3af6776ed9d3801a6334c0f"
+      "commitment_sha256": "dc13934b904aec3c752efa49c8242e9584991f36cd7a23acbbd442b03a7e2197",
+      "pubkey_ed25519": "dadda4b812b1738eca5581531ac8c14dd7e3c3669ff4f36ddb48ecd14cdd1c8a",
+      "signature_ed25519": "9dc79743f6ae7cb2de7ee6d7b043c2f48d39581ecdaca5c98d10b14d4509d101ec9fbd62c9b07a6718b233cd704cfd0ae9252f723b50b4fc5bb7fa624b89c20e"
     },
     {
       "seq": 3,
       "role": "TERMINAL_OPERATOR",
       "party": "Delta Marine Terminal (synthetic)",
-      "commitment_sha256": "1f2e43927f5b19347728860cffd128b44f6f10e482c099ddc9f34fcc25265dbe",
-      "pubkey_ed25519": "310e00e487ea7c416d48e713118f256f635b604b17715c309b2ba04dde416dca",
-      "signature_ed25519": "fcf347bd09141d8f3b28d2150284f1bc484daac3026db5dd4631fc3194aa64cacc9b766637848fe051c6f1bf9a1b48d48ae6aa224f0e9292edc50ca895082703"
+      "commitment_sha256": "a99d782fd39f6228ff15a8e127d0e5b3cebc3ea5ca669c59386c52ec53d76301",
+      "pubkey_ed25519": "05c0fa2d3cc3fce1d12196d4059938f8eb73b01e51b846378923c0e22dae1132",
+      "signature_ed25519": "2bc6d0624ef71b4fb61c7542bdcd4737e652db06d3d23dcb0c0cc16556bdce02f7d1ef2e726017c1508e617f18be70336a684322abcffd14c99ee12b4f2f4307"
     },
     {
       "seq": 4,
       "role": "TELEMETRY",
       "party": "NOAA/MarineCadastre public AIS (REAL)",
-      "commitment_sha256": "db6f7c5584c85c6c4591dca5c04100d5f884f162a160f92d2ee420975328fefa",
-      "pubkey_ed25519": "c6a0b4862d8ef8d4f0dbbadea0ef346bc0f92b9a598d5f7314bffe5275ec4a4f",
-      "signature_ed25519": "bc157085017d5074efcb73ae9b1ba091ee40c0eeed7c54429c1ba1ab08277317fcb36badbe2b27823f771a8cfde2a5aefc2a7ce4978c3f0733f36bbd114a6d0e"
+      "commitment_sha256": "9dffa9b0b85a7dc6c6310559c6a4519a7f75d534d7a3a1ab1ff7db226c134f45",
+      "pubkey_ed25519": "b98a8b9863e8102455ab7bd0486c3efed02b8134b17e11928617564f3a422918",
+      "signature_ed25519": "3a0b19d1cb0e21192e1926a64584712cb922e8559ff9c6987de69d5ca7a064d767546f44c8b201bbd56aa26d657a86dda0c1c85031fb5f0f597688c9affde106"
     }
   ]
 }
