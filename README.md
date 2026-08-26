@@ -68,9 +68,14 @@ those two documents, not the PDF.**
 | [`docs/14-holochain-setup.md`](docs/14-holochain-setup.md) | What Phase 3b would actually cost. The toolchain is not the obstacle — two languages are |
 | [`docs/15-dna-architecture.md`](docs/15-dna-architecture.md) | The DNA design — `registry`, `telemetry`, `voyage`, `record`, and the platform constraint that dictates how they connect. **Read alongside [`docs/16`](docs/16-external-review.md), which finds seven problems with it and recommends parking it** |
 | [`docs/16-external-review.md`](docs/16-external-review.md) | **An outside review, 26 Aug 2026.** Phases 0–3 stand; `docs/15` is where the project turned away from its own conclusions. Seven Holochain findings, two places the code is weaker than the write-up, a bug in ValiChord, corrected grant status, and a retrospective test that needs no counterparty |
+| [`docs/17-phase0b-case-candidates.md`](docs/17-phase0b-case-candidates.md) | **Phase 0b ran.** 290 published judgments mined for real disputed times; 43 mention a US port, three survive reading, and the false positives are the instructive part |
+| [`docs/18-outreach-and-funding.md`](docs/18-outreach-and-funding.md) | Who to contact and why they are reachable without an introduction, plus the funding calendar — every named UK call is currently shut |
+| [`docs/19-handover-brief.md`](docs/19-handover-brief.md) | **Read first if you are picking this up.** The stopping condition that was missing, four corrections to carry, and what not to do |
+| [`outreach/draft-emails.md`](outreach/draft-emails.md) | Five drafts. Nothing sent. One is marked HOLD until Phase 0b actually runs |
 | [`sources/`](sources/) | The recovered primary material itself |
 | [`tools/fetch-missing-posts.sh`](tools/fetch-missing-posts.sh) | Retries the four blog posts still missing. Run it when the Internet Archive is healthy |
 | [`tools/phase0/`](tools/phase0/) | The Phase 0 code. Regenerates every number in `docs/10` from public data |
+| [`tools/phase0b/`](tools/phase0b/) | Mines Find Case Law for judgments with a named vessel, a US port and a disputed time. Scored candidates committed |
 | [`tools/phase1/`](tools/phase1/) | The Phase 1 demonstrator. `bash run.sh` reproduces `docs/11` end to end |
 | [`tools/phase2/`](tools/phase2/) | Renders the discrepancy record as a single page. Sample output committed under `example_output/` |
 | [`tools/phase3/`](tools/phase3/) | The witness layer — drand floor, OpenTimestamps ceiling, and a negative control that names what it cannot prove |
