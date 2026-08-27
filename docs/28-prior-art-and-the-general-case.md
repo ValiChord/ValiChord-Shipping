@@ -173,6 +173,101 @@ overhaul, an engine blade inspection and a fire-door installation are the same s
 general case *validates the format-first plan in `27`* rather than changing it. Build the
 format so it does not say "ship" anywhere it does not have to, then use it on ships.
 
+## Why it has not been solved — and why it might be doable now
+
+The format was never the hard part. Signed, hash-chained, per-author statements about a
+physical thing already exist several times over — GS1 EPCIS, IETF SCITT, W3C Verifiable
+Credentials, in-toto, C2PA, git. See the prior-art section of
+[`../spec/asset-record-entry-v0.1.md`](../spec/asset-record-entry-v0.1.md).
+
+So the reason asset records still do not survive their custodians is an incentive and
+distribution problem. Six blockers, and each one has to be named before any "why now" can be
+tested against it.
+
+| # | Blocker | Why it persists |
+|---|---|---|
+| 1 | **Nobody owns the gap** | The owner feels it every 3–7 years at handover or sale. The manager never feels it. The PMS vendor is *harmed* by fixing it — portability destroys their moat. The insurer pays but does not buy software for owners. No role's week is ruined often enough to go and buy something |
+| 2 | **The pain is already someone's revenue** | A migration-remediation industry exists (BASSnet, SpecTec, Sharecat, Prime Marine). Pain converted into billable hours suppresses demand for prevention |
+| 3 | **The adopter loses by adopting** | A two-sided cold start where one side is adversarial |
+| 4 | **Deferred, probabilistic value** | Pay now, benefit maybe, years later, only on a claim or a sale. Insurance-shaped, and insurance-shaped things are underbought |
+| 5 | **No convener** | Formats in shipping get adopted when BIMCO, IMO, IACS or DCSA convene them. IUMI asked IACS in 2015 and got eleven years of nothing |
+| 6 | **Nobody is rewarded for 25-year thinking** | A management agreement runs three years. A superintendent's tenure is shorter. The beneficiary is not in the room |
+
+### Five things that are true in 2026 and were not in 2015
+
+**BIMCO already conceded the principle.** SHIPMAN 2024 Clause 22 gives owners ownership of
+vessel data. Clause 21 gives them access *through the manager's own platform*. The
+norm-setting body granted the right and specified the wrong mechanism — so the argument is no
+longer "owners should have a right to their records", which is what IUMI lost in 2015, but
+"you already have this right, here is how you would exercise it."
+**The gap between Clause 22 and Clause 21 is the product.** → attacks 5 and 3.
+
+**The insurance route around IACS has reopened.** IUMI's members are underwriters, and an
+underwriter does not need IACS to attach a policy condition. They almost certainly went to
+class because of collective action: in a soft market, whoever attaches an awkward condition
+loses the account. They wanted a universal rule so nobody could undercut them. What has
+changed is the market — Cefor reports 2025 as **the third consecutive year of elevated
+claims**, machinery cost per vessel 50% above 2015–21. **A hardening market is exactly when
+underwriters regain the ability to attach conditions.** → attacks 5 and 4.
+
+**Starlink removed the feasibility constraint.** In 2015 bandwidth was USD 3,000–5,000 per
+gigabyte and continuous replication off a ship was impossible; the only available shape was
+batch export at handover, which is the thing that fails. **So the absence of this product in
+2015 is not evidence anyone judged it uneconomic — it is evidence they could not build it.**
+That matters, because "sixteen years and nobody did it" is otherwise the most discouraging
+fact in this repository. → removes the precondition, and weakens the strongest argument
+against.
+
+**The cost of attempting it collapsed.** In 2015 this was a consortium platform with servers,
+governance and a legal entity — that is TradeLens, and it cost Maersk and IBM a great deal
+before they shut it. In 2026 the minimum viable version is signed JSON, a peer-to-peer
+library, an HTTP gateway and one person. **The problem no longer has to be worth $50m to
+justify an attempt; it has to be worth one person's time.** → lowers the bar the demand must
+clear.
+
+**Golden Thread and the EU passports normalised the idea.** Weakest of the five: climate, not
+a lever. It gives no buyer. It means "records follow the asset" no longer has to be justified
+from first principles. → mildly attacks 6. Useful for the pitch, not the economics.
+
+### The scorecard, stated honestly
+
+| Blocker | Status |
+|---|---|
+| 1 — nobody owns the gap | **Partially improved.** SHIPMAN gives the owner a hook. The pain is still episodic |
+| 2 — pain is someone's revenue | **Completely untouched** |
+| 3 — the adopter loses by adopting | **Improved, not solved. This is the hard one** |
+| 4 — deferred, probabilistic value | **Meaningfully attacked** by the rising loss trend |
+| 5 — no convener | **Routed around, not solved.** IACS still has not moved |
+| 6 — no reward for long thinking | **Mildly improved** |
+
+Two of six meaningfully attacked, three partially, **one untouched** — plus feasibility and
+cost transformed.
+
+That is not a green light. It is a defensible answer to "why has nobody done this" that does
+not require anyone to have been stupid. And it locates the whole remaining risk in **blocker
+3**.
+
+### What would kill it, decided in advance
+
+Recorded now so that a later session — or a bad week — checks against a fixed test rather
+than a moving one.
+
+**Ask three or four people. If all of the following come back empty, stop.**
+
+1. **Nobody can say what a missing record costs them.** If Gard and Cefor cannot attach a
+   number or a duration to it against a USD 926,000 average claim, there is no budget line
+   and there never will be.
+2. **No manager can name a reason they would write into it.** Blocker 3. If the only answer
+   is "because the owner makes me", it will not survive a competitive tender.
+3. **Owners do not recognise the Clause 22 / Clause 21 gap as a problem they have.** If they
+   shrug at it, the sharpest framing available does not land.
+4. **An underwriter says they would never attach a condition like this**, even in a hardening
+   market. That closes the only convener route left.
+
+If two or more come back positive, it is worth building. **If all four come back empty, this
+is candidate eleven and it dies like the other ten** — and that is a good outcome, reached
+cheaply.
+
 ## The question this all sharpens
 
 The external pass ended on the right question, and it is worth recording verbatim because it

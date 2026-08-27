@@ -25,6 +25,33 @@ establishes or fails to.
 
 **A format can be adopted by one party without anyone's permission.** A platform cannot.
 
+## Prior art, and why this is small
+
+**Nothing in this format is novel, and it would be dishonest to imply otherwise.** Signed,
+hash-chained, per-author statements about a thing are a well-worn pattern with several mature
+implementations:
+
+- **GS1 EPCIS** — an international standard for visibility events about physical objects
+  across their lifecycle, structured as what / when / where / why, and explicitly covering
+  fixed and returnable assets. It is more complete than this, it is widely deployed, and it
+  is the obvious thing to adopt if a heavier standard is acceptable.
+- **IETF SCITT** (Supply Chain Integrity, Transparency and Trust) — an active working group
+  building exactly this: signed statements made non-repudiable, immutable and auditable
+  through transparency services.
+- **W3C Verifiable Credentials**, **in-toto / SLSA attestations**, **C2PA**, **Certificate
+  Transparency**, and **git** all solve overlapping pieces.
+
+So this document is not a claim to have invented anything. It is **the smallest thing that
+carries the one property we actually need** — that a missing entry is provable — with no
+registry, no server, no schema negotiation and no membership in a standards body. If it grows
+past a few pages, adopt EPCIS instead.
+
+**The corollary matters more than the format.** If the format was never the hard part — and
+it plainly was not, given how many exist — then the reason asset records still do not survive
+their custodians lies somewhere else entirely: in who is willing to write, and who receives a
+copy at the moment of writing. That is an incentive and distribution problem, and no
+specification solves it. See [`../docs/28`](../docs/28-prior-art-and-the-general-case.md).
+
 ## Design rules
 
 1. **The format carries no domain vocabulary.** It knows about assets, authors, order and
