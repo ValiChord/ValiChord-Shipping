@@ -1,0 +1,194 @@
+# 24 — FuelEU compliance: the first use case where Holochain's validation actually does work
+
+**Every previous candidate in this repository asked peers to *witness* something they could
+not check. This one asks them to *verify arithmetic*. That is a different kind of problem and
+it is the first one where an integrity zome earns its place.**
+
+Designed 27 August 2026, from the domain rather than from ValiChord's shape.
+
+---
+
+## Why this one is different
+
+Look at what was being verified in each earlier candidate:
+
+| Candidate | Disputed thing | Can a peer check it? |
+|---|---|---|
+| Notice of Readiness | was she an "arrived ship" | **No** — question of law |
+| Cargo damage | was the damage pre-existing | **No** — expert judgement |
+| Draft survey | how much cargo is aboard | **No** — judgement from readings |
+| Speed and consumption | was it a "good weather day" | **No** — interpretation |
+| **FuelEU compliance balance** | **does this figure follow from these inputs** | **Yes — it is arithmetic** |
+
+GHG intensity under FuelEU is a formula: regulated well-to-wake emission factors applied to
+fuel mass and energy. **Given the committed inputs and the regulated factors, the answer is
+computable and deterministic.**
+
+That matters because Holochain validation *must* be deterministic. Everywhere else in this
+project the honest answer was "peers can confirm you committed to something, not that it is
+true." Here peers can confirm the number is **right**.
+
+**It does not make the inputs true.** What it does is collapse the argument surface: a
+charterer disputing the manager's balance is no longer disputing a calculation — every peer
+has already validated that. They can only dispute a specific fuel figure, which usually has a
+mass flow meter behind it.
+
+---
+
+## The structural facts that dictate the design
+
+**Liability and control sit in different hands.** The company holding the ISM Document of
+Compliance is legally liable to the EU for penalties. The **time charterer** makes the
+decisions that create the deficit — fuel purchased, speed, whether onshore power is used.
+BIMCO's *FuelEU Maritime Clause for Time Charter Parties 2024* bridges this with a monthly
+notification and indemnity, and gives owners the right to suspend on five days' notice.
+
+**So the party who wants the evidence is not the party constrained by it.** That inverts the
+objection that killed five earlier candidates in [`docs/22`](22-why-shipping-resists-this.md).
+
+**The compliance period is annual; the parties change inside it.** A ship may have several
+charterers in a compliance year. **The balance attaches to the ship, not to the party.**
+
+**The data is created at sea, offline.** Intermittent VSAT is normal.
+
+**Pooling is multi-party and adversarial.** After verification, surpluses can be transferred
+between vessels of different companies. *"All participating companies must approve the
+pool."* Surplus has cash value.
+
+---
+
+## The design
+
+### One DNA, cloned per vessel — not per voyage
+
+`network_seed = hash(IMO number)`. `CellProvisioning::CloneOnly`.
+
+**The peer group is the hull.** This is forced by the domain, not chosen by analogy: the
+liability attaches to the ship and survives every change of charterer and manager, so the
+network must too.
+
+This also repairs [`docs/16`](16-external-review.md)'s finding 2 against
+[`docs/15`](15-dna-architecture.md). Per-voyage clones gave every party a fresh source chain
+each voyage and destroyed the accumulating history that `docs/13`'s deterrent depends on. A
+per-vessel cell accumulates for the life of the ship — **exactly as the liability does.**
+
+Membership changes over time. Charterers join for their period and leave. The chain persists.
+
+```yaml
+name: vessel_compliance
+integrity:
+  network_seed: ~                    # per clone: hash(imo_number)
+  properties:
+    imo_number: "9228320"
+    compliance_regime: FuelEU-2025
+    emission_factors: { ... }        # regulated WtW factors, canonically serialised
+    credential_issuers: [uhCAk...]
+  zomes: [{ name: compliance_integrity }]
+coordinator:
+  zomes: [{ name: compliance_coordinator, dependencies: [compliance_integrity] }]
+```
+
+**One DNA, two zomes.** Not four DNAs. There is one peer group, one lifetime, and one set of
+validation rules — so there is one network.
+
+### Entries
+
+```
+BunkerDelivery      fuel type, mass, supplier, BDN reference, claimed WtW factors
+ConsumptionRecord   period, per-fuel mass burned, energy, signed by the vessel
+PortStay            berth, duration, onshore power available / used
+ComplianceBalance   derived figure for a period, referencing the entries above by hash
+HandoverAttestation countersigned: balance to date, fuel remaining on board, composition
+```
+
+### What validation actually enforces
+
+This is the part that has never been available before:
+
+- **`ComplianceBalance` must reference its inputs by action hash**, retrieved with
+  `must_get_valid_record` — same DHT, deterministic, platform-legal.
+- **The arithmetic must be correct.** SHA-256 and ordinary computation are available in an
+  integrity zome; the regulated emission factors live in DNA properties, so every validator
+  computes the same answer from the same inputs.
+- **Signatures are checkable.** `hdi::ed25519::verify_signature` is available in validation —
+  corrected in `docs/16` Part 2 after this review initially claimed otherwise.
+- **No double-counting**: a `ConsumptionRecord` may be referenced by at most one
+  `ComplianceBalance` for a period.
+
+**A regulated factor changing is a new regulatory period, which legitimately deserves a new
+DNA hash.** That turns Holochain's most awkward constraint — integrity changes create a new
+network — into an accurate reflection of the domain.
+
+### Countersigning finally earns its place
+
+The charterer handover mid-compliance-year is the moment both parties have opposite
+incentives about the same number: the balance so far, and the fuel remaining aboard with its
+composition.
+
+**It is inherently bilateral and simultaneous — either both commit or neither does.** That is
+what countersigning is for, and nothing else in the toolkit provides it.
+
+`docs/13` identified it; `docs/15` deferred it as "not in the first build." Here it is the
+first build.
+
+*Caveat, unchanged: it is feature-gated `unstable-countersigning`, sessions are time-bounded
+with a six-second clock-skew limit, and stuck sessions need explicit abandonment.*
+
+### Offline-first is load-bearing, and we had missed it
+
+Consumption is recorded at sea. A source chain signs offline and gossips on reconnect with
+the sequence intact — no live connection to a cloud database required.
+
+**Credit where due: this came from Gemini and none of this repository's documents had made
+the point.** For anything recorded shipboard it is a genuine advantage over any SaaS
+platform, and it is not a claim about cryptography.
+
+### No public DNA — export instead
+
+The EU verifier needs the annual figure. That is not a network problem, it is an export: a
+signed bundle carrying the balance and the chain of committed inputs, verifiable offline by
+anyone holding the DNA properties.
+
+This deliberately avoids `docs/16`'s finding 4, where `docs/15`'s public `record` DNA could
+not be validated at all and anyone could publish anything into it.
+
+---
+
+## What is honestly unresolved
+
+**Incumbents not yet ruled out.** OceanScore, Lloyd's Register and others sell FuelEU
+compliance calculation. **What has not been found is anything addressing the multi-party
+*dispute* layer** — the indemnity cascade, the handover, the pooling agreement. That is
+currently contract law and spreadsheets. **This is the check that killed laytime and it is
+not finished. Do it before building.**
+
+**Pooling is multi-party in a way this design does not yet cover.** *"All participating
+companies must approve the pool"* — across different owners, in Thetis. That is a second,
+harder problem and possibly the more valuable one.
+
+**The membrane is still leaky.** Holochain's own caveat stands: membrane proof checking is
+not enforced during handshaking, so an unauthorised agent can join briefly and read.
+
+**Properties must serialise byte-identically** for every party to land in the same cell —
+`docs/16` finding 3. With emission factors in properties this needs a canonical encoding
+fixed up front.
+
+**Nobody has been asked whether they want this.** Unchanged since
+[`docs/04`](04-strategic-assessment.md), and no amount of architecture moves it.
+
+---
+
+## Why this is worth more than the four DNAs of `docs/15`
+
+| | `docs/15` | Here |
+|---|---|---|
+| DNAs | four | **one** |
+| Peer group | chosen by analogy to ValiChord | **forced by where the liability sits** |
+| Clone lifetime | per voyage — history destroyed | **per vessel — history accumulates with the liability** |
+| Validation | witnesses commitments | **verifies arithmetic** |
+| Countersigning | deferred | **the handover, which is the point** |
+| Public record DNA | unvalidatable | **replaced by a signed export** |
+
+ValiChord was a guide to *how to build on Holochain* — membrane proofs, integrity/coordinator
+split, sweettest, `must_get_valid_record` chains. It was not a template for the shape, and
+the shape here came from the regulation.
