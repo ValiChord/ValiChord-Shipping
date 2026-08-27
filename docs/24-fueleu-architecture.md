@@ -287,3 +287,55 @@ stop looking. The five findings above are the return on that work, and they are 
 Anyone picking this up should read this section and then choose a different industry — one
 where the trusted neutral does **not** already exist by statute, by contract, or by
 professional custom.
+
+---
+
+## Candidate 7 — seafarer hours of rest, and the seventh rule
+
+Checked 27 August 2026, following the observation that maritime **grants** target
+decarbonisation, safety and welfare — never commercial dispute resolution — because grants
+fund market failure and vendors fund markets. Seafarers have no purchasing power, so no
+vendor serves them. That made hours of rest the right *shape*.
+
+**The problem is real and severe.** Rest-hour records are among the most common Port State
+Control deficiencies, and are detainable under the Paris and Tokyo MOUs. Fatigue kills.
+
+**The vendors serve the company, not the seafarer.** Sealogic E-CMS, Sealogical, Manage My
+Vessel, ShipAdmin HOWAR and others sell rest-hour recording — and the pitch is *"flag
+nonconformities"* and *"help vessels pass audits."* Nothing found gives the seafarer a record
+their employer cannot alter, and MLC already has them countersign the company's version.
+
+So on the criteria that have governed every other candidate, this one passed: real problem,
+no incumbent serving the affected party, unilateral adoption, offline-first, and a record
+that must not live on the employer's system.
+
+### And it still fails, for a reason none of the others did
+
+**"A culture of adjustment"** — World Maritime University, funded by the ITF Seafarers'
+Trust — found *"widespread malpractices in hours of work reporting"*, and identified the
+mechanism:
+
+> the regulations are so difficult to comply with that **"seafarers and inspectors alike…
+> collude in an adjustment to suit the rules rather than reflect the realities on board."**
+
+**Everyone adjusts. The seafarer, the master, and the inspector.** Not because anyone is
+dishonest, but because the rules cannot be met at current manning levels.
+
+**So a record the seafarer controls and the company cannot alter is a weapon pointed at the
+seafarer.** An honest log does not create rest — it creates a detention, and the crew are the
+ones who suffer it. The person the tool is meant to protect is the person who would refuse to
+use it, and would be right to.
+
+**The falsification is a symptom. The disease is manning levels and regulatory design.** No
+amount of evidence integrity touches either.
+
+### The seventh rule, and it is the most useful one here
+
+> **Before building verification, ask whether the false record is a symptom of an impossible
+> rule.**
+>
+> If it is, better evidence makes things *worse* for the person you are trying to help, and
+> the honest response is to say so rather than to ship it.
+
+This is the only candidate of the seven that failed on ethics rather than on economics, and
+it is the one most likely to have been built by someone who did not check.
