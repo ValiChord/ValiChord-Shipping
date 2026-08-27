@@ -153,8 +153,17 @@ CMS_NOTE = (
     "virtually all operators are using computerised planned maintenance "
     "systems'.\n\n"
     "So: nearly everyone holds the data, and very few hold it in a form class "
-    "will credit. Confidence: MEDIUM on the percentages, single source, and "
-    "they are LR-specific. THEY ARE WORTH VERIFYING FIRST -- see README."
+    "will credit.\n\n"
+    "VERIFIED 27 Aug 2026. The figures are Lloyd's Register's own words, "
+    "published 21 June 2021 -- real, but five years old and LR-specific. "
+    "Confidence upgraded from MEDIUM to HIGH for what LR said, still UNKNOWN "
+    "for whether it holds across other societies today.\n\n"
+    "The governing standard is IACS UR Z20, which binds every member society. "
+    "Its clause 2.3.6: 'The case of sale or change of management of the ship "
+    "or transfer of class shall cause the approval to be reconsidered' -- and "
+    "reconsideration rests on records of maintenance being available (2.2.2). "
+    "That is the exact event this project is about, written into the "
+    "international requirement. See docs/29."
 )
 
 
