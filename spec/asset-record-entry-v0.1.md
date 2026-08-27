@@ -197,6 +197,73 @@ prohibition, and Ed25519 signatures. It is roughly two hundred lines and depends
 validator disagree, **the validator is wrong and should be fixed**, but the disagreement is a
 bug in this document too.
 
+## Read this before the backlog: the backlog is a trigger, not a to-do list
+
+A fourth red team made the observation that matters most, and it is about the **trajectory**
+rather than any single item.
+
+Take the backlog below at face value — key rotation, detachable bodies with hash linkage,
+`causal_refs`, key-to-role delegation, `same_as`/`supersedes`, `corrects`, counter-signed
+receipts — and this stops being a small JSON format. It becomes **an ad-hoc, unstandardised
+reimplementation of IETF SCITT plus W3C Data Integrity**, without their formal proofs, their
+tooling or their SDKs, and without the one advantage that justified not using them: being
+small.
+
+**This document already tells you what to do about that.** The design rules say: *if it grows
+past a few pages, adopt EPCIS instead.* The backlog below breaks that rule and I did not
+notice until it was pointed out.
+
+So the backlog is **a trip-wire**. Each item is a reason to reconsider adopting a standard,
+not a feature to add. Implement two or three and the honest move is to stop and either align
+with SCITT — probably as a profile over COSE-signed statements, keeping only the domain
+specifics — or write down explicitly why SCITT's envelopes were rejected. **Do not walk to a
+standard one bespoke header field at a time.**
+
+### The other findings from that fourth pass
+
+**Detachable bodies create bad-faith withholding disguised as privacy.** This is the strongest
+argument against the redaction fix listed as blocking below. If the body detaches, a manager
+who recorded severe bearing wear can publish the header, keep the payload, and later say "we
+purged it under GDPR." **Offline verification cannot distinguish lawful redaction from
+never-disclosed.** The fix is not to abandon detachability but to make the signed header
+declare *what kind* of record was redacted — a `payload_type`, or better a Merkleised body so
+a crew member's name can be zeroised while the bearing clearance survives. Note this is also
+the same family as tail truncation: the format cannot tell absence-by-right from
+absence-by-bad-faith.
+
+**In-chain key rotation cannot survive compromise or loss, only planned handover.** A dual-
+signed `rotate` entry handles the orderly case. It fails twice otherwise. If a key is stolen,
+the thief can sign a valid rotation to their own key and no verifier can tell which party
+rotated — the real author is locked out of their own chain permanently. If a key is lost, the
+dual signature is impossible and the chain simply stops, forcing a new chain at `seq` 1 with
+no continuity to genesis. **Both need an external trust anchor.** Worth noting for the
+transport question: Holochain's DPKI is exactly such an anchor — but not before 1.0.
+
+**History is not state, and opacity destroys the interoperability it was meant to protect.**
+A causal DAG proves what happened; it does not answer *"is this engine cleared for
+operation?"*. If one author logs "cracked liner" and another "within tolerance", the DAG shows
+both and nothing decides which governs. Because `body` is fully opaque, **100% of conflict
+resolution is pushed into proprietary application logic** — which defeats the cross-system
+interoperability that opacity was chosen for. EPCIS solved this with event types and a
+business-step vocabulary. We did not, and that is another point on the scoreboard for adopting
+rather than extending.
+
+**Organisational keys are an anonymous shield. This corrects earlier advice in this file.**
+The backlog below says to bind keys to an organisation rather than an individual, on the
+grounds that it is easier and closer to what matters. **That was wrong.** A company-level key
+ends up in a CI/CD pipeline or an ERP sync agent, and the defence writes itself: *"an
+automated script logged that from a faulty database trigger; no human certified it."* Maritime
+and aviation both rest on the **personal licence** of the Chief Engineer or the A&P mechanic.
+The answer is probably an individual signature plus an organisational delegation — which, note,
+is one more item making the format bigger.
+
+**"The same file across transports" is only true of the entry, not of the proof.** A
+counterparty receipt cannot live inside the signed entry without changing its hash. So there
+are two artefacts: the raw entry and a proof bundle of receipts and timestamps. Portability at
+the entry layer says nothing about the proof layer — and **the absence property, which is the
+entire value, lives in the proof bundle.** The transport table below is therefore weaker than
+it looks and should be read as covering the entry only.
+
 ## The v0.2 backlog, from three independent red teams
 
 v0.1 was red-teamed by Gemini and by Grok, alongside my own pass. **All three converged on
