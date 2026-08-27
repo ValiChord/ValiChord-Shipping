@@ -133,11 +133,28 @@ offline:
   carry the author's signature.
 
 **That is the difference between "we do not have the records" and "we know exactly what is
-missing, and when."** In a claim, the second is worth a great deal even when the content is
-gone, because it establishes that the absence is not the holder's doing.
+missing."** In a claim, the second is worth a great deal even when the content is gone,
+because it establishes that the absence is not the holder's doing.
 
-This works because each entry was published when it was written. A format alone does not
-make anyone publish — that is the transport's job, and the reason for the sequencing here.
+### Three limits on that claim, stated here rather than in the small print
+
+**"When" means order, not time.** An earlier draft of this section said "missing, and when",
+which over-sold it. The chain orders **one author's own entries relative to each other**. It
+says nothing about wall-clock time, and `authored_at` is self-reported. If a claim depends on
+"this was recorded *before* the incident", the format does not carry it — anchor it
+externally.
+
+**Only internal gaps have a shape. The tail does not.** A chain ending at `seq` 11 is
+cryptographically perfect whether or not `seq` 12 was written and dropped. So the most
+damaging entry — the one written last, showing the fault — can be withheld with no
+cryptographic footprint. Detecting that needs either publication at write time (so the
+counterparty already holds it) or an expectation of regular entries, so that **silence is
+itself evidence**. Neither is in v0.1.
+
+**A chain that was never shared proves nothing to a later holder.** The absence property
+depends entirely on someone else having received the entries. A format cannot make anyone
+publish; that is the transport's job. This is the reason the sequencing exists, and it is
+also the reason the format alone is not a product.
 
 ## What this format does not do
 
@@ -179,6 +196,83 @@ prohibition, and Ed25519 signatures. It is roughly two hundred lines and depends
 `cryptography`. Treat it as the specification's executable half — where the prose and the
 validator disagree, **the validator is wrong and should be fixed**, but the disagreement is a
 bug in this document too.
+
+## The v0.2 backlog, from three independent red teams
+
+v0.1 was red-teamed by Gemini and by Grok, alongside my own pass. **All three converged on
+the same top item, and none of the three challenged whether anyone wants this** — which is
+worth knowing about what a technical red team does and does not give you.
+
+Ordered by whether it blocks real use.
+
+### Blocking
+
+**Key rotation.** Grok's framing is right and stronger than the draft's: this is not the
+largest gap, it is *existential*. Long-lived assets outlive key material and the people
+holding it, so "the key is the identity" gives the format a hard cliff. Needs care — does the
+new key continue the sequence or start a new chain, how does a reader discover the rotation,
+what happens to `seq`. **Until this exists the format cannot serve the assets that motivate
+it.**
+
+**Detachable body, for redaction.** Gemini's best catch and a v0.1 design error. Crew injury
+reports, PII, commercial pricing and export-controlled detail all end up in free-text
+remarks. Because `prev` covers the canonical bytes of `body`, that content can never be
+scrubbed without destroying the chain — forcing a choice between breaking history and a
+continuing regulatory breach. **Fix: chain over a `body_hash`, keep `body` detachable**, so
+the payload can be zeroized while the structure survives.
+
+**Tail truncation.** See above. Needs expected-cadence entries, counter-signed receipts, or
+both.
+
+### Important
+
+**Key-to-role attestation.** A raw Ed25519 key has no legal standing. In a USD 926,000
+arbitration, counsel will say the key was on a shared bridge laptop. Bind the key to an
+*organisation* (the manager) rather than an individual engineer — easier, and closer to what
+actually matters here.
+
+**Asset identity continuity.** Ships are renamed and reflagged; other schemes reuse serial
+numbers. IMO numbers happen to be stable, which flatters our example. Probably needs a
+first-class `same_as` / `supersedes` relation rather than letting `asset` mutate mid-chain.
+
+**Cross-chain causal links.** Author B logs "inspected, no issues" an hour after author A logs
+"repaired crack", and nothing proves the order. Both red teams proposed the same fix: an
+optional `causal_refs` naming the latest known hashes of other authors' chains.
+
+**Bounds.** `body` is unbounded and attachments carry no `size`, so a reader cannot tell a
+10KB lab report from a 10GB video before fetching. (Grok's related DoS concern is overstated
+— Ed25519 verification is ~50µs, so 50,000 entries is a couple of seconds, and it streams.
+The missing bounds are real regardless.)
+
+**Merged views.** Each author keeps their own chain, so a reader wanting "everything known
+about this hull" must discover, fetch and merge several. Grok is right that in insurance,
+sale and regulatory contexts **the merged view is the product people actually need**, and
+v0.1 pushes the hardest part into "an application question".
+
+### Corrections to make now, not later
+
+Some of these are already handled and were simply undocumented:
+
+- **Duplicate JSON keys** must be rejected, not silently collapsed — two parsers can disagree
+  about which value was signed. *Fixed in `validate.py`.*
+- **Strict UTF-8**, and integers only, including rejecting scientific notation that parsers
+  return as floats. *Already covered by the float ban; now tested.*
+- **Unknown fields are rejected.** That was the validator's behaviour and an undocumented
+  decision. It is deliberate — silent tolerance lets meaning drift — but it means forward
+  compatibility must come through `fmt`.
+- **A chain starting above `seq` 1** is reported as a finding, so a reader knows the history
+  is not complete from genesis. *Already implemented.*
+- **`corrects` should be a first-class field** rather than a convention inside `body`, so the
+  relationship is machine-checkable.
+
+### One that changes the architecture, not the format
+
+**Holochain would give two sources of truth.** Holochain already has its own source chain and
+action model. Carrying `seq` and `prev` *inside* the entry while the source chain also orders
+it means two orderings that can diverge. Neither red team was told this was the intended
+target and both flagged it independently. The likely answer is that the in-entry chain is
+authoritative and the source chain is a coincidence of transport — but it needs deciding
+before anything is built, not after.
 
 ## Open questions for version 0.2
 

@@ -31,6 +31,34 @@ REQUIRED = ("fmt", "asset", "author", "seq", "prev", "authored_at", "body", "sig
 OPTIONAL = ("attachments",)
 
 
+# --- strict JSON loading ----------------------------------------------------
+# Two parsers must never disagree about which bytes were signed. Python's json
+# silently keeps the LAST of a duplicated key, so a document carrying the same
+# key twice can mean different things to different readers -- and only one of
+# those meanings was signed. Reject it. (Grok red team against v0.1.)
+
+class DuplicateKey(ValueError):
+    pass
+
+
+def _no_dupes(pairs):
+    seen = set()
+    for k, _ in pairs:
+        if k in seen:
+            raise DuplicateKey("duplicate key %r" % k)
+        seen.add(k)
+    return dict(pairs)
+
+
+def load_strict(fp):
+    """json.load, but a duplicated key is an error rather than last-wins."""
+    return json.load(fp, object_pairs_hook=_no_dupes)
+
+
+def loads_strict(text):
+    return json.loads(text, object_pairs_hook=_no_dupes)
+
+
 # --- base64url without padding, used for keys and signatures ----------------
 
 def b64d(s):
@@ -241,6 +269,17 @@ def selftest():
     assert any("float" in e for e in errs), errs
     print("  float in body          OK, refused")
 
+    try:
+        loads_strict('{"a":1,"a":2}')
+        raise AssertionError("duplicate key was accepted")
+    except DuplicateKey:
+        print("  duplicate JSON key     OK, refused")
+
+    scientific = json.loads('{"n":1e5}')["n"]
+    assert find_floats(scientific if isinstance(scientific, dict)
+                       else {"n": scientific}), "scientific notation slipped through"
+    print("  1e5 parsed as float    OK, refused")
+
     print("\nself-test passed")
 
 
@@ -252,8 +291,14 @@ def main(argv):
 
     entries = []
     for path in argv[1:]:
-        with open(path, encoding="utf-8") as f:
-            doc = json.load(f)
+        try:
+            with open(path, encoding="utf-8") as f:
+                doc = load_strict(f)
+        except DuplicateKey as exc:
+            sys.exit("%s: %s -- refused, because two readers could disagree "
+                     "about what was signed" % (path, exc))
+        except UnicodeDecodeError:
+            sys.exit("%s: not valid UTF-8" % path)
         entries += doc if isinstance(doc, list) else [doc]
 
     errs, findings = validate(entries)
