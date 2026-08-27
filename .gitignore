@@ -52,3 +52,6 @@ tools/record-gap/report.html
 tools/record-gap/artifact.html
 tools/record-gap/__pycache__/
 spec/__pycache__/
+
+# PMS model run artefacts
+tools/pms-model/__pycache__/

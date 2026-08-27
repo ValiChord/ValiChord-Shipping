@@ -58,13 +58,25 @@ START = datetime(2023, 2, 1)
 # it is the last of the three to fail, not the first. That asymmetry is what makes
 # the causation question hard, and it is the reason the demo has three DGs.
 DGS = {
-    "DG1": {"comp": "601.001", "rh_start": 21450, "rh_per_year": 1800,
+    "DG1": {"comp": "6XX.001", "rh_start": 21450, "rh_per_year": 1800,
             "role": "standby"},
-    "DG2": {"comp": "601.002", "rh_start": 38900, "rh_per_year": 4200,
+    "DG2": {"comp": "6XX.002", "rh_start": 38900, "rh_per_year": 4200,
             "role": "main duty"},
-    "DG3": {"comp": "601.003", "rh_start": 37200, "rh_per_year": 4000,
+    "DG3": {"comp": "6XX.003", "rh_start": 37200, "rh_per_year": 4000,
             "role": "main duty"},
 }
+
+# Turbochargers are components in SFI primary group 6 alongside the engines they
+# serve. The lubricating oil system is NOT -- group 7 is "systems for machinery
+# main components", which is where fuel and LO systems live. That distinction is
+# load-bearing here: the LO system is COMMON to all three engines, and a group 7
+# code says so where a group 6 code cannot. See tools/pms-model/.
+#
+# Digits are placeholders. SFI is licensed from SpecTec and we do not have the
+# manual, so these are SFI-SHAPED and deliberately not SFI. See tools/pms-model/README.md.
+TC_COMP = {"DG1": "6XX.011", "DG2": "6XX.012", "DG3": "6XX.013"}
+LO_COMP = "7XX.001"
+LO_NAME = "Lubricating oil system, auxiliary engines (common to DG1/DG2/DG3)"
 
 WASH_INTERVAL_RH = 500      # turbocharger water wash
 
@@ -90,8 +102,9 @@ def entry(seq, when, dg, job_code, job_title, remarks, order=None):
     mgr = mgr_at(when)
     return {
         "seq": seq,
-        "component": DGS[dg]["comp"] + ".01",
-        "component_name": "Turbocharger " + dg,
+        "component": TC_COMP[dg] if not job_code.startswith("LO-") else LO_COMP,
+        "component_name": (LO_NAME if job_code.startswith("LO-")
+                           else "Turbocharger, auxiliary engine " + dg[-1]),
         "dg": dg,
         "job_code": job_code,
         "job_title": job_title,

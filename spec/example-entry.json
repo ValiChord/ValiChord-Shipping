@@ -10,15 +10,15 @@
     "prev": null,
     "authored_at": "2024-11-03T00:00:00Z",
     "body": {
-      "component": "601.002.01",
-      "component_name": "Turbocharger DG2",
+      "component": "7XX.001",
+      "component_name": "Lubricating oil system, auxiliary engines (common to DG1/DG2/DG3)",
       "job_code": "LO-BNK",
       "job_title": "Lube oil bunkered - main LO service tank",
       "running_hours": 46270,
       "remarks": "LO batch ref LO-2411-B. Supplied to DG service tank common to DG1/DG2/DG3.",
       "order_no": "PO-24-8871"
     },
-    "sig": "nDjejJfg-gvPa0QSxi11KIwvFX4t7c6_HXjiJHYGJ-aj_D_tuN8yMmHVOH3tlIQhS-YVdNzBbgO0AF4g4nzdCQ"
+    "sig": "Y1WmKP6ZuEbn3eJvSADpmGB4S__QPqwY9D3tUv1txNbPMilpFhmv7kexLdphJOurTjiMtG26KIxuWqGK-k6dBw"
   },
   {
     "fmt": "asset-record/0.1",
@@ -28,11 +28,11 @@
     },
     "author": "PKKZxaATTzvdQTZn8hLBXE-qKLnWRwpFx5fk8UXAlSo",
     "seq": 2,
-    "prev": "sha256:ef30f0020866187eb934c13cf48f30e72850ab30b40f24c32a05b4a392d3c52d",
+    "prev": "sha256:87c12f5843f9e30cd8a177938ec48716bd8ccf1c846f073e1c2e903af657d831",
     "authored_at": "2024-11-28T00:00:00Z",
     "body": {
-      "component": "601.002.01",
-      "component_name": "Turbocharger DG2",
+      "component": "7XX.001",
+      "component_name": "Lubricating oil system, auxiliary engines (common to DG1/DG2/DG3)",
       "job_code": "LO-SMP",
       "job_title": "Lube oil sample - laboratory result",
       "running_hours": 46558,
@@ -46,7 +46,7 @@
         "name": "lab-report-LAB-24-3312.pdf"
       }
     ],
-    "sig": "ibSumvOqXBJHOQp5Qyoj7Bfug-Ybv2mpuFOyb-0ivHB1XmBDdLrbxbpI3KclUe2Uka0EUgXf5-YiwbSb749YBw"
+    "sig": "wkgXoFB1weOFqUD4nLr-9NZIE_hsgPlZXSVwwdZt97UOW9vcHFMRrjmG0Zy96TJ94agfrewmCcE1mTN7Aqn8CA"
   },
   {
     "fmt": "asset-record/0.1",
@@ -56,17 +56,17 @@
     },
     "author": "PKKZxaATTzvdQTZn8hLBXE-qKLnWRwpFx5fk8UXAlSo",
     "seq": 3,
-    "prev": "sha256:f11ed05401a3810abad6e26086968e23e0b251e56d6f31f7f108859ead7c364f",
+    "prev": "sha256:cdb2fffd6ae952ead0363bbdf2d8d142147bb7a5c16ef8f458d4948667b40b83",
     "authored_at": "2025-01-09T00:00:00Z",
     "body": {
-      "component": "601.002.01",
-      "component_name": "Turbocharger DG2",
+      "component": "6XX.012",
+      "component_name": "Turbocharger, auxiliary engine 2",
       "job_code": "TC-REP",
       "job_title": "Turbocharger cartridge replaced",
       "running_hours": 47041,
       "remarks": "Bearing wear found on inspection following high exhaust temp and vibration alarm. Debris consistent with LO contamination, batch LO-2411-B (ref LAB-24-3312). Cartridge renewed.",
       "order_no": "PO-25-0104"
     },
-    "sig": "c9xAJppK-3qdxbe8HBBLF5vSp6g2Q4LOR8n5eaQBVl-yfip-x3G8SIIXIP3jrMIAYkkhoH6jxuVg_1eO9Ph1Bg"
+    "sig": "okb3oEHq4NkiOVSqkpUJyfh-BmvkgQgEBeAVdr5Ih0Kj4Hj7v5yz-alOVP5Q4W_Kdv5Mi5ootk_hVKHFG1rgBQ"
   }
 ]
