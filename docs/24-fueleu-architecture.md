@@ -1,5 +1,29 @@
 # 24 — FuelEU compliance: the first use case where Holochain's validation actually does work
 
+> ## ❌ CLOSED, 27 August 2026 — the incumbent check came back occupied at every layer
+>
+> This document was written before the check it says at the bottom must be done. The check
+> was then done, and **FuelEU is occupied more thoroughly than laytime was.**
+>
+> | Layer | Who has it |
+> |---|---|
+> | Compliance calculation | **OceanScore**, Lloyd's Register, DNV, **BetterSea** |
+> | Pooling | **OceanScore FuelEU Pooling Marketplace** — live, expanded May 2026, backed by **MSC, Anglo-Eastern, V-Ships, IINO Lines, Nordic Shipping, Döhle Group**. A published price index (OPX, €190–225/tCO₂e). Direct counterparty transactions, *"no additional counterparty risk"* |
+> | The pooling *agreement* | OceanScore worked with **Clyde & Co** on a template pooling agreement |
+> | Verification | **Statutory.** An accredited verifier confirms each ship's balance by 31 March; the EU's **Thetis** registry holds it. Pooled balances count only once the verifier approves |
+> | The owner–charterer dispute mechanism | **BIMCO's clause already requires it**: owners' deficit calculations must be *"independently validated"* before presentation to charterers, and parties may agree *"once verified, that the decision is binding"* |
+>
+> **The regulation supplies the trusted neutral.** That is the strongest form of the pattern
+> that has now killed six candidates: there is a statutory, accredited third party whose whole
+> job is to confirm the number, and an EU registry that records it.
+>
+> The disputes are real — *"shipowners and charterers are still debating who pays, when and
+> how,"* and the BIMCO clause is *"still being heavily amended in negotiations."* But that is
+> **commercial allocation**, settled by contract negotiation. It is not a verification gap.
+>
+> **What survives is the technical insight, not the use case.** See the pattern note at the
+> end of this document — it is the most portable thing in this repository.
+
 **Every previous candidate in this repository asked peers to *witness* something they could
 not check. This one asks them to *verify arithmetic*. That is a different kind of problem and
 it is the first one where an integrity zome earns its place.**
@@ -192,3 +216,74 @@ fixed up front.
 ValiChord was a guide to *how to build on Holochain* — membrane proofs, integrity/coordinator
 split, sweettest, `must_get_valid_record` chains. It was not a template for the shape, and
 the shape here came from the regulation.
+
+---
+
+## The pattern, after six candidates — and this is what to keep
+
+Six use cases, investigated properly, all closed:
+
+| | Candidate | What already occupies it |
+|---|---|---|
+| 1 | Laytime / Notice of Readiness | Marcura PortLog and Claims PDMS, Veson IMOS, Oceanbolt — AIS reconciled against digitised SOFs, 700,000 documents through an AI pipeline |
+| 2 | Marine cargo damage survey | **Joint survey practice** — surveyors attend together, without prejudice, and are *meant* to converge |
+| 3 | Bunker quantity | **Mass flow meters**, mandated by Singapore 2017, Rotterdam and Antwerp-Bruges 2026 |
+| 4 | Container condition at interchange | Automated gate cameras — Camco ARGUS/ADI, AllRead and others |
+| 5 | Speed and consumption | **BIMCO Weather Routeing Clause 2006** — "a mutually agreed weather routing company… final and binding". Exists; largely unused |
+| 6 | FuelEU / EU ETS | **A statutory accredited verifier**, the Thetis registry, OceanScore's pooling marketplace, and a BIMCO clause already requiring "independently validated" calculations |
+
+**Six for six is not bad luck.** It is a finding.
+
+### What the finding is
+
+**Shipping already has trusted-neutral machinery for every dispute worth having one for.**
+Sometimes commercial (Marcura, SGS, Control Union, OceanScore), sometimes contractual (BIMCO
+clauses), sometimes statutory (accredited verifiers, port authority licensing), and sometimes
+social (the joint survey).
+
+**Cryptographic trust-minimisation solves a problem this industry solved socially and legally
+a long time ago.** That is why every candidate is occupied, and it will be true of the
+seventh.
+
+Three corollaries, each earned:
+
+- **Where the dispute is factual, a sensor arrives and wins.** AIS, mass flow meters, gate
+  cameras. Every time.
+- **Where the dispute is judgemental, the industry has built convergence, not verification** —
+  and it prefers it, because convergence settles cheaply.
+- **Where a pre-commitment mechanism is genuinely wanted, it already exists as a clause** and
+  is not adopted. The missing thing was never a tool.
+
+### What survives, and it is worth more than any of the six
+
+**1. Validation can verify computation, not merely witness commitment.** FuelEU was the first
+candidate where the disputed quantity was arithmetic over committed inputs, so an integrity
+zome could enforce correctness rather than just recording that somebody said something. That
+distinction is real, it is portable to any domain, and it is where Holochain's validation
+model is genuinely strong.
+
+**2. Anchoring-prevention works unilaterally.** One party sealing their position before
+exposure captures the whole benefit with nobody else participating. This dissolves the
+twelve-counterparty wall that killed TradeLens and Holo Sail. Found in
+[`docs/23`](23-draft-survey.md), and it is domain-independent.
+
+**3. Peer group should be forced by where the liability sits.** The per-vessel clone in this
+document was right for its reason — the compliance balance attaches to the hull — and it is
+the correct correction to [`docs/15`](15-dna-architecture.md)'s per-voyage design. **The rule
+generalises: find where the obligation lives, and put the network boundary there.**
+
+**4. Countersigning fits handovers, and only handovers.** Where two parties have opposite
+incentives about one number at one moment, atomic bilateral commit is the primitive nothing
+else provides.
+
+**5. Offline-first is a real advantage** for anything recorded away from connectivity, and it
+requires no argument about trust at all.
+
+### The honest conclusion
+
+**Shipping is not the home for this mechanism**, and six investigations is enough evidence to
+stop looking. The five findings above are the return on that work, and they are portable.
+
+Anyone picking this up should read this section and then choose a different industry — one
+where the trusted neutral does **not** already exist by statute, by contract, or by
+professional custom.
