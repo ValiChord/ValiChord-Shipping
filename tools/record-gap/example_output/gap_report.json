@@ -1,0 +1,211 @@
+{
+  "_disclosure": {
+    "what_this_is": "A synthetic reconstruction of the SHAPE of a published case, built to test whether co-holding maintenance records at write time would change what a claim can establish.",
+    "real": "The problem, and that it is unresolved. Gard 21 July 2026; Gard Loss Prevention Circular 2010; IUMI position paper 'Loss of ship records', 8 September 2015 (with the London Joint Hull Committee, petitioning IACS); Cefor 2018 statistics on claims frequency at change of ownership.",
+    "synthetic": "The vessel, its IMO number, both managers, every date, every running hour, every maintenance entry and the lube oil batch. Gard published no data. No real vessel, manager, owner or insurer is depicted, and no real party did anything described here.",
+    "not_claimed": "That co-holding would have changed the outcome of Gard's case. Nobody outside Gard knows what was in that file."
+  },
+  "vessel": {
+    "name": "M/V NORTHERN CADENCE",
+    "imo": "0000000",
+    "imo_note": "not a valid IMO number -- this vessel is invented",
+    "type": "Bulk carrier",
+    "built": 2011
+  },
+  "incident_date": "2026-06-18",
+  "handover_date": "2025-05-15",
+  "assessments": [
+    {
+      "record": "As received at handover",
+      "entries_available": 25,
+      "gap_is_countable": false,
+      "gap_census": null,
+      "questions": [
+        {
+          "question": "Can running hours be established against maintenance events?",
+          "per_generator": {
+            "DG1": {
+              "datapoints": 5,
+              "rh_span_covered": 1577
+            },
+            "DG2": {
+              "datapoints": 10,
+              "rh_span_covered": 5853
+            },
+            "DG3": {
+              "datapoints": 10,
+              "rh_span_covered": 5476
+            }
+          },
+          "status": "answerable",
+          "note": ""
+        },
+        {
+          "question": "What turbocharger work was carried out, and on which sets?",
+          "work": {
+            "DG1": [
+              {
+                "date": "2026-06-18",
+                "rh": 27526,
+                "job": "Turbocharger damage - bearing failure"
+              }
+            ],
+            "DG2": [
+              {
+                "date": "2025-01-09",
+                "rh": 47041,
+                "job": "Turbocharger cartridge replaced"
+              }
+            ],
+            "DG3": [
+              {
+                "date": "2025-02-02",
+                "rh": 45216,
+                "job": "Turbocharger cartridge replaced"
+              }
+            ]
+          },
+          "status": "partial",
+          "note": "The fact of the two cartridge replacements survives, because the purchase orders sit in the owner's own accounts rather than in the manager's PMS."
+        },
+        {
+          "question": "Why were the turbochargers on DG2 and DG3 changed?",
+          "reasons_recorded": [
+            {
+              "dg": "DG1",
+              "date": "2026-06-18",
+              "reason": "Turbocharger bearing failure in service. Rotor contact with casing. Cause under investigation."
+            }
+          ],
+          "status": "unanswerable",
+          "note": "Replacement is visible; cause is not. The remarks field did not survive."
+        },
+        {
+          "question": "Was the DG1 damage part of a wider issue affecting all three generators, or isolated to that turbocharger?",
+          "common_references_found": {},
+          "generators_linked": 0,
+          "status": "unanswerable",
+          "finding": "No shared reference links any two generators. On this record the three events are three unrelated events."
+        }
+      ]
+    },
+    {
+      "record": "Co-held at write time",
+      "entries_available": 73,
+      "gap_is_countable": true,
+      "gap_census": {
+        "A": {
+          "entries_written": 50,
+          "entries_held": 50,
+          "entries_missing": 0
+        },
+        "B": {
+          "entries_written": 23,
+          "entries_held": 23,
+          "entries_missing": 0
+        }
+      },
+      "questions": [
+        {
+          "question": "Can running hours be established against maintenance events?",
+          "per_generator": {
+            "DG1": {
+              "datapoints": 14,
+              "rh_span_covered": 5579
+            },
+            "DG2": {
+              "datapoints": 31,
+              "rh_span_covered": 13500
+            },
+            "DG3": {
+              "datapoints": 28,
+              "rh_span_covered": 13000
+            }
+          },
+          "status": "answerable",
+          "note": ""
+        },
+        {
+          "question": "What turbocharger work was carried out, and on which sets?",
+          "work": {
+            "DG1": [
+              {
+                "date": "2025-02-02",
+                "rh": 25057,
+                "job": "Turbocharger inspection - bearing clearance"
+              },
+              {
+                "date": "2026-06-18",
+                "rh": 27526,
+                "job": "Turbocharger damage - bearing failure"
+              }
+            ],
+            "DG2": [
+              {
+                "date": "2025-01-09",
+                "rh": 47041,
+                "job": "Turbocharger cartridge replaced"
+              }
+            ],
+            "DG3": [
+              {
+                "date": "2025-02-02",
+                "rh": 45216,
+                "job": "Turbocharger cartridge replaced"
+              }
+            ]
+          },
+          "status": "answerable",
+          "note": ""
+        },
+        {
+          "question": "Why were the turbochargers on DG2 and DG3 changed?",
+          "reasons_recorded": [
+            {
+              "dg": "DG2",
+              "date": "2025-01-09",
+              "reason": "Bearing wear found on inspection following high exhaust temp and vibration alarm. Debris consistent with LO contamination, batch LO-2411-B (ref LAB-24-3312). Cartridge renewed."
+            },
+            {
+              "dg": "DG1",
+              "date": "2025-02-02",
+              "reason": "Bearing clearance at upper limit. Same wear pattern as DG2/DG3 but less advanced - DG1 is standby set and has run far fewer hours on batch LO-2411-B. Recommend renewal at next opportunity."
+            },
+            {
+              "dg": "DG3",
+              "date": "2025-02-02",
+              "reason": "Same bearing wear pattern as DG2 (ref PO-25-0104). Attributed to LO batch LO-2411-B. Cartridge renewed. DG1 inspected, wear present but within limits - monitor."
+            },
+            {
+              "dg": "DG1",
+              "date": "2026-06-18",
+              "reason": "Turbocharger bearing failure in service. Rotor contact with casing. Cause under investigation."
+            }
+          ],
+          "status": "answerable",
+          "note": ""
+        },
+        {
+          "question": "Was the DG1 damage part of a wider issue affecting all three generators, or isolated to that turbocharger?",
+          "common_references_found": {
+            "LO-2411-B": [
+              "DG1",
+              "DG2",
+              "DG3"
+            ]
+          },
+          "generators_linked": 3,
+          "status": "answerable",
+          "finding": "A single shared cause reference appears against all three generators."
+        }
+      ]
+    }
+  ],
+  "not_fixed_by_coholding": [
+    "It cannot recover a reason that was never written down. If the engineer logged the cartridge change and not the cause, no arrangement about custody puts the cause back.",
+    "It does not make an entry true. A wrong entry, co-held, is a wrong entry held by two parties instead of one. This is custody, not verification, and the difference is the whole reason this is not ValiChord.",
+    "It is forward-only. Gard notes the gaps 'may have dated back to previous ownership or management'. Nothing here reaches back past the day it was adopted -- the first owner to adopt it still inherits a blank history.",
+    "It requires the owner's node to have been online to receive the entry. A one-ship owner whose machine is off for a month has an availability problem, and solving that with an always-on peer quietly reintroduces the operator the design was avoiding.",
+    "It does not stop a manager keeping a second, private record. It only means the entries they DID write cannot later be withdrawn."
+  ]
+}

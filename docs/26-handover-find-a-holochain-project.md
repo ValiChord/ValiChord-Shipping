@@ -39,7 +39,7 @@ do this, and it happened anyway across ten candidates.
 |---|---|
 | **No server** | Coordination where nobody wants to pay for, or trust, an operator. The cost floor is zero; a SaaS competitor's is not |
 | **Data stays with each party** | Each holds their own signed chain and grants access to slices. A *control* problem, not a trust one |
-| **Offline-first** | Sign at sea, gossip on reconnect, sequence intact. Ships are offline constantly |
+| **Offline-first** | Sign at sea, gossip on reconnect, sequence intact. ⚠️ **See the correction below — merchant ships are no longer offline** |
 | **Cheap ephemeral private groups** | Membraned cloned spaces per group, created and dissolved at no infrastructure cost |
 | **Countersigning** | Atomic bilateral commit — both or neither |
 | **Peer-enforced deterministic rules** | The DHT enforces, not a server |
@@ -192,6 +192,44 @@ own pages; every named UK call was closed as of 26 August 2026.
 3. **Put the network boundary where the obligation lives**, not where the transaction is.
 4. **Countersigning fits handovers, and only handovers.**
 5. **Offline-first requires no argument about trust at all** — and in shipping it may be the
-   strongest card in the deck.
+   strongest card in the deck. ⚠️ **Withdrawn. See below.**
 
 **Start from 5, not from 1.** That is the correction this handover exists to make.
+
+---
+
+## CORRECTION, 27 August 2026 — point 5 is withdrawn
+
+**Do not start from offline-first. It has expired, and a session that starts there is
+building for 2019.**
+
+Verified against connectivity market data on 27 August 2026: roughly **67,000 commercial
+vessels were on Starlink by early 2026**, with 40,000+ merchant ships expected by the end of
+2025, and per-gigabyte costs down more than 95% since before LEO. The deep-sea merchant
+fleet is going always-on, quickly, and in one direction only.
+
+Offline-first still holds for **fishing, inland waterways, workboats and small operators**.
+It does not hold for merchant shipping, which is what the rest of this document is about.
+
+**The property that is strengthening instead is data ownership and custody** — points 2 and
+3 on the surviving list. Start there.
+
+This correction produced candidate 11, the first to survive the three cheap tests:
+
+> **A ship's technical record does not survive the company that created it.** IUMI called
+> non-transfer and destruction of records *"commonplace"* in its position paper of 8
+> September 2015 and asked IACS, jointly with the London Joint Hull Committee, to make
+> record retention a condition of class. Gard had already raised it in a 2010 circular and
+> was **still writing it up on 21 July 2026**. SHIPMAN 2024 added Clause 22 giving owners
+> their data, and Clause 21 giving them access *through the manager's own platform*.
+>
+> **The clause exists and the problem persists**, which means the missing piece was never
+> agreement. It is that nobody can tell what was deleted, because the only record of what
+> was written is held by the party who benefits from deleting it.
+
+Worked demo and the full set of objections against it, including the two that could still
+kill it: [`../tools/record-gap/`](../tools/record-gap/).
+
+**Note what candidate 11 is not.** It is not a verification problem, and reaching for blind
+commit–reveal here would repeat exactly the mistake this document was written to prevent.
+Nothing is verified and nobody commits to anything. It is custody.

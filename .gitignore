@@ -44,3 +44,10 @@ tools/phase3/timestamps/
 
 # NOAA AIS archives -- large, re-downloadable
 tools/phase0b/ais/
+
+# Record-gap run artefacts (regenerate with tools/record-gap/run.sh)
+tools/record-gap/case.json
+tools/record-gap/gap_report.json
+tools/record-gap/report.html
+tools/record-gap/artifact.html
+tools/record-gap/__pycache__/
