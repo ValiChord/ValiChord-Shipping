@@ -103,6 +103,15 @@ Two more that belong to the market rather than the mechanism:
   rather than technology, in which case this changes nothing. That is the question
   to put to Gard and to IUMI, and it is not answerable from a desk.
 
+- **Someone does sell a version of this.** An earlier draft of this file said
+  nobody is paid to prevent the problem, only to remediate it. That was too
+  strong. **CoverSense sells a Vessel Passport** — *"the permanent digital
+  identity for your boat… stays with the vessel for life"*, entries that *"cannot
+  be altered or deleted after verification"*, transferring to the buyer on sale.
+  It is recreational rather than commercial, and it is hosted by CoverSense, but
+  it is prior art and it is real. See
+  [`../../docs/28-prior-art-and-the-general-case.md`](../../docs/28-prior-art-and-the-general-case.md).
+
 ## Two rules for anyone editing this
 
 **Report what the record can and cannot establish. Never adjudicate.** No monetary

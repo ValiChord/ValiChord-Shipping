@@ -51,3 +51,4 @@ tools/record-gap/gap_report.json
 tools/record-gap/report.html
 tools/record-gap/artifact.html
 tools/record-gap/__pycache__/
+spec/__pycache__/
